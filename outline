@@ -1,0 +1,42 @@
+
+- Intro
+-- Prepared for Class
+-- Go Versus Perl
+-- Why Use Go?
+--- speed
+--- concurrency
+--- cross-platform static binaries
+---- GOOS=windows GOARCH=amd64 go build
+- $GOPATH, the Go Toolchain, and the Go Ecosystem
+-- go build and go run
+-- go test
+-- gofmt
+-- go vet
+-- golint
+-- golang.org
+-- godoc and godoc.org
+- Basics
+-- Go Style Naming
+-- Variables, Type Declarations, & Function Calls
+-- Data Structures
+-- Unit Testing with "go test"
+-- Defining Functions
+-- Control Structures
+-- Importing
+-- Error Handling
+- Types, Interfaces, and OO in Go
+-- Method Calls
+-- Defining Types
+-- Interfaces
+-- Type Switch
+- Packages
+-- go get
+-- File Layout
+-- Importing Your Own Packages
+-- Package Management
+-- Reproducible Builds with Godep
+- Concurrency with Channels
+-- Goroutines
+-- Fire and Forget Example
+-- Message Passing Example
+-- Parallelization

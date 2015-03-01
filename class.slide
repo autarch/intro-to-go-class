@@ -1,0 +1,38 @@
+Introduction to Go
+Go for Perl Programmers (or non-Perl Programmers)
+11 Jun 2015
+
+Dave Rolsky
+autarch@urth.org
+http://blog.urth.org/
+
+* Are You Prepared?
+
+- Do you have a laptop?
+- ... with Go 1.4 installed?
+- ... and the ability to run shells scripts?
+- ... and your text editor of choice?
+- ... and the tarball for this class?
+
+* Go Versus Perl
+
+- Compiled versus interpreted
+- Static (inferenced) typing versus dynamic
+- C-esque syntax (with some reminders of Perl 6)
+- Packaging and libraries are *very* different from Perl (more on this later)
+
+* Why Use Go?
+
+- It's fast
+- Concurrency baked into the language
+- Good built-in libraries and a decent selection of third-party libraries
+- It's statically compiled so deployment is trivial
+
+  jane@machine:~/go/src/github.com/jane/my-app> go build
+  jane@machine:~/go/src/github.com/jane/my-app> cp my-app /path/to/deployment
+
+- And you can cross-compile too!
+
+  jane@machine:~/go/src/github.com/jane/my-app> GOOS=windows GOARCH=amd64 go build
+
+- Produces a *my-app.exe* file
