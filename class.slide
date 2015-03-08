@@ -10,7 +10,7 @@ http://blog.urth.org/
 
 - Do you have a laptop?
 - ... with Go 1.4 installed?
-- ... and the ability to run shells scripts?
+- ... and the ability to run shell scripts?
 - ... and your text editor of choice?
 - ... and the tarball for this class?
 
@@ -36,3 +36,79 @@ http://blog.urth.org/
   jane@machine:~/go/src/github.com/jane/my-app> GOOS=windows GOARCH=amd64 go build
 
 - Produces a *my-app.exe* file
+
+* Why Go Sucks
+
+- No algebraic data types (`Collection<X>` where `X` is a type)
+- Concurrency is somewhat low-level - Go is no Erlang
+- A little too easy to ignore errors
+
+* Hello, World
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/hello-world1/hello-world1.go
+
+* Hello, World Again
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/hello-world2/hello-world2.go
+
+* $GOPATH, Toolchain, and the Ecosystem
+
+* $GOPATH
+
+- All your Go code lives under `$GOPATH`
+- Mine is `~/go`
+
+    ~/go
+    ├── bin
+    ├── pkg
+    └── src
+
+- Compiled executables go in `bin`
+- Compiled libraries in `pkg`
+- Source code in `src`
+
+* Source Code Organization
+
+- Source is identified by a repo path
+- `~/go/src/github.com/google/go-github`
+- `~/go/src/code.google.com/p/go-uuid`
+- Both your code and third-party packages
+
+* Starting a New Go Project
+
+- Pick a repo
+- Make a directory like `~/go/src/repo-host.com/username/repo-name`
+- Hack, hack, hack
+
+* Package Names are Repo Names are Paths
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/uuid-example/uuid-example.go
+
+- cd `gopath/src/github.com/autarch/intro-to-go-class-code/uuid-example`
+- `go`get`
+- Downloads `uuid` package to `gopath/src/code.google.com/p/go-uuid`
+
+* The Toolchain
+
+- The `go` program does most of the work
+- `go`get` - download packages
+- `go`build` - create an executable for specified package in place
+- `go`install` - create an executable for specified package and put it in `$GOPATH/bin`
+- `go`run` - run the specified code
+- `go`test` - run tests for the specified package
+- `go`fmt` - runs `gofmt` tool on specified package
+- `go`vet` - runs `govet` tool on specified package
+
+* More Tools
+
+.link https://github.com/golang/lint golint
+- Suggests fixes - in particular will catch places where you ignore errors
+.link https://github.com/tools/godep godep
+- Dependency management tool - we will cover this in depth later
+
+* Places to Learn
+
+.link http://golang.org golang.org
+- Documentation on the language and core packages
+.link http://godoc.org godoc.org
+- Third party package listing and documentation

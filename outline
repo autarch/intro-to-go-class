@@ -10,7 +10,7 @@
 - $GOPATH, the Go Toolchain, and the Go Ecosystem
 -- go build and go run
 -- go test
--- gofmt
+-- go fmt
 -- go vet
 -- golint
 -- golang.org
