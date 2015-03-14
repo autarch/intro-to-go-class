@@ -16,14 +16,30 @@
 -- golang.org
 -- godoc and godoc.org
 - Basics
--- Go Style Naming
+-- Go Naming Conventions
 -- Variables, Type Declarations, & Function Calls
+-- Package main and function main
+-- The log package
+--- logging messages and fatal errors
+-- Printing output to stdout/stderr with the fmt package
+-- Reading strings from the command line and turning them into numbers
 -- Data Structures
+--- arrays and slices
+---- creating, modifying, checking length
+--- Getting command line arguments via os.Args
+---- exercise1 - minimal RPN calculator
+--- maps
+--- structs
+--- pointers
 -- Unit Testing with "go test"
 -- Defining Functions
 -- Control Structures
--- Importing
 -- Error Handling
+-- Importing (1)
+---- core packages only
+-- Importing (2)
+--- external packages
+--- load without importing symbols
 - Types, Interfaces, and OO in Go
 -- Method Calls
 -- Defining Types
@@ -40,3 +56,11 @@
 -- Fire and Forget Example
 -- Message Passing Example
 -- Parallelization
+
+- godoc
+- JSON
+- defer, panic, recover
+-- when to use it (inside a package or for unrecoverable errors)
+- good error handling practices - http://blog.golang.org/error-handling-and-go
+- reflection and when to use it vs "go generate"
+- profiling
