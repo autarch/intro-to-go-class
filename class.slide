@@ -6,6 +6,8 @@ Dave Rolsky
 autarch@urth.org
 http://blog.urth.org/
 
+* Introductions
+
 * Are You Prepared?
 
 - Do you have a laptop?
@@ -112,3 +114,8 @@ http://blog.urth.org/
 - Documentation on the language and core packages
 .link http://godoc.org godoc.org
 - Third party package listing and documentation
+
+* More To Read
+
+.link http://blog.golang.org/organizing-go-code Organizing Go Code
+.link http://blog.golang.org/generate Generating code
