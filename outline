@@ -1,4 +1,3 @@
-
 - Intro
 -- Prepared for Class
 -- Go Versus Perl
@@ -18,25 +17,29 @@
 - Basics
 -- Go Naming Conventions
 -- Variables, Type Declarations, & Function Calls
+-- Defining Functions
 -- Package main and function main
--- The log package
---- logging messages and fatal errors
+-- Importing (1)
+---- core packages only
 -- Printing output to stdout/stderr with the fmt package
 -- Reading strings from the command line and turning them into numbers
+-- If/else
+--- checking err != nil
+-- The log package
+--- logging messages and fatal errors
+-- Getting command line arguments via os.Args
+---- exercise1 - minimal RPN calculator
 -- Data Structures
 --- arrays and slices
 ---- creating, modifying, checking length
---- Getting command line arguments via os.Args
----- exercise1 - minimal RPN calculator
 --- maps
 --- structs
 --- pointers
 -- Unit Testing with "go test"
--- Defining Functions
--- Control Structures
+-- More Control Structures
+--- while
+--- for loops - C style & rangex
 -- Error Handling
--- Importing (1)
----- core packages only
 -- Importing (2)
 --- external packages
 --- load without importing symbols

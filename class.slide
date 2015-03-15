@@ -65,9 +65,10 @@ http://blog.urth.org/
     ├── pkg
     └── src
 
-- Compiled executables go in `bin`
+- Installed executables go in `bin`
 - Compiled libraries in `pkg`
 - Source code in `src`
+- `$GOPATH` is a colon-separated list
 
 * Source Code Organization
 
@@ -86,8 +87,13 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/uuid-example/uuid-example.go
 
-- cd `gopath/src/github.com/autarch/intro-to-go-class-code/uuid-example`
-- `go`get`
+    > cd $GOPATH/src
+    > mkdir -p github.com/autarch
+    > cd github.com/autarch
+    > git clone https://github.com/autarch/intro-to-go-class-code
+    > cd intro-to-go-class-code/uuid-example
+    > go get
+
 - Downloads `uuid` package to `gopath/src/code.google.com/p/go-uuid`
 
 * The Toolchain
@@ -107,6 +113,265 @@ http://blog.urth.org/
 - Suggests fixes - in particular will catch places where you ignore errors
 .link https://github.com/tools/godep godep
 - Dependency management tool - we will cover this in depth later
+
+* Links to Open Now
+
+.link http://golang.org/pkg/ Built-in Package docs - http://golang.org/pkg/
+.link http://golang.org/doc/effective_go.html Effective Go - http://golang.org/doc/effective_go.html
+.link http://golang.org/ref/spec Language Spec - http://golang.org/ref/spec
+
+* Goal The First
+
+- Learn enough of the language to write a basic program
+- (Not "Hello, World")
+
+* Syntax in a Nutshell
+
+- It's mostly like C, Perl, Ruby, JavaScript, and many others
+- No semi-colons at end of line
+- Variable assigmnent with `=`
+- Comparisons with `==`, `<`, `>`, etc.
+- Math operators are `+`, `-`, `*`, `/`, etc.
+- Comments are `//` (single line) or `/*`delimited`*/`
+- If we don't cover it explicitly, assume it's what you'd think it would be
+
+* Go Naming Conventions
+
+- Variables and functions: CamelCase and camelCase, not snake_case
+- Constants: same thing
+- If function or constant starts with a capital letter, it's exported
+- Same for package-scoped variables
+
+     package foo
+
+     var Foo = 42
+     var bar = 84
+
+     const Pi = 3.14
+     const realPi = 3.14159
+
+     func internalOnly() ...
+     func Exported() ...
+
+* Variable Declarations
+
+- Two ways to declare
+- `var foo string = "bar"`
+- `var` name, type, optional assignment
+- `foo := 42` - short declaration syntax
+- Short declaration implies type
+
+* Scope and Re-declaration
+
+- Variables are always lexically scoped from where they're declared
+- The lexical scope for control structures is the structure block (more on that later)
+- Can redeclare variables declared with short declaration
+
+    thing1, err := someFunction()
+    thing2, err := someFunction()
+
+- Can only-redeclare if we're also creating a new var
+
+    thing1, err := someFunction()
+    thing1, err := someFunction()
+
+* Declaration Examples
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/declarations/redeclare-ok.go
+
+* Declaration Examples
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/declarations/redeclare-bad.go
+
+* Built-in Types
+
+- boolean - `true` and `false`
+- `uint8`, 16, 32, 24
+- `int8`, 16, 32, 24
+- `float32`, `float64`
+- `complex32`, `complex64`
+- `string` - Unicode everywhere - "foo, 酒廊"
+- `rune` - one Unicode code point - '廊'
+- `[4]string` - array of 4 strings
+- `[]string` - slice of strings
+- structs, pointers, maps, channels, interfaces, function types - all covered later
+
+* Working With Arrays and Slices
+
+- They are 0-indexed
+- Use the `len` built-in to check the length of an array or slice
+
+    size := len(array)
+
+- Access elements with square brackets:
+
+    val0 := array[0]
+
+- Accessing a value out of bounds causes a runtime panic!
+- We'll cover creating, pushing, slicing, and more later
+
+* Function Declarations
+
+    func funcName (arg1 string, arg2 int64) string {
+        ...
+    }
+
+    func NoArgs () (string, error) {
+        ...
+    }
+
+    func AllArgsTheSame (arg1, arg2, arg3 string) {
+        ...
+    }
+
+    func variadicArgs (args ...int64) {
+        ...
+    }
+
+* Calling Functions
+
+    noReturn()
+
+    foo := returnsValue()
+
+    foo, bar, baz := returnsSeveralValues()
+
+    foo = requiresArguments(arg1, arg2)
+
+    // Ignores the second return value
+    foo, _, baz = returnsSeveralValues()
+
+    // Function is in another package
+    dir, err := os.Getwd()
+
+* Packages declarations
+
+- Every go file must declare a package
+- Multiple files can declare the same package (and this is common)
+- Typically all the files in one directory share a package
+- Package names are usually lower case without underscores
+- Any unicode character is valid
+
+    package математический
+
+* Package main and func main
+
+- The `main` package is used to create an executable
+- If a file named `my-great-program.go` contains:
+
+    package main
+
+    func main() {
+        ...
+    }
+
+- When you run `go build` you get an executable named `my-great-program`
+
+* Importing
+
+- Core packages are imported by name (without a repo):
+
+    package main
+
+    import "os"
+
+- Can import many packages at once:
+
+    package main
+
+    import (
+        "encode/json"
+        "log"
+        "os"
+    )
+
+* Printing Output
+
+- We've seen `log` (`log.Print()`) and `os` (`os.Stdout.WriteString()`)
+- Can also use `fmt`
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/fmt-example/fmt-example.go
+
+* The os Package
+
+- Does a lot of stuff, including syscalls (`chdir`, `symlink`, etc.)
+- Defines file and process objects
+
+* Getting Positional Command Line Args
+
+- Use `os.Args`:
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/os-args-example/os-args-example.go
+
+- Argument 0 is the program name
+
+* Reading Commang Line Arguments
+
+- Use `fmt.Sscan` (string scan):
+
+    import (
+        "fmt"
+        "os"
+    )
+
+    var arg1 int64
+    _, err := fmt.Sscan(os.Args[1], &arg1)
+
+- `fmt.Sscan` expects a string and a pointer to a variable
+- `&` takes a pointer to the given variable
+- "Scans" the string and converts it to whatever type the variable is
+- If it can't convert it then it returns an error
+- Not very strict - will convert "2 blah blah" to 2
+- Good enough for now
+
+* If/Else
+
+- `if` does not use parens
+
+    if foo > 42 {
+        ...
+    } else if bar < 12 {
+        ...
+    } else {
+        ...
+    }
+
+* Checking Errors
+
+- Go has exceptions, but they're not used for APIs
+- Used internally or for unrecoverable errors
+- Errors are returned as `Error` type values
+- If there was no error the value is `nil`
+
+    dir, err := os.Getwd()
+    if err != nil {
+        log.Fatal(err) // Prints a log message and then calls os.Exit(1)
+    }
+
+- `fmt.Sscan` returns the number of values parsed and an error value
+
+* Compound if Statement
+
+- Very, very common Go idiom:
+
+    if err := someOperation(); err != nil {
+        log.Fatal(err)
+    }
+
+- The `err` variable is only in scope for the `if` statement and its block
+
+* The log Package
+
+- `log.Print(msg)` - prints `msg`
+- `log.Fatal(msg)` - calls `log.Print(msg)` and then calls `os.Exit(1)`
+- You will use this in the first exercise
+- `log.Panic(msg)` - logs `log.Print(msg)` and then calls `panic()`
+
+* Exercise 1
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise1`
+- Open `exercise1.go` in your editor of choice
+- Read the instructions
 
 * Places to Learn
 
