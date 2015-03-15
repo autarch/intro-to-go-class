@@ -1,0 +1,3 @@
+[submodule "gopath/src/github.com/intro-to-go-class-code"]
+	path = gopath/src/github.com/autarch/intro-to-go-class-code
+	url = git@github.com:autarch/intro-to-go-class-code.git
