@@ -249,6 +249,8 @@ http://blog.urth.org/
 - Every go file must declare a package
 - Multiple files can declare the same package (and this is common)
 - Typically all the files in one directory share a package
+- The package name should match the directory's name
+- `github.com/autarch/project/path/to/foo` has a package named `foo`
 - Package names are usually lower case without underscores
 - Any unicode character is valid
 
@@ -284,6 +286,10 @@ http://blog.urth.org/
         "log"
         "os"
     )
+
+- Package names are the last part of the path, so `encode/json`'s package is `json`
+
+    json.NewDecoder() // not encode/json.NewDecoder()
 
 * Printing Output
 
