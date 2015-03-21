@@ -16,6 +16,13 @@ http://blog.urth.org/
 - ... and your text editor of choice?
 - ... and the tarball for this class?
 
+* Goals for This Class
+
+- Provide a broad overview of Go
+- Touch on many parts of the language
+- Cannot cover the language in depth
+- This is a first step, not the final step
+
 * Go Versus Perl
 
 - Compiled versus interpreted
@@ -41,9 +48,9 @@ http://blog.urth.org/
 
 * Why Go Sucks
 
-- No algebraic data types (`Collection<X>` where `X` is a type)
-- Concurrency is somewhat low-level - Go is no Erlang
 - A little too easy to ignore errors
+- Concurrency is somewhat low-level - Go is no Erlang
+- No algebraic data types (`Collection<X>` where `X` is a type)
 
 * Hello, World
 
@@ -83,7 +90,7 @@ http://blog.urth.org/
 - Make a directory like `~/go/src/repo-host.com/username/repo-name`
 - Hack, hack, hack
 
-* Package Names are Repo Names are Paths
+* Packages, Repos, and Paths
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/uuid-example/uuid-example.go
 
@@ -129,7 +136,7 @@ http://blog.urth.org/
 
 - It's mostly like C, Perl, Ruby, JavaScript, and many others
 - No semi-colons at end of line
-- Variable assigmnent with `=`
+- Variable assignment with `=`
 - Comparisons with `==`, `<`, `>`, etc.
 - Math operators are `+`, `-`, `*`, `/`, etc.
 - Comments are `//` (single line) or `/*`delimited`*/`
@@ -161,19 +168,17 @@ http://blog.urth.org/
 - `foo := 42` - short declaration syntax
 - Short declaration implies type
 
+    // Go knows this is an int
+    foo := 42
+    // Go looks at the return value of uuid.NewUUID() - it's a uuid.UUID
+    id := uuid.NewUUID()
+
 * Scope and Re-declaration
 
 - Variables are always lexically scoped from where they're declared
 - The lexical scope for control structures is the structure block (more on that later)
 - Can redeclare variables declared with short declaration
-
-    thing1, err := someFunction()
-    thing2, err := someFunction()
-
 - Can only-redeclare if we're also creating a new var
-
-    thing1, err := someFunction()
-    thing1, err := someFunction()
 
 * Declaration Examples
 
@@ -186,12 +191,13 @@ http://blog.urth.org/
 * Built-in Types
 
 - boolean - `true` and `false`
-- `uint8`, 16, 32, 24
-- `int8`, 16, 32, 24
+- `uint`, `uint8`, 16, 32, 24
+- `int`, `int8`, 16, 32, 24
 - `float32`, `float64`
-- `complex32`, `complex64`
+- `complex`, `complex32`, `complex64`
 - `string` - Unicode everywhere - "foo, 酒廊"
 - `rune` - one Unicode code point - '廊'
+- `byte` - a single 8-bit value
 - `[4]string` - array of 4 strings
 - `[]string` - slice of strings
 - structs, pointers, maps, channels, interfaces, function types - all covered later
@@ -311,7 +317,20 @@ http://blog.urth.org/
 
 - Argument 0 is the program name
 
-* Reading Commang Line Arguments
+* Checking Errors
+
+- Go has exceptions, but they're not used for APIs
+- Used internally or for unrecoverable errors
+- Errors are returned as `Error` type values
+- `Error` objects stringify
+- If there was no error the value is `nil`
+
+    dir, err := os.Getwd()
+    if err != nil {
+        log.Fatal(err) // Prints a log message and then calls os.Exit(1)
+    }
+
+* Reading Command Line Arguments
 
 - Use `fmt.Sscan` (string scan):
 
@@ -324,6 +343,7 @@ http://blog.urth.org/
     _, err := fmt.Sscan(os.Args[1], &arg1)
 
 - `fmt.Sscan` expects a string and a pointer to a variable
+- It returns the number of values parsed and an error value
 - `&` takes a pointer to the given variable
 - "Scans" the string and converts it to whatever type the variable is
 - If it can't convert it then it returns an error
@@ -341,20 +361,6 @@ http://blog.urth.org/
     } else {
         ...
     }
-
-* Checking Errors
-
-- Go has exceptions, but they're not used for APIs
-- Used internally or for unrecoverable errors
-- Errors are returned as `Error` type values
-- If there was no error the value is `nil`
-
-    dir, err := os.Getwd()
-    if err != nil {
-        log.Fatal(err) // Prints a log message and then calls os.Exit(1)
-    }
-
-- `fmt.Sscan` returns the number of values parsed and an error value
 
 * Compound if Statement
 
