@@ -244,13 +244,13 @@ http://blog.urth.org/
 
     foo = requiresArguments(arg1, arg2)
 
-    // Ignores the second return value
+    // The blank identifier (_) ignores a value
     foo, _, baz = returnsSeveralValues()
 
     // Function is in another package
     dir, err := os.Getwd()
 
-* Packages declarations
+* Package declarations
 
 - Every go file must declare a package
 - Multiple files can declare the same package (and this is common)
@@ -383,6 +383,80 @@ http://blog.urth.org/
 
 - `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise1`
 - Open `exercise1.go` in your editor of choice
+- Read the instructions
+
+* More Data Structures
+
+* String Operations
+
+- Get the length with `len(s)`
+- Many, many functions in the `strings` package
+- `strings.Trim()`, `strings.Split()`, `strings.Index()` and many more
+
+* Arrays and Slices
+
+- Arrays are fixed-length, declared in advance, passed by value
+- Arrays (and slices) are initialized to a sane "zero" value if not populated
+
+    // Every element is 0
+    var b [42]byte
+
+- Slices are like arrays but do not require a length, passed by reference
+
+    var s []string
+
+- Can also populate when declaring and take references to existing slices (or arrays)
+
+    s := []string{"a", "slice", "of", "strings"}
+    t := s[0:2]
+    // t is {"a", "slice", "of"}
+    s[0] = "the"
+    // t is {"the", "slice", "of"}
+
+* Arrays and Slice Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/arrays.go
+
+* The make() Built-in
+
+- `make(Type,`Length)` returns a new slice
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/make.go
+
+* Appending to a Slice
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/append.go
+
+* Iterating Over a Slice
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/iterate.go
+
+* Sorting Slices
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/sort.go
+
+- You can make any type sortable by implementing `sort.Interface` for your type
+- We'll take about interfaces later
+
+* Maps
+
+- Called hashes or dictionaries in many languages
+- Key/value mapping
+- In Go, key can be any type that supports comparisons with `==` and `!=`
+- Can get the length with `len(m)` just like arrays
+
+* Maps Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/maps/maps.go
+
+* Iterating Over Maps
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/maps/iterate.go
+
+* Exercise 2
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise2`
+- Open `exercise2.go` in your editor of choice
 - Read the instructions
 
 * Places to Learn
