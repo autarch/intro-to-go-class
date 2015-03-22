@@ -30,7 +30,7 @@ http://blog.urth.org/
 - C-esque syntax (with some reminders of Perl 6)
 - Packaging and libraries are *very* different from Perl (more on this later)
 
-* Why Use Go?
+* Pros & Cons
 
 - It's fast
 - Concurrency baked into the language
@@ -254,10 +254,10 @@ http://blog.urth.org/
 
 - Every go file must declare a package
 - Multiple files can declare the same package (and this is common)
-- Typically all the files in one directory share a package
-- The package name should match the directory's name
+- All the files in one directory should share a single package
+- The package name must match the directory's name
 - `github.com/autarch/project/path/to/foo` has a package named `foo`
-- Package names are usually lower case without underscores
+- Go style package names are lower case without underscores
 - Any unicode character is valid
 
     package математический
@@ -387,12 +387,6 @@ http://blog.urth.org/
 
 * More Data Structures
 
-* String Operations
-
-- Get the length with `len(s)`
-- Many, many functions in the `strings` package
-- `strings.Trim()`, `strings.Split()`, `strings.Index()` and many more
-
 * Strings
 
 - Double quoted - "some text goes here"
@@ -402,6 +396,20 @@ http://blog.urth.org/
     This is a long chunk of text.
     That first newline is included, as is the last.
     `
+
+- Backtick strings are "raw" - backslashes have no special meaning
+
+    "\n" != `\n`
+
+- String concatenation is done with `+`
+
+    str := other + " suffix"
+
+* String Operations
+
+- Get the length with `len(s)`
+- Many, many functions in the `strings` package
+- `strings.Trim()`, `strings.Split()`, `strings.Index()` and many more
 
 * Arrays and Slices
 
@@ -467,6 +475,67 @@ http://blog.urth.org/
 
 - `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise2`
 - Open `exercise2.go` in your editor of choice
+- Read the instructions
+
+* Making Your Own Types
+
+- Types are declared with `type`
+- You can "alias" built-in types
+
+    package user
+
+    type UserID uint64
+
+    func UserByID(id UserID) {
+        ...
+    }
+
+- This adds implicit documentation
+- Also does type enforcement (`uint64` != `userID`)
+
+* Type Conversion
+
+- You can coerce types with `type(value)`:
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/types/types.go
+
+* Type Conversion
+
+- Type conversion is explicit
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/types/error.go
+
+- This prevents you from using a `CompanyID` as a `UserID` even though they're both `uint64` under the hood!
+
+* Struct Types
+
+    type Person struct {
+        firstName string
+        lastName  string
+    }
+
+- The first character of a struct member determines public vs private
+- This is just like type names and function names inside a package
+- A struct can contain anything - arrays, maps, other structs:
+
+    type Account struct { ... }
+    type Address struct { ... }
+
+    type Person struct {
+        firstName string
+        lastName  string
+        accounts  []Account
+        addresses map[string]Address
+    }
+
+* Working With Structs
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/types/person.go
+
+* Exercise 3
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise3/user`
+- Open `user.go` in your editor of choice
 - Read the instructions
 
 * Places to Learn

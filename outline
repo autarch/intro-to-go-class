@@ -35,6 +35,7 @@
 --- maps
 --- structs
 --- pointers
+-- Functions as Types
 -- Unit Testing with "go test"
 -- More Control Structures
 --- while
