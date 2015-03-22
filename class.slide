@@ -393,6 +393,16 @@ http://blog.urth.org/
 - Many, many functions in the `strings` package
 - `strings.Trim()`, `strings.Split()`, `strings.Index()` and many more
 
+* Strings
+
+- Double quoted - "some text goes here"
+- Backticks for multi-line strings:
+
+    long := `
+    This is a long chunk of text.
+    That first newline is included, as is the last.
+    `
+
 * Arrays and Slices
 
 - Arrays are fixed-length, declared in advance, passed by value
