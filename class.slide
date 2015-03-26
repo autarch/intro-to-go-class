@@ -33,6 +33,7 @@ http://blog.urth.org/
 * Pros & Cons
 
 - It's fast
+- Type safety without too much typing
 - Concurrency baked into the language
 - Good built-in libraries and a decent selection of third-party libraries
 - It's statically compiled so deployment is trivial
