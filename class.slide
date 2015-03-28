@@ -30,29 +30,6 @@ http://blog.urth.org/
 - C-esque syntax (with some reminders of Perl 6)
 - Packaging and libraries are *very* different from Perl (more on this later)
 
-* Pros & Cons
-
-- It's fast
-- Type safety without too much typing
-- Concurrency baked into the language
-- Good built-in libraries and a decent selection of third-party libraries
-- It's statically compiled so deployment is trivial
-
-  jane@machine:~/go/src/github.com/jane/my-app> go build
-  jane@machine:~/go/src/github.com/jane/my-app> cp my-app /path/to/deployment
-
-- And you can cross-compile too!
-
-  jane@machine:~/go/src/github.com/jane/my-app> GOOS=windows GOARCH=amd64 go build
-
-- Produces a *my-app.exe* file
-
-* Why Go Sucks
-
-- A little too easy to ignore errors
-- Concurrency is somewhat low-level - Go is no Erlang
-- No algebraic data types (`Collection<X>` where `X` is a type)
-
 * Hello, World
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/hello-world1/hello-world1.go
