@@ -105,9 +105,11 @@ http://blog.urth.org/
 .link http://golang.org/doc/effective_go.html Effective Go - http://golang.org/doc/effective_go.html
 .link http://golang.org/ref/spec Language Spec - http://golang.org/ref/spec
 
-* Goal The First
+* From Zero to Code
 
-- Learn enough of the language to write a basic program
+* Our First Goal
+
+- Learn enough of the language to write a "real" program
 - (Not "Hello, World")
 
 * Syntax in a Nutshell
@@ -363,7 +365,7 @@ http://blog.urth.org/
 - Open `exercise1.go` in your editor of choice
 - Read the instructions
 
-* More Data Structures
+* More Types
 
 * Strings
 
@@ -473,7 +475,7 @@ http://blog.urth.org/
 
 * Type Conversion
 
-- You can coerce types with `type(value)`:
+- You can convert types with `type(value)`:
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/types/types.go
 
@@ -516,7 +518,132 @@ http://blog.urth.org/
 - Open `user.go` in your editor of choice
 - Read the instructions
 
-* Places to Learn
+* Pointers in Go
+
+- `&` takes a pointer
+- `*` de-references
+- Pointers are somewhat automatic
+- Can (mostly) be used just like the type they point to
+- But you must be explicit with functions
+
+* Taking a Pointer
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers.go
+
+* Function Takes a Pointer
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers2.go
+
+* Function Returns a Pointer
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers3.go
+
+* Making a Pointer to a Struct in Place
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers4.go
+
+* Why Bother?
+
+- Can be more efficient
+- Use a pointer for structs with large amounts of data
+- Lets you modify the callers value
+
+* Modifying The Caller's Value
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers5.go
+
+* Passing Functions and Function Types
+
+- In Go, functions are first class
+- Can assign a function to a variable
+- Can define an anonymous literal function inline
+- Can pass them to other functions
+- Can (and must) specify them as types to pass them
+
+* Function Passing Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/function-types/functions.go
+
+* Function Literals are Closures
+
+- A capture "captures" the state of variables in the scope where it's defined
+
+* Closure Example
+
+- What does this program print?
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/function-types/closures.go
+
+* More Statements
+
+* Loops Again
+
+- We've seen `for` loops with `range`
+- Go also supports C-style for loops:
+
+    for i := 0; i < 10; i++ {
+        someFunc(i)
+    }
+
+- There are no while loops, but `for` loops serve the same purpose:
+
+    for a < b {
+        a *= 2
+    }
+
+- For loops keep iterating while their condition is true
+
+    for true { ... } // infinite loop
+
+* Loop Controls
+
+- Can exit a loop with `break`:
+
+    for a < b {
+        if a == 42 {
+            break
+        }
+    }
+
+- Can go to the next iteration with `continue`:
+
+    for _, row := range rows {
+        for i, cell := range row {
+            if i >= 2 {
+                continue
+            }
+        }
+    }
+
+* Loop Labels
+
+- Both `break` and `continue` can work with labels:
+
+    OuterLoop:
+        for _, row := range rows {
+            for i, cell := range row {
+                if cell == 42 {
+                    break OuterLoop
+                }
+                if i >= 2 {
+                    continue OuterLoop
+                }
+            }
+        }
+
+* Switch Statements
+
+- Shorthand for `if` ... `else if` ... `else if` ... `else`
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/switch/switch.go
+
+* Switch Statements
+
+- Can use expressions for each `case` if we omit the variable after `switch`:
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/switch/switch2.go
+
+* Places to Learn More
 
 .link http://golang.org golang.org
 - Documentation on the language and core packages

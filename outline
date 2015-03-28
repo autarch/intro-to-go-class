@@ -29,6 +29,7 @@
 --- logging messages and fatal errors
 -- Getting command line arguments via os.Args
 ---- exercise1 - minimal RPN calculator
+- More Syntax, Types, and Language Details
 -- Data Structures
 --- arrays and slices
 ---- creating, modifying, checking length
@@ -36,14 +37,14 @@
 --- structs
 --- pointers
 -- Functions as Types
--- Unit Testing with "go test"
 -- More Control Structures
---- while
---- for loops - C style & rangex
+--- for loops - C style & range
+--- switch statements
 -- Error Handling
 -- Importing (2)
 --- external packages
 --- load without importing symbols
+-- Unit Testing with "go test"
 - Types, Interfaces, and OO in Go
 -- Method Calls
 -- Defining Types
