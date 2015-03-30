@@ -522,12 +522,6 @@ http://blog.urth.org/
 - We will cover function types and channels later
 - You sometimes need to check whether a value is `nil` in Go
 
-* Exercise 3
-
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise3/user`
-- Open `user.go` in your editor of choice
-- Read the instructions
-
 * Making Your Own Packages
 
 - Packages are imported by their full path - `code.google.com/p/go-uuid/uuid`
@@ -547,6 +541,12 @@ http://blog.urth.org/
 - Can call functions like `user.NewUser(...)`
 - Every `.go` file starts with `package`user`
 - We'll cover `*_test.go` files later
+
+* Exercise 3
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise3/user`
+- Open `user.go` in your editor of choice
+- Read the instructions
 
 * Pointers in Go
 
