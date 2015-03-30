@@ -58,8 +58,8 @@ http://blog.urth.org/
 * Source Code Organization
 
 - Source is identified by a repo path
-- `~/go/src/github.com/google/go-github`
-- `~/go/src/code.google.com/p/go-uuid`
+- `~/go/src/github.com/google/go-github/github`
+- `~/go/src/code.google.com/p/go-uuid/uuid`
 - Both your code and third-party packages
 
 * Starting a New Go Project
@@ -512,11 +512,41 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/types/person.go
 
+* The nil Value
+
+- `nil` is the empty value for pointers, slices, maps, functions types, and channels
+
+    var foo map[string]int
+    if foo == nil { ... }
+
+- We will cover function types and channels later
+- You sometimes need to check whether a value is `nil` in Go
+
 * Exercise 3
 
 - `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise3/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
+
+* Making Your Own Packages
+
+- Packages are imported by their full path - `code.google.com/p/go-uuid/uuid`
+- Package *names* are the final part of the path
+- Inside that directory, all files must start with `package`uuid`
+- The actual file names are irrelevant
+
+* Package File Layout Example
+
+    github.com/autarch/intro-to-go-class-code/packages
+    └── user
+        ├── cache.go
+        ├── user.go
+        └── user_test.go
+
+- Imported as `github.com/autarch/intro-to-go-class-code/packages/user`
+- Can call functions like `user.NewUser(...)`
+- Every `.go` file starts with `package`user`
+- We'll cover `*_test.go` files later
 
 * Pointers in Go
 
