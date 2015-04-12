@@ -253,7 +253,7 @@ http://blog.urth.org/
         ...
     }
 
-- When you run `go build` you get an executable named `my-great-program`
+- When you run `go`build` you get an executable named `my-great-program`
 
 * Importing
 
@@ -721,6 +721,58 @@ http://blog.urth.org/
 - We can also create errors as structs:
 
 .code gopath/src/github.com/autarch/intro-to-go-class-code/errors/error-struct.go
+
+* Exercise 5
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise5/user`
+- Open `user.go` in your editor of choice
+- Read the instructions
+
+* Unit Testing with "go test"
+
+* Test Files
+
+- When you run `go`test` go tests all the specified packages
+- Run `go`test`-v` for more details on failures
+- Run it in a directory and it tests whatever is in that directory
+- Tests are in files named "foo_test.go", "bar_test.go"
+- Test files correspond to the files implementing a package:
+
+    user/
+    ├── cache.go
+    ├── cache_test.go
+    ├── db.go
+    ├── db_test.go
+    ├── user.go
+    └── user_test.go
+
+* Test Functions
+
+- Test functions are in the same package as the code they test
+- Have access to private struct members and functions
+- Go looks for functions named `TestX`, `TestY`, etc.
+- These functions receive a `*testing.T` struct pointer as their sole argument
+- All test code must import the `testing` package
+
+* Example Tests
+
+.code gopath/src/github.com/autarch/intro-to-go-class-code/unit-tests/user_test.go
+
+* The assert Library
+
+- http://godoc.org/github.com/stretchr/testify/assert
+- I'm a big fan
+- Makes testing a lot nicer:
+
+* assert Example
+
+.code gopath/src/github.com/autarch/intro-to-go-class-code/unit-tests/user_assert_test.go
+
+* Exercise 6
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise6`
+- Open `calc_test.go` in your editor of choice
+- Read the instructions
 
 * Places to Learn More
 
