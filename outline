@@ -41,19 +41,14 @@
 --- for loops - C style & range
 --- switch statements
 -- Error Handling
--- Importing (2)
---- external packages
---- renaming packages on import
---- load without importing symbols
--- Unit Testing with "go test"
+- Unit Testing with "go test"
 - Types, Interfaces, and OO in Go
 -- Method Calls
 -- Defining Types
 -- Interfaces
 -- Type Switch
-- Packages
+- Package Management
 -- go get
--- File Layout
 -- Importing Your Own Packages
 -- Package Management
 -- Reproducible Builds with Godep
@@ -63,10 +58,18 @@
 -- Message Passing Example
 -- Parallelization
 
-- godoc
-- JSON
-- defer, panic, recover
--- when to use it (inside a package or for unrecoverable errors)
-- good error handling practices - http://blog.golang.org/error-handling-and-go
-- reflection and when to use it vs "go generate"
-- profiling
+- Bonus Slides
+-- godoc
+-- JSON
+-- defer, panic, recover
+--- when to use it (inside a package or for unrecoverable errors)
+-- reflection and when to use it vs "go generate"
+-- profiling
+
+
+Include?
+
+-- Importing (2)
+--- external packages
+--- renaming packages on import
+--- load without importing symbols
