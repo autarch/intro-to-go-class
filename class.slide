@@ -606,7 +606,7 @@ http://blog.urth.org/
 
 * Exercise 4
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise3/user`
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise4/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
