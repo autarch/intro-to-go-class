@@ -198,19 +198,19 @@ http://blog.urth.org/
 
 * Function Declarations
 
-    func funcName (arg1 string, arg2 int64) string {
+    func funcName(arg1 string, arg2 int64) string {
         ...
     }
 
-    func NoArgs () (string, error) {
+    func NoArgs() (string, error) {
         ...
     }
 
-    func AllArgsTheSame (arg1, arg2, arg3 string) {
+    func AllArgsTheSame(arg1, arg2, arg3 string) {
         ...
     }
 
-    func variadicArgs (args ...int64) {
+    func variadicArgs(args ...int64) {
         ...
     }
 
@@ -731,6 +731,7 @@ http://blog.urth.org/
 
 * More To Read
 
+.link http://www.golang-book.com/ An Introduction to Programming in Go - a free book
 .link http://blog.golang.org/ The Go Blog
 .link http://blog.golang.org/organizing-go-code Organizing Go Code
 .link http://blog.golang.org/generate Generating code
