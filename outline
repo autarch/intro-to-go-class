@@ -36,13 +36,14 @@
 --- maps
 --- structs
 --- pointers
--- Functions as Types
+-- First Class Functions
 -- More Control Structures
 --- for loops - C style & range
 --- switch statements
 -- Error Handling
 -- Importing (2)
 --- external packages
+--- renaming packages on import
 --- load without importing symbols
 -- Unit Testing with "go test"
 - Types, Interfaces, and OO in Go

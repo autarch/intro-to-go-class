@@ -586,9 +586,9 @@ http://blog.urth.org/
 
 - In Go, functions are first class
 - Can assign a function to a variable
-- Can define an anonymous literal function inline
-- Can pass them to other functions
+- Can pass them to other functions and return them from functions
 - Can (and must) specify them as types to pass them
+- Can define an anonymous literal function inline
 
 * Function Passing Example
 
@@ -603,6 +603,12 @@ http://blog.urth.org/
 - What does this program print?
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/function-types/closures.go
+
+* Exercise 4
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise3/user`
+- Open `user.go` in your editor of choice
+- Read the instructions
 
 * More Statements
 
@@ -673,6 +679,49 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/switch/switch2.go
 
+* Error Handling
+
+* Go Style Error Handling
+
+- Public interfaces return errors
+- Go does have exceptions (`panic()`), but throwing them is considered bad form
+- You can throw and catch them in your own package, but they should never affect callers
+- It's ok to `panic()` if your package cannot complete initialization
+- Can also use `panic()` to exit a goroutine without affecting the main thread
+
+.link http://golang.org/doc/effective_go.html#errors Effective Go on errors
+.link http://blog.golang.org/error-handling-and-go Error Handling and Go
+.link http://blog.golang.org/defer-panic-and-recover Defer, Panic, and Recover
+
+* The Error Type
+
+- Go's built-in error type is called `error`
+- This is actually an *interface*, which we'll cover later
+- You can create a new `error` with `errors.New("message`goes`here")`
+- Go errors are usually returned as the last return value:
+
+   func Foo() (bool, string, error) { ... }
+
+* Errors in Action
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/errors/errors.go
+
+* Errors in Action
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/errors/errors2.go
+
+* Using fmt.Errorf
+
+- If you want to create better string, errors, use `fmt.Errorf()`:
+
+.code gopath/src/github.com/autarch/intro-to-go-class-code/errors/errorf.go
+
+* Advanced Errors
+
+- We can also create errors as structs:
+
+.code gopath/src/github.com/autarch/intro-to-go-class-code/errors/error-struct.go
+
 * Places to Learn More
 
 .link http://golang.org golang.org
@@ -682,5 +731,6 @@ http://blog.urth.org/
 
 * More To Read
 
+.link http://blog.golang.org/ The Go Blog
 .link http://blog.golang.org/organizing-go-code Organizing Go Code
 .link http://blog.golang.org/generate Generating code
