@@ -44,19 +44,18 @@
 - Unit Testing with "go test"
 - Types, Interfaces, and OO in Go
 -- Method Calls
--- Defining Types
 -- Interfaces
 -- Type Switch
-- Package Management
--- go get
--- Importing Your Own Packages
--- Package Management
--- Reproducible Builds with Godep
 - Concurrency with Channels
 -- Goroutines
 -- Fire and Forget Example
 -- Message Passing Example
 -- Parallelization
+- Package Management
+-- go get
+-- Importing Your Own Packages
+-- Package Management
+-- Reproducible Builds with Godep
 
 - Bonus Slides
 -- godoc

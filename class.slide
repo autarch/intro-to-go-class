@@ -774,6 +774,102 @@ http://blog.urth.org/
 - Open `calc_test.go` in your editor of choice
 - Read the instructions
 
+* Types, Interfaces, and OO in Go
+
+* A Go Method
+
+- In Go, methods are associated with types
+- Any type - struct types, pointers, strings, etc.
+- Method names cannot overlap with struct field names
+- Methods are called as `value.method(...)`
+
+* Method Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/methods.go
+
+* How Methods Work
+
+    func (m mystring) foo(arg int) bool {
+        ...
+    }
+
+- Simply defining a func with a receiver makes it a method
+- The receiver is the thing the method is called on
+- Comes before the method name
+- Types and their methods must all be declared in the same package
+
+* Constructors
+
+- Go has no special constructor syntax
+- Typical packages provide a single `New()` function and/or several `NewX()` functions
+- For example, `user.New()`, `user.NewCache()`, `user.NewGroup()`
+- Constructors are expected to return a new value of the relevant type (or a pointer)
+
+* Exercise 7
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise7/user`
+- Open `user.go` in your editor of choice
+- Read the instructions
+
+* Interfaces
+
+- An interface is a list of methods *without implementations*
+- Go has many interface types defined in the core library
+- You can define your own interfaces
+- You can also require objects that conform to an interface in your functions
+- Any object which implements these methods conforms to the interface
+
+* Interface Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/interfaces.go
+
+* Some Common Built-in Interfaces
+
+- `Reader`
+
+    type Reader interface {
+        Read(p []byte) (n int, err error)
+    }
+
+- `Writer`
+
+    type Writer interface {
+        Write(p []byte) (n int, err error)
+    }
+
+- `Error`
+
+    type error interface {
+        Error() string
+    }
+
+* Interfaces Of Interfaces
+
+- An interface can include other interfaces:
+
+    type ReadWriter interface {
+        Reader
+        Writer
+    }
+
+- A `ReadWriter` object must implement all the methods from `Reader` and `Writer`
+
+- And an interface specify an interface which specifies other interfaces:
+
+    type File interface {
+        ReadWriter
+        Close() error
+    }
+
+* Why Use Interfaces?
+
+- Interfaces let you define APIs in terms of capabilities rather than types
+- "I need a thing that I can read from and write to"
+- "I need a thing that can print itself"
+- "I need a thing which implements the build-in `Error` API"
+- In other languages, this may be done with (abstract) base classes or (runtime) duck typing
+- Interfaces are checked at compile time, like any other type check in Go
+
 * Places to Learn More
 
 .link http://golang.org golang.org
