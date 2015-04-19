@@ -361,8 +361,8 @@ http://blog.urth.org/
 
 * Exercise 1
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise1`
-- Open `exercise1.go` in your editor of choice
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/1-calc/calc`
+- Open `calc.go` in your editor of choice
 - Read the instructions
 
 * More Types
@@ -453,8 +453,8 @@ http://blog.urth.org/
 
 * Exercise 2
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise2`
-- Open `exercise2.go` in your editor of choice
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/2-count-strings/count-strings/count-strings.go`
+- Open `count-strings.go` in your editor of choice
 - Read the instructions
 
 * Making Your Own Types
@@ -544,7 +544,7 @@ http://blog.urth.org/
 
 * Exercise 3
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise3/user`
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/3-basic-user-package/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -606,7 +606,7 @@ http://blog.urth.org/
 
 * Exercise 4
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise4/user`
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/4-first-class-functions/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -724,7 +724,7 @@ http://blog.urth.org/
 
 * Exercise 5
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise5/user`
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/5-error-return/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -770,7 +770,7 @@ http://blog.urth.org/
 
 * Exercise 6
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise6`
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/6-unit-tests/calc`
 - Open `calc_test.go` in your editor of choice
 - Read the instructions
 
@@ -843,7 +843,7 @@ http://blog.urth.org/
 
 * Exercise 7
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/exercise7/user`
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/7-basic-oo/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
