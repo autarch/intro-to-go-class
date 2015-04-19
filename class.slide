@@ -798,12 +798,48 @@ http://blog.urth.org/
 - Comes before the method name
 - Types and their methods must all be declared in the same package
 
+* Methods and Pointers
+
+- Methods with pointer receives automatically take references:
+
+    type mystring string
+    func (m *mystring) method() { ... }
+
+    var m mystring = "text"
+    m.method()
+
+- Calling `method()` will take a reference to `m` and pass that to `method()`
+
 * Constructors
 
 - Go has no special constructor syntax
 - Typical packages provide a single `New()` function and/or several `NewX()` functions
 - For example, `user.New()`, `user.NewCache()`, `user.NewGroup()`
 - Constructors are expected to return a new value of the relevant type (or a pointer)
+
+* Accessors and Attributes
+
+- Go has no special accessor or attribute syntax
+- You can provide accessors to a type's data by writing the appropriate methods
+
+* Accessors Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/accessors.go
+
+* Accessors Gotcha
+
+- Set methods must take a reference because values are passed by copy
+
+    func (d Document) SetTitle(title string) { d.title = title }
+
+- `d` is a copy of the `Document` struct so the title is set on a struct that is then thrown away
+
+* Accessor Naming
+
+- Go style is to use `Value()` for get methods and `SetValue()` for set methods
+- But avoid setters because mutable state is the devil
+- But OO design is a topic for another class entirely
+- But seriously, avoid setters whenever possible
 
 * Exercise 7
 
@@ -860,6 +896,19 @@ http://blog.urth.org/
         ReadWriter
         Close() error
     }
+
+* Satisfying an Interface
+
+- You can write code that satisfies any interface, including built-ins
+- The built-in `Error` interface looks like this:
+
+    type error interface {
+        Error() string
+    }
+
+* Interface Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/interfaces2.go
 
 * Why Use Interfaces?
 
