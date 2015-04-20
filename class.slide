@@ -388,7 +388,8 @@ http://blog.urth.org/
 
 * String Operations
 
-- Get the length with `len(s)`
+- Get the length in bytes with `len(s)`
+- Use `unicode/utf8` and call `utf8.RuneCountInString(s)` to count runes (aka characters)
 - Many, many functions in the `strings` package
 - `strings.Trim()`, `strings.Split()`, `strings.Index()` and many more
 
