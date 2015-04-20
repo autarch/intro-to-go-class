@@ -630,7 +630,7 @@ http://blog.urth.org/
 
 - For loops keep iterating while their condition is true
 
-    for true { ... } // infinite loop
+    for { ... } // infinite loop
 
 * Loop Controls
 
