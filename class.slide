@@ -174,7 +174,7 @@ http://blog.urth.org/
 - `uint`, `uint8`, 16, 32, 24
 - `int`, `int8`, 16, 32, 24
 - `float32`, `float64`
-- `complex`, `complex32`, `complex64`
+- `complex`, `complex64`, `complex128`
 - `string` - Unicode everywhere - "foo, 酒廊"
 - `rune` - one Unicode code point - '廊'
 - `byte` - a single 8-bit value
