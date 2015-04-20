@@ -358,6 +358,7 @@ http://blog.urth.org/
 - `log.Fatal(msg)` - calls `log.Print(msg)` and then calls `os.Exit(1)`
 - You will use this in the first exercise
 - `log.Panic(msg)` - logs `log.Print(msg)` and then calls `panic()`
+- Output from `log` goes to standard error by default, but you can change that
 
 * Exercise 1
 
