@@ -887,7 +887,7 @@ http://blog.urth.org/
 
 - A `ReadWriter` object must implement all the methods from `Reader` and `Writer`
 
-- And an interface specify an interface which specifies other interfaces:
+- And an interface can specify an interface which specifies other interfaces:
 
     type File interface {
         ReadWriter
