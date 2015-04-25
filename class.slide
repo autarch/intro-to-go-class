@@ -312,23 +312,18 @@ http://blog.urth.org/
 
 * Reading Command Line Arguments
 
-- Use `fmt.Sscan` (string scan):
+- Use `strconv.ParseInt`:
 
     import (
-        "fmt"
         "os"
+        "strconv"
     )
 
-    var arg1 int64
-    _, err := fmt.Sscan(os.Args[1], &arg1)
+    arg1, err := strconf.ParseInt(os.Args[1], 10, 64)
 
-- `fmt.Sscan` expects a string and a pointer to a variable
-- It returns the number of values parsed and an error value
-- `&` takes a pointer to the given variable
-- "Scans" the string and converts it to whatever type the variable is
+- `strconv.ParseInt` takes the string to parse, the base (2, 10, etc.), and the bit size (32, 64)
+- It returns an int64 and an error
 - If it can't convert it then it returns an error
-- Not very strict - will convert "2 blah blah" to 2
-- Good enough for now
 
 * If/Else
 
