@@ -33,7 +33,6 @@ a snippet that binds M-t:
               (lambda ()
                 (local-set-key "\M-t" `gofmt)))
 
-
 # Vim Integration
 
 Here are some useful Vim tools for Go:
@@ -47,6 +46,17 @@ Here are some useful Vim tools for Go:
 Check out the [GoSublime](https://github.com/DisposaBoy/GoSublime) plugin
 collection if you're using Sublime Text. It supports code completion, syntax
 checking as you type, quick formatting, and much more.
+
+# General Editor Recommendations
+
+Setting up your editor to integrae with `go fmt`, and `go vet` make your Go
+coding experience much better. You can have it run these checks on the
+currently loaded and/or run these checks every time you save your code.
+
+You may also want to be able to run `golint` easily, though I don't recommend
+this as a default action for every save, because it will often complain about
+issues that you will not want to fix, especially when you write code for this
+class's exercises.
 
 # Getting Set Up for the Class
 
