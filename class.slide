@@ -894,6 +894,14 @@ http://blog.urth.org/
         Close() error
     }
 
+* Requiring an Interface
+
+- Interfaces can be used like any other type in a function:
+
+    func (var SomeInterface) { ... }
+
+- Also used in type assertions, which we will cover soon
+
 * Satisfying an Interface
 
 - You can write code that satisfies any interface, including built-ins
