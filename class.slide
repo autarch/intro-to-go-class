@@ -126,7 +126,7 @@ http://blog.urth.org/
 
 - Variables and functions: CamelCase and camelCase, not snake_case
 - Constants: same thing
-- If function or constant starts with a capital letter, it's exported
+- If function, variable, or constant starts with a capital letter, it's exported
 - Same for package-scoped variables
 
      package foo
@@ -167,6 +167,26 @@ http://blog.urth.org/
 * Declaration Examples
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/declarations/redeclare-bad.go
+
+* Constants
+
+- Declared very similarly to variables:
+
+    const answer = 42
+    const pi float64 = 22/7
+
+- Can also declare multiple constants:
+
+    const (
+        answer         = 42
+        pi     float64 = 22 / 7
+    )
+
+* Constants and iota
+
+- Can assign `iota` to a constant - each assignment increments `iota`
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/constants/iota.go
 
 * Built-in Types
 
