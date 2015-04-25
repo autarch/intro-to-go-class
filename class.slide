@@ -95,9 +95,11 @@ http://blog.urth.org/
 * More Tools
 
 .link https://github.com/golang/lint golint
-- Suggests fixes - in particular will catch places where you ignore errors
+- Checks for style issues
 .link https://github.com/tools/godep godep
 - Dependency management tool - we will cover this in depth later
+.link https://github.com/kisielk/errcheck errcheck
+- Makes sure that you check error return values
 
 * Links to Open Now
 
