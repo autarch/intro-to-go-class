@@ -946,6 +946,40 @@ http://blog.urth.org/
 - In other languages, this may be done with (abstract) base classes or (runtime) duck typing
 - Interfaces are checked at compile time, like any other type check in Go
 
+* The Empty Interface
+
+- Want to accept any argument?
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/empty-interface.go
+
+* Runtime Type Checking
+
+- How do you know what was passed if you accept `interface{}`?
+- Can use the `reflect` package, which we'll cover if we have time
+- Can also use type assertion or the type switch statement
+
+* Type Assertion
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-assertion.go
+
+* Type Assertion
+
+- Can also do an assertion that leads to a panic:
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-assertion2.go
+
+* Type Assertion Versus Conversion
+
+- Conversion is not the same as assertion:
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-assertion3.go
+
+* Type Switch
+
+- A nicer way to write those if/else clauses:
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-switch.go
+
 * Places to Learn More
 
 .link http://golang.org golang.org
