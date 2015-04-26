@@ -706,7 +706,7 @@ http://blog.urth.org/
 - Go does have exceptions (`panic()`), but throwing them is considered bad form
 - You can throw and catch them in your own package, but they should never affect callers
 - It's ok to `panic()` if your package cannot complete initialization
-- Can also use `panic()` to exit a goroutine without affecting the main thread
+- Can also use `panic()` to exit a goroutine without affecting the main thread (if you catch the panic)
 
 .link http://golang.org/doc/effective_go.html#errors Effective Go on errors
 .link http://blog.golang.org/error-handling-and-go Error Handling and Go
