@@ -426,9 +426,9 @@ http://blog.urth.org/
 
     s := []string{"a", "slice", "of", "strings"}
     t := s[0:2]
-    // t is {"a", "slice", "of"}
+    // t is {"a", "slice"}
     s[0] = "the"
-    // t is {"the", "slice", "of"}
+    // t is {"the", "slice"}
 
 * Arrays and Slice Example
 
