@@ -64,6 +64,8 @@
 --- when to use it (inside a package or for unrecoverable errors)
 -- reflection and when to use it vs "go generate"
 -- profiling
+-- cgo and linking against C libs
+-- Go lang on Android
 
 
 Include?
