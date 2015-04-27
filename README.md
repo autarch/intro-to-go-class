@@ -72,3 +72,16 @@ following:
 * Tells you to set your `$GOPATH` environment variable to `$HOME/go` if it's not already set
 
 Note that you can use a different directory for your `$GOPATH` if you prefer.
+
+You should also add `$GOPATH/bin` to your path.
+
+# Reading the Slides on Your System
+
+If you'd like to be able to run the slides on your own system, you'll need the
+present tool. After you have your `$GOPATH` set up, simply run:
+
+    go get golang.org/x/tools/cmd/present
+
+Once this is done, you can run `present` from the directory containing the
+`intro-to-go.slide`. The `present` binary will be installed `$GOPATH/bin`,
+which you should have added to your `$PATH`.
