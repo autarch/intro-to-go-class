@@ -930,6 +930,12 @@ http://blog.urth.org/
 
 - Also used in type assertions, which we will cover soon
 
+* Exercise 8
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/8-interfaces/user`
+- Open `user.go` in your editor of choice
+- Read the instructions
+
 * Satisfying an Interface
 
 - You can write code that satisfies any interface, including built-ins
@@ -985,6 +991,12 @@ http://blog.urth.org/
 - A nicer way to write those if/else clauses:
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-switch.go
+
+* Exercise 9
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/9-more-interfaces/http`
+- Open `http.go` in your editor of choice
+- Read the instructions
 
 * Places to Learn More
 
