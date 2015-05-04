@@ -7,8 +7,13 @@ installer, an MSI installer for Windows, and a few other options.
 
 If you're on Ubuntu
 [Jay R Wren's Go PPA](https://launchpad.net/~evarlast/+archive/ubuntu/golang1.4)
-is a good option for installing Go 1.4 on your system. Fedora 21 and 22 both
-include Go 1.4.
+is a good option for installing Go 1.4 on your system. There is also a project
+called godeb that lets you download the latest Go source and turn it into a
+Debian package. See
+http://blog.labix.org/2013/06/15/in-flight-deb-packages-of-go for details and
+links to download binaries.
+
+Fedora 21 and 22 both include Go 1.4.
 
 # Operating Systems
 
