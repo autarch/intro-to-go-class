@@ -1024,7 +1024,7 @@ http://blog.urth.org/
     go library.Func()
     go myFunc()
     go object.Method()
-    go func() { ... }
+    go func() { ... }()
 
 - The `go` keyword tells Go to run this function in its own thread
 - Return values from these functions are discarded
