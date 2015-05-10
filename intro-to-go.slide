@@ -629,6 +629,23 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/function-types/closures.go
 
+* Defer
+
+- The `defer` keyword says that a function (or method) should be executed later
+- Later is right before the surrounding function exits
+- Works with named functions, methods, and anonymous functions
+- Called in reverse order of declaration (last in, first out)
+
+* Defer Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/defer/defer.go
+
+* Common Defer Idioms
+
+- Put cleanup right after initialization but `defer` it
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/defer/defer2.go /^func main/,/^}/
+
 * Exercise 4
 
 - `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/4-first-class-functions/user`
@@ -998,12 +1015,31 @@ http://blog.urth.org/
 - Open `http.go` in your editor of choice
 - Read the instructions
 
+* Concurrency
+
+* Goroutines
+
+- A goroutine is any function executed in a new thread
+
+    go library.Func()
+    go myFunc()
+    go object.Method()
+    go func() { ... }
+
+- The `go` keyword tells Go to run this function in its own thread
+- Return values from these functions are discarded
+- A `panic` in a goroutine terminates just that thread
+
 * Places to Learn More
 
 .link http://golang.org golang.org
 - Documentation on the language and core packages
 .link http://godoc.org godoc.org
 - Third party package listing and documentation
+
+* Searching for Go
+
+- You need to search for "golang", not "go"
 
 * More To Read
 
