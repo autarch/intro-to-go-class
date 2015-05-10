@@ -1040,9 +1040,6 @@ http://blog.urth.org/
 
 - You need to search for "golang", not "go"
 
-* More To Read
+* More To Read or Watch
 
-.link http://www.golang-book.com/ An Introduction to Programming in Go - a free book
-.link http://blog.golang.org/ The Go Blog
-.link http://blog.golang.org/organizing-go-code Organizing Go Code
-.link http://blog.golang.org/generate Generating code
+.html more.html
