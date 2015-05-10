@@ -63,9 +63,10 @@
 -- defer, panic, recover
 --- when to use it (inside a package or for unrecoverable errors)
 -- reflection and when to use it vs "go generate"
+-- standard library
 -- profiling
 -- cgo and linking against C libs
--- Go lang on Android
+-- Golang on Android
 
 
 Include?
