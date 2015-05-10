@@ -1029,6 +1029,98 @@ http://blog.urth.org/
 - The `go` keyword tells Go to run this function in its own thread
 - Return values from these functions are discarded
 
+* Goroutine Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/goroutine.go
+
+* Channels
+
+- Channels provide communication between goroutines
+- Make channels with `make()`
+- Channels transmit a single value of a given type
+- Read and write to channels with the `<-` operator
+- Channels are first-in-first-out
+- Can use channels with `range` - iterate until
+
+* Channel Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/channel.go
+
+* The <- Operator and Type Signature
+
+- The `<-` operator reads from or writes to the channel
+
+    c<- 42    // Write an integer
+    i := <-c  // Read an integer
+
+- In type signatures, specifies a direction
+
+    func read(c <-chan int)  { ... } // c can only be read from
+    func write(c chan<- int) { ... } // c can only be written to
+
+- Could just specify `c`chan`int` as the type, but a direction helps avoid mistakes
+
+* Concurrent Adder Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/adder.go
+
+* Channel Select
+
+- You can use `select` to pick from a set of channels
+
+	select {
+	case msg := <-c1:
+		fmt.Printf("Channel 1 says %s\n", msg)
+	case msg := <-c2:
+		fmt.Printf("Channel 2 says %s\n", msg)
+	case msg := <-c3:
+		fmt.Printf("Channel 3 says %s\n", msg)
+	}
+
+- Will read from the first channel that has a value
+
+* Channel Select Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/select.go /func main/,/end-of-code/
+
+* Closing Channels
+
+- After a channel is closed, reads return immediately with that type's empty value
+
+    c := make(chan int)
+    close(c)
+    i := <-c // i is 0
+
+- Writing to a closed channel causes a panic
+- So does closing a closed channel
+- Can use close to signal that a channel is done
+
+* Close Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/close.go /func main/,/end-of-code/
+
+* Status of Multiple Channels
+
+- If you make several channels, how do you know when they're all done?
+- Depends on whether you know exactly how many items they'll send
+- If you do, can know they're done when you have seen N items
+- Saw this in our select example - 2 channels which 3 messages each - done after 6 total
+- If you don't know, you need a mechanism to signal "I'm done"
+
+* Separate Done Channel Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/done.go /func main/,/end-of-code/
+
+* Timeout Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/timeout.go /import.+/,/end-of-code/
+
+* Exercise 10
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/10-concurrency`
+- Open `word-counter.go` in your editor of choice
+- Read the instructions
+
 * Places to Learn More
 
 .link http://golang.org golang.org
