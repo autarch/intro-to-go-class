@@ -1028,7 +1028,6 @@ http://blog.urth.org/
 
 - The `go` keyword tells Go to run this function in its own thread
 - Return values from these functions are discarded
-- A `panic` in a goroutine terminates just that thread
 
 * Places to Learn More
 
