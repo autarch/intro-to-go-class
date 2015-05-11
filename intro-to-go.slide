@@ -1113,9 +1113,9 @@ http://blog.urth.org/
 - Saw this in our select example - 2 channels which 3 messages each - done after 6 total
 - If you don't know, you need a mechanism to signal "I'm done"
 
-* Separate Done Channel Example
+* Close Check Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/done.go /func main/,/end-of-code/
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/close2.go /func main/,/end-of-code/
 
 * Timeout Example
 
