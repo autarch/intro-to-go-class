@@ -1089,8 +1089,9 @@ http://blog.urth.org/
 
     c := make(chan int)
     close(c)
-    i := <-c // i is 0
+    i, ok := <-c // i is 0, ok is false
 
+- The second argument from a read is a `bool` indicating whether the channel was closed
 - Writing to a closed channel causes a panic
 - So does closing a closed channel
 - Can use close to signal that a channel is done
