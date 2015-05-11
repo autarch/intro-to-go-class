@@ -1078,6 +1078,7 @@ http://blog.urth.org/
 	}
 
 - Will read from the first channel that has a value
+- Picks one at random if more than one is ready
 
 * Channel Select Example
 
