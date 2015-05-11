@@ -1005,7 +1005,7 @@ http://blog.urth.org/
 
 * Type Switch
 
-- A nicer way to write those if/else clauses:
+- A more idiomatic way to write those if/else clauses:
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-switch.go
 
