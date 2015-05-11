@@ -1093,6 +1093,10 @@ http://blog.urth.org/
     i, ok := <-c // i is 0, ok is false
 
 - The second argument from a read is a `bool` indicating whether the channel was closed
+- With the `range` operator, a closed channel stops reading
+
+    for i := range c { ... } // stops when c is closed
+
 - Writing to a closed channel causes a panic
 - So does closing a closed channel
 - Can use close to signal that a channel is done
