@@ -1129,10 +1129,10 @@ http://blog.urth.org/
 
 * Places to Learn More
 
-.link http://golang.org golang.org
 - Documentation on the language and core packages
-.link http://godoc.org godoc.org
+.link http://golang.org golang.org
 - Third party package listing and documentation
+.link http://godoc.org godoc.org
 
 * Searching for Go
 
