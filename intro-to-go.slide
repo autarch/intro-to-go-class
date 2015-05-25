@@ -1127,6 +1127,104 @@ http://blog.urth.org/
 - Open `word-counter.go` in your editor of choice
 - Read the instructions
 
+* Go Package Management
+
+* Import Paths
+
+- Packages are identified by an import path
+- Non-core packages are typically identified by a repo path
+- `code.google.com/p/go-uuid/uuid`
+- `github.com/gin-gonic/gin`
+- `github.mycompany.com/myorg/repo.git/go/lib/user`
+
+* Go Get
+
+- `go`get` fetches packages
+- `go`get`github.com/gin-gonic/gin` installs the `gin` package
+- Packages are installed under `src` with the path given to `go`get`
+- So `gin` is in `$GOPATH/src/github.com/gin-gonic/gin`
+- `go`get` knows about several popular hosting services - github, bitbucket, etc.
+- If you put the VCS name in the path, that will be recognized - `hg.mycompany.com/repo.hg/go/lib/user`
+- If the path is accessible via HTTP(S), `go`get` looks for a special `<meta`name="go-import"`content="...">` tag
+
+* Relative Paths and Patterns
+
+- Can run `go`get`.` to fetch all packages used by the package in the current dir
+- Could also run `go`get`./path/to/package`
+- Can use `./...` to include the current directory and all subdirectories
+- Useful if you've written code that specifies external packages and you want to fetch them
+
+* What Go Get Does
+
+- Checks to see if the package already exists under `src`
+- If package exists, the default is to to do nothing
+- If package doesn't exist, checks out the `HEAD` of the repo
+- Uses `git`, `svn`, `hg` - so you actually have a checkout
+- Parses the package it downloaded for dependencies and checks those out too (recursively)
+- If the package contains an executable, `go`get` installs it by default
+
+* Updating Packages
+
+- If you pass the `-u` flag to `go`get`, it will update existing packages
+- Updates the checkout to the latest HEAD and does the same for dependencies
+
+* Stable Builds with Go Get
+
+- `go`get` simply fetches the default branch
+- If two machines run `go`get` for a package at different times they may get different versions
+- Running `go`get`-u` gets you the latest code for all dependencies at the time its run
+- Makes it very hard to have stable, repeatable builds with Go
+
+* Dependency Management Tools
+
+- There are a bunch of them!
+- We'll talk about two of them, `godep` and gopkg.in
+
+* Godep
+
+- `godep` is installed with `go`get`github.com/tools/godep`
+- Run `godep`save`./...` in your package's top-level dir
+- Creates a manifest of dependencies in `Godeps/Godeps.json`
+- Copies all deps to `Godeps/_workspace`
+- Use `godep`go`build` to build with those deps
+- Use `godep`go`test` to test with those deps
+- Can update packages with `go`get`-u`import/path` followed by `godep`update`import/path`
+
+* Godep Pros and Cons
+
+- Easy to use
+- Self-contained - all your deps are your stored in your repo
+- All your deps are stored in your repo - makes the repo bigger and confuses `git`grep`
+- Not very Go-like - stores info about your packages outside the source code
+
+* gopkg.in
+
+- A proxy for packages on GitHub
+- Replace `import`"github.com/go-yaml/yaml"` with `import`"gopkg.in/yaml.v1"`
+- The v` refers to a tag in the repo (sort of)
+- The gopkg.in service resolves v1 to the latest tag starting with v1
+- So if there are v1, v1.0.1, and v1.2.24 tags, you get v1.2.24
+- `gopkg.in` doesn't store code, it's just a redirector
+
+* gopkg.in Pros and Cons
+
+- All the info about deps is in the source code
+- Even easier to use than `godep` since it's just a URL change
+- Only works with GitHub
+- And even then, only works with repos that follow the gopkg.in tagging standard
+
+* Other Tools
+
+- For many more options see:
+
+.link https://github.com/golang/go/wiki/PackageManagementTools https://github.com/golang/go/wiki/PackageManagementTools
+
+* What Should You Use?
+
+- Godep is a reasonable choice if you don't mind the repo bloat
+- Keep an eye on gopkg.in to see if this takes off among Go package authors
+- Switching from godep to gopkg.in just involves a simple search and replace on package paths and `git`rm`-r`Godeps`
+
 * Places to Learn More
 
 - Documentation on the language and core packages
