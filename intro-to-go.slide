@@ -1127,6 +1127,25 @@ http://blog.urth.org/
 - Open `word-counter.go` in your editor of choice
 - Read the instructions
 
+* Running Code Once
+
+- What if you want to run some initialization for a package just once?
+- For example, read some data from a file when a struct is created
+- Can you use `sync.Once` type to do this
+
+* Once Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/once.go /import.+/,/end-of-code/
+
+* Parallelization with WaitGroup
+
+- WaitGroup waits for a set of goroutines to finish
+- Useful to parallelize a set of operations and then wait for them all to finish
+
+* WaitGroup Example
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/
+
 * Go Package Management
 
 * Import Paths
