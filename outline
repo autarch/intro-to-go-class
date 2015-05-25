@@ -60,6 +60,7 @@
 - Bonus Slides
 -- godoc
 -- JSON
+-- regexes
 -- defer, panic, recover
 --- when to use it (inside a package or for unrecoverable errors)
 -- reflection and when to use it vs "go generate"
