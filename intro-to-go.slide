@@ -1137,6 +1137,12 @@ http://blog.urth.org/
 - `github.com/gin-gonic/gin`
 - `github.mycompany.com/myorg/repo.git/go/lib/user`
 
+* Importing Your Own Packages
+
+- I assume you're using source control
+- Simply provide the full repo path including a hostname and repo type
+- `import`"git.mycompany.com/repo.git/path/to/package"`
+
 * Go Get
 
 - `go`get` fetches packages
