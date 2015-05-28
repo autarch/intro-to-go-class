@@ -56,7 +56,7 @@ checking as you type, quick formatting, and much more.
 
 Setting up your editor to integrate with `go fmt` and `go vet` makes your Go
 coding experience much better. You can have it run these checks on the
-currently loaded and/or run these checks every time you save your code.
+currently loaded file and/or run these checks every time you save your code.
 
 You may also want to be able to run `golint` easily, though I don't recommend
 this as a default action for every save, because it will often complain about
