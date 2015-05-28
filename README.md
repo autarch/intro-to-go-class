@@ -73,7 +73,7 @@ following:
 
 * Makes a `$GOPATH` root directory under `$HOME/go`
 * Creates `$GOPATH/src/github.com/autarch` and clones `https://github.com/autarch/intro-to-go-class-exercises.git` from that subdirectory
-* Creates `$GOPATH/src/github.com/stretchr` and clones `https://github.com/stretchr/testify.git from that subdirectory
+* Creates `$GOPATH/src/github.com/stretchr` and clones `https://github.com/stretchr/testify.git` from that subdirectory
 * Tells you to set your `$GOPATH` environment variable to `$HOME/go` if it's not already set
 
 Note that you can use a different directory for your `$GOPATH` if you prefer.
