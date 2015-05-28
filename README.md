@@ -54,7 +54,7 @@ checking as you type, quick formatting, and much more.
 
 # General Editor Recommendations
 
-Setting up your editor to integrae with `go fmt`, and `go vet` make your Go
+Setting up your editor to integrate with `go fmt` and `go vet` makes your Go
 coding experience much better. You can have it run these checks on the
 currently loaded and/or run these checks every time you save your code.
 
