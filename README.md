@@ -81,11 +81,19 @@ You should also add `$GOPATH/bin` to your path.
 
 # Reading the Slides on Your System
 
-If you'd like to be able to run the slides on your own system, you'll need the
-present tool. After you have your `$GOPATH` set up, simply run:
+First, you'll need to clone this repo. Then in the checkout run the following
+two commands:
+
+    git submodule init
+    git submodule update
+
+Next you'll need the present tool. After you have your `$GOPATH` set up,
+simply run:
 
     go get golang.org/x/tools/cmd/present
 
-Once this is done, you can run `present` from the directory containing the
-`intro-to-go.slide`. The `present` binary will be installed `$GOPATH/bin`,
-which you should have added to your `$PATH`.
+The `present` binary will be installed `$GOPATH/bin`, which you should have
+added to your `$PATH`.
+
+You can run `present` from the checkout directory, which contains the
+`intro-to-go.slide` file.
