@@ -762,7 +762,7 @@ http://blog.urth.org/
 
 - We can also create errors as structs:
 
-.code gopath/src/github.com/autarch/intro-to-go-class-code/errors/error-struct.go /START OMIT/
+.code gopath/src/github.com/autarch/intro-to-go-class-code/errors/error-struct.go /start-of-code/,/end-of-code/
 
 * Exercise 5
 
