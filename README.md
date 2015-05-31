@@ -77,9 +77,14 @@ following:
 
 Note that you can use a different directory for your `$GOPATH` if you prefer.
 
-You should also add `$GOPATH/bin` to your path.
+**Make sure that you set the `GOPATH` environment variable and add
+`$GOPATH/bin` to your `PATH` in your preferred shell's rc file(s) such as
+`~/.bashrc`, `~/.zshrc`, etc.**
 
 # Reading the Slides on Your System
+
+Being able to browse the slides while doing the exercises will be very
+helpful, so I recommend getting this set up in advance.
 
 First, you'll need to clone this repo. Then in the checkout run the following
 two commands:
@@ -92,8 +97,9 @@ simply run:
 
     go get golang.org/x/tools/cmd/present
 
-The `present` binary will be installed `$GOPATH/bin`, which you should have
-added to your `$PATH`.
+The `present` binary will be installed as `$GOPATH/bin/present`, which you
+should have added to your `PATH`.
 
 You can run `present` from the checkout directory, which contains the
-`intro-to-go.slide` file.
+`intro-to-go.slide` file. Open up the URL that `present` gives you and you'll
+see a link to open the slides.
