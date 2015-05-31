@@ -303,7 +303,7 @@ http://blog.urth.org/
         "os"
     )
 
-- Package names are the last part of the path, so `encode/json`'s package is `json`
+- Package names are the last part of the path, so the `encode/json` is referred to in code as `json`:
 
     json.NewDecoder() // not encode/json.NewDecoder()
 
