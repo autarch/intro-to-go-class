@@ -385,6 +385,13 @@ http://blog.urth.org/
 - `log.Panic(msg)` - logs `log.Print(msg)` and then calls `panic()`
 - Output from `log` goes to standard error by default, but you can change that
 
+* String Concatenation
+
+- Concatenate strings with `+`:
+
+    string3 := string1 + string2
+    log.Print(arg + " is not a number")
+
 * Exercise 1
 
 - `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/1-calc/calc`
