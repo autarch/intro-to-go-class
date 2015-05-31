@@ -37,6 +37,15 @@ http://blog.urth.org/
 - Garbage collected (no reference counting)
 - Packaging and libraries are *very* different from Perl (more on this later)
 
+* Go Principles
+
+- There's (mostly) one way to do it
+- There's definitely just one way to format it
+- Minimize repetition and clutter
+- Very strong source compatibility - new versions of Go 1.x will not break existing code
+- All the information needed to compile a program is in the source
+- No Makefiles, external dependency lists, header files, etc.
+
 * Hello, World
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/hello-world1/hello-world1.go
