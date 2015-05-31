@@ -1065,7 +1065,7 @@ http://blog.urth.org/
 - Channels transmit a single value of a given type
 - Read and write to channels with the `<-` operator
 - Channels are first-in-first-out
-- Can use channels with `range` - iterate until
+- Can use channels with `range` - iterate until there are no values left to receive
 
 * Channel Example
 
