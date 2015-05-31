@@ -1075,7 +1075,7 @@ http://blog.urth.org/
 
 - The `<-` operator reads from or writes to the channel
 
-    c<- 42    // Write an integer
+    c <- 42    // Write an integer
     i := <-c  // Read an integer
 
 - In type signatures, specifies a direction
