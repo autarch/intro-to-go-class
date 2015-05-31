@@ -34,6 +34,7 @@ http://blog.urth.org/
 - Compiled versus interpreted
 - Static (inferenced) typing versus dynamic
 - C-esque syntax (with some reminders of Perl 6)
+- Garbage collected (no reference counting)
 - Packaging and libraries are *very* different from Perl (more on this later)
 
 * Hello, World
