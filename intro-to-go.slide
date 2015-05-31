@@ -150,10 +150,12 @@ http://blog.urth.org/
 
 * Variable Declarations
 
-- Two ways to declare
-- `var foo string = "bar"`
+- Several ways to declare
+- `var`foo`string`=`"bar"`
+- Type can be ommitted if the compiler can figure it out
+- `var`foo`=`"bar"`
 - `var` name, type, optional assignment
-- `foo := 42` - short declaration syntax
+- `foo`:=`42` - short declaration syntax
 - Short declaration implies type
 
     // Go knows this is an int
