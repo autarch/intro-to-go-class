@@ -1251,7 +1251,7 @@ http://blog.urth.org/
 
 - A proxy for packages on GitHub
 - Replace `import`"github.com/go-yaml/yaml"` with `import`"gopkg.in/yaml.v1"`
-- The v` refers to a tag in the repo (sort of)
+- The v1 refers to a tag in the repo (sort of)
 - The gopkg.in service resolves v1 to the latest tag starting with v1
 - So if there are v1, v1.0.1, and v1.2.24 tags, you get v1.2.24
 - `gopkg.in` doesn't store code, it's just a redirector
