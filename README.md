@@ -65,7 +65,13 @@ class's exercises.
 # Getting Set Up for the Class
 
 First, you'll want to check this repo out. Then run the appropriate binary for
-your platform from the `setup` directory.
+your platform from the `setup` directory. If you want to specify the `GOPATH`
+for the binary to use, simple set on the command line:
+
+    GOPATH=$HOME/go class-setup.darwin.amd64
+
+Note that on OSX you **must** set the `GOPATH` variable before running the
+binary.
 
 If you're on a platform which doesn't have a binary, all it does is the
 following:
