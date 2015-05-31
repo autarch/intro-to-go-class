@@ -238,13 +238,19 @@ http://blog.urth.org/
 
 * Function Declarations
 
+- Functions that return values need a `return` statement
+
     func funcName(arg1 string, arg2 int64) string {
         ...
+        return str
     }
 
     func NoArgs() (string, error) {
         ...
+        return str, err
     }
+
+- Functions that do not return values can still contain a bare `return`
 
     func AllArgsTheSame(arg1, arg2, arg3 string) {
         ...
