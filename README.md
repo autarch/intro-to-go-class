@@ -58,9 +58,9 @@ coding experience much better. You can have it run these checks on the
 currently loaded file and/or run these checks every time you save your code.
 
 You may also want to be able to run `golint` easily, though I don't recommend
-this as a default action for every save, because it will often complain about
-issues that you will not want to fix, especially when you write code for this
-class's exercises.
+this as a default action for every save. It will often complain about issues
+that you will not want to fix, especially when you write code for this class's
+exercises.
 
 # Getting Set Up for the Class
 
