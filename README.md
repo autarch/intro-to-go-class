@@ -7,7 +7,7 @@ package installer, an MSI installer for Windows, and a few other options.
 
 If you're on Ubuntu,
 [Jay R Wren's Go PPA](https://launchpad.net/~evarlast/+archive/ubuntu/golang1.4)
-may work installing Go 1.4 on your system. There is also a project called
+may work for installing Go 1.4 on your system. There is also a project called
 godeb that lets you download the latest Go source and turn it into a Debian
 package. See http://blog.labix.org/2013/06/15/in-flight-deb-packages-of-go for
 details and links to download binaries.
