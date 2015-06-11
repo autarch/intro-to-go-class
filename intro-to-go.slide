@@ -365,7 +365,7 @@ http://blog.urth.org/
         "strconv"
     )
 
-    arg1, err := strconf.ParseInt(os.Args[1], 10, 64)
+    arg1, err := strconv.ParseInt(os.Args[1], 10, 64)
 
 - `strconv.ParseInt` takes the string to parse, the base (2, 10, etc.), and the bit size (32, 64)
 - It returns an int64 and an error
