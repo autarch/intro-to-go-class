@@ -564,7 +564,7 @@ http://blog.urth.org/
 
 * The nil Value
 
-- `nil` is the empty value for pointers, slices, maps, functions types, and channels
+- `nil` is the empty value for pointers, slices, maps, function types, and channels
 
     var foo map[string]int
     if foo == nil { ... }
