@@ -897,6 +897,7 @@ http://blog.urth.org/
 
 - Set methods must take a reference because values are passed by copy
 
+    // BAD CODE - WILL NOT WORK
     func (d Document) SetTitle(title string) { d.title = title }
 
 - `d` is a copy of the `Document` struct so the title is set on a struct that is then thrown away
