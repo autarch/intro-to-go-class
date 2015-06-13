@@ -1035,7 +1035,7 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-switch.go
 
-* Exercise 9
+* Exercise 9 - Bonus Exercise?
 
 - `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/9-more-interfaces/http`
 - Open `http.go` in your editor of choice
@@ -1146,12 +1146,6 @@ http://blog.urth.org/
 * Timeout Example
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/timeout.go /import.+/,/end-of-code/
-
-* Exercise 10
-
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/10-concurrency`
-- Open `word-counter.go` in your editor of choice
-- Read the instructions
 
 * Running Code Once
 
@@ -1275,6 +1269,12 @@ http://blog.urth.org/
 - Godep is a reasonable choice if you don't mind the repo bloat
 - Keep an eye on gopkg.in to see if this takes off among Go package authors
 - Switching from godep to gopkg.in just involves a simple search and replace on package paths and `git`rm`-r`Godeps`
+
+* Concurrency Bonus Exercise
+
+- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/10-concurrency`
+- Open `word-counter.go` in your editor of choice
+- Read the instructions
 
 * Places to Learn More
 
