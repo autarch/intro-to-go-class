@@ -5,14 +5,11 @@ information on installing Go. This page has instructions for installing from a
 pre-compiled tarball on Linux, OSX, and FreeBSD. It also has links to an OSX
 package installer, an MSI installer for Windows, and a few other options.
 
-If you're on Ubuntu,
-[Jay R Wren's Go PPA](https://launchpad.net/~evarlast/+archive/ubuntu/golang1.4)
-may work for installing Go 1.4 on your system. There is also a project called
-godeb that lets you download the latest Go source and turn it into a Debian
-package. See http://blog.labix.org/2013/06/15/in-flight-deb-packages-of-go for
-details and links to download binaries.
+If you're on Ubuntu, the Xenial backports package set provides a package named
+`golang-1.10-go` that provides Go 1.10.
 
-Fedora 21 and 22 both include Go 1.4.
+For Fedora and Red Hat, check out https://go-repo.io/ for golang 1.10.1
+packages.
 
 # Operating Systems
 
@@ -25,7 +22,7 @@ code in the answer directories (they're for the instructor).
 # Emacs Integration
 
 If you're using Emacs as your editor, I highly recommend installing
-[go-mode](http://www.emacswiki.org/emacs/GoMode) for syntax highlighting. You
+[go-mode](https://github.com/dominikh/go-mode.el) for syntax highlighting. You
 can install this using [ELPA](http://www.emacswiki.org/emacs/ELPA). Add the
 http://melpa.milkbox.net/packages package repo in order to get the latest
 go-mode package.
@@ -36,6 +33,11 @@ a snippet that binds M-t:
     (add-hook 'go-mode-hook
               (lambda ()
                 (local-set-key "\M-t" `gofmt)))
+
+You can also bind this to
+[`goimports`](https://godoc.org/golang.org/x/tools/cmd/goimports). Install
+this with `go get golang.org/x/tools/cmd/goimports`. This wraps `gofmt` and
+makes sure that the list of package imports for the file is correct.
 
 # Vim Integration
 
@@ -76,16 +78,24 @@ binary.
 If you're on a platform which doesn't have a binary, all it does is the
 following:
 
-* Makes a `$GOPATH` root directory under `$HOME/go`
-* Creates `$GOPATH/src/github.com/autarch` and clones `https://github.com/autarch/intro-to-go-class-exercises.git` from that subdirectory
-* Creates `$GOPATH/src/github.com/stretchr` and clones `https://github.com/stretchr/testify.git` from that subdirectory
-* Tells you to set your `$GOPATH` environment variable to `$HOME/go` if it's not already set
+* Makes a `$GOPATH` root directory under `$HOME/go`.
+* Creates `$GOPATH/src/github.com/autarch` and clones
+  `https://github.com/autarch/intro-to-go-class-exercises.git` from that
+  subdirectory.
+* Creates `$GOPATH/src/github.com/stretchr` and clones
+  `https://github.com/stretchr/testify.git` from that subdirectory.
+* Tells you to set your `$GOPATH` environment variable to `$HOME/go` if it's
+  not already set.
 
 Note that you can use a different directory for your `$GOPATH` if you prefer.
 
 **Make sure that you set the `GOPATH` environment variable and add
 `$GOPATH/bin` to your `PATH` in your preferred shell's rc file(s) such as
 `~/.bashrc`, `~/.zshrc`, etc.**
+
+You may also need to set you `GOROOT`. This is the root directory of your go
+installation. On Ubuntu with the `golang-1.10-go` package this is
+`/usr/lib/go-1.10`.
 
 # Reading the Slides on Your System
 
