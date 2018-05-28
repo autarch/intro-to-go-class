@@ -18,7 +18,7 @@ http://blog.urth.org/
 * Are You Prepared?
 
 - Do you have a laptop?
-- ... with Go 1.4 installed?
+- ... with Go 1.10 installed?
 - ... and your text editor of choice?
 - ... and the git repos for this class?
 
@@ -33,7 +33,7 @@ http://blog.urth.org/
 
 - Compiled versus interpreted
 - Static (inferenced) typing versus dynamic
-- C-esque syntax (with some reminders of Perl 6)
+- C-esque syntax
 - Garbage collected (no reference counting)
 - Packaging and libraries are *very* different from Perl (more on this later)
 
@@ -71,11 +71,15 @@ http://blog.urth.org/
 - Source code in `src`
 - `$GOPATH` is a colon-separated list
 
+* $GOPATH Lifespan?
+
+- This is likely to go away in Go 1.11 (or 1.12)
+
 * Source Code Organization
 
 - Source is identified by a repo path
 - `~/go/src/github.com/google/go-github/github`
-- `~/go/src/code.google.com/p/go-uuid/uuid`
+- `~/go/src/github.com/pborman/uuid`
 - Both your code and third-party packages
 
 * Starting a New Go Project
@@ -95,7 +99,7 @@ http://blog.urth.org/
     > cd intro-to-go-class-code/uuid-example
     > go get
 
-- Downloads `uuid` package to `gopath/src/code.google.com/p/go-uuid`
+- Downloads `uuid` package to `gopath/src/github.com/pborman/uuid`
 
 * The Toolchain
 
@@ -112,10 +116,12 @@ http://blog.urth.org/
 
 .link https://github.com/golang/lint golint
 - Checks for style issues
-.link https://github.com/tools/godep godep
-- Dependency management tool - we will cover this in depth later
 .link https://github.com/kisielk/errcheck errcheck
 - Makes sure that you check error return values
+.link https://github.com/alecthomas/gometalinter
+- Runs many linting tools on your code in parallel
+.link https://github.com/golang/dep
+- The "official" dependency management tool - more on this later
 
 * Links to Open Now
 
@@ -155,8 +161,8 @@ http://blog.urth.org/
      const Pi = 3.14
      const realPi = 3.14159
 
-     func internalOnly() ...
-     func Exported() ...
+     func Exported() { ... }
+     func internalOnly() { ... }
 
 * Variable Declarations
 
@@ -165,8 +171,8 @@ http://blog.urth.org/
 - Type can be ommitted if the compiler can figure it out
 - `var`foo`=`"bar"`
 - `var` name, type, optional assignment
-- `foo`:=`42` - short declaration syntax
-- Short declaration implies type
+- `foo`:=`42` - "short variable declaration"
+-  short declaration initializes and infers type
 
     // Go knows this is an int
     foo := 42
@@ -215,8 +221,8 @@ http://blog.urth.org/
 - `int`, `int8`, 16, 32, 64
 - `float32`, `float64`
 - `complex64`, `complex128`
-- `string` - Unicode everywhere - "foo, 酒廊"
-- `rune` - one Unicode code point - '廊'
+- `string` - Unicode everywhere - ``"foo, 酒廊"``
+- `rune` - one Unicode code point - `'廊'`
 - `byte` - a single 8-bit value
 - `[4]string` - array of 4 strings
 - `[]string` - slice of strings
@@ -254,10 +260,12 @@ http://blog.urth.org/
 
     func AllArgsTheSame(arg1, arg2, arg3 string) {
         ...
+        return
     }
 
     func variadicArgs(args ...int64) {
         ...
+        return
     }
 
 * Calling Functions
@@ -291,7 +299,7 @@ http://blog.urth.org/
 * Package main and func main
 
 - The `main` package is used to create an executable
-- If a file named `my-great-program.go` contains:
+- If a directory named `my-great-program` contains a fail like `main.go`:
 
     package main
 
@@ -418,7 +426,7 @@ http://blog.urth.org/
 
 * Strings
 
-- Double quoted - "some text goes here"
+- Double quoted - ``"some text goes here"``
 - Backticks for multi-line strings:
 
     long := `
@@ -570,13 +578,13 @@ http://blog.urth.org/
     if foo == nil { ... }
 
 - We will cover function types and channels later
-- You sometimes need to check whether a value is `nil` in Go
+- You often need to check whether a value is `nil` in Go
 
 * Making Your Own Packages
 
-- Packages are imported by their full path - `code.google.com/p/go-uuid/uuid`
+- Packages are imported by their full path - `github.com/pborman/uuid`
 - Package *names* are the final part of the path
-- Inside that directory, all files must start with `package`uuid`
+- Inside that directory, all files must start with `package`uuid` (well, not quite all)
 - The actual file names are irrelevant
 
 * Package File Layout Example
@@ -604,7 +612,7 @@ http://blog.urth.org/
 - `*` de-references
 - Pointers are somewhat automatic
 - Can (mostly) be used just like the type they point to
-- But you must be explicit with functions
+- But you must be explicit with function arguments
 
 * Taking a Pointer
 
@@ -646,7 +654,7 @@ http://blog.urth.org/
 
 * Function Literals are Closures
 
-- A capture "captures" the state of variables in the scope where it's defined
+- A closure "captures" the state of variables in the scope where it's defined
 
 * Closure Example
 
@@ -756,9 +764,13 @@ http://blog.urth.org/
 - It's ok to `panic()` if your package cannot complete initialization
 - Can also use `panic()` to exit a goroutine without affecting the main thread (if you catch the panic)
 
+* More Reading on Errors
+
 .link http://golang.org/doc/effective_go.html#errors Effective Go on errors
-.link http://blog.golang.org/error-handling-and-go Error Handling and Go
+.link http://blog.golang.org/error-handling-and-go Error handling and Go
 .link http://blog.golang.org/defer-panic-and-recover Defer, Panic, and Recover
+.link https://blog.golang.org/errors-are-values Errors are values
+.link https://godoc.org/github.com/juju/errors Package for wrapping errors
 
 * The Error Type
 
@@ -803,13 +815,14 @@ http://blog.urth.org/
 - Run `go`test`-v` for more details on failures
 - Run it in a directory and it tests whatever is in that directory
 - Tests are in files named "foo_test.go", "bar_test.go"
-- Test files correspond to the files implementing a package:
+- Test files mostly correspond to the files implementing a package:
 
     user/
     ├── cache.go
     ├── cache_test.go
     ├── db.go
     ├── db_test.go
+    ├── shared_test.go
     ├── user.go
     └── user_test.go
 
@@ -827,7 +840,7 @@ http://blog.urth.org/
 
 * The assert Library
 
-- http://godoc.org/github.com/stretchr/testify/assert
+.link http://godoc.org/github.com/stretchr/testify/assert
 - I'm a big fan
 - Makes testing a lot nicer
 
@@ -867,7 +880,7 @@ http://blog.urth.org/
 
 * Methods and Pointers
 
-- Methods with pointer receives automatically take references:
+- Methods with pointer receiver automatically take references:
 
     type mystring string
     func (m *mystring) method() { ... }
@@ -929,13 +942,13 @@ http://blog.urth.org/
 
 * Some Common Built-in Interfaces
 
-- `Reader`
+- `io.Reader`
 
     type Reader interface {
         Read(p []byte) (n int, err error)
     }
 
-- `Writer`
+- `io.Writer`
 
     type Writer interface {
         Write(p []byte) (n int, err error)
@@ -1045,7 +1058,7 @@ http://blog.urth.org/
 
 * Goroutines
 
-- A goroutine is any function executed in a new thread
+- A goroutine is any function executed in a separate "thread"
 
     go library.Func()
     go myFunc()
@@ -1076,7 +1089,7 @@ http://blog.urth.org/
 
 - The `<-` operator reads from or writes to the channel
 
-    c <- 42    // Write an integer
+    c <- 42   // Write an integer
     i := <-c  // Read an integer
 
 - In type signatures, specifies a direction
@@ -1105,6 +1118,8 @@ http://blog.urth.org/
 
 - Will read from the first channel that has a value
 - Picks one at random if more than one is ready
+- Doesn't block
+- Enforces a fair selection algorithm
 
 * Channel Select Example
 
@@ -1172,7 +1187,7 @@ http://blog.urth.org/
 
 - Packages are identified by an import path
 - Non-core packages are typically identified by a repo path
-- `code.google.com/p/go-uuid/uuid`
+- `github.com/pborman/uuid`
 - `github.com/gin-gonic/gin`
 - `github.mycompany.com/myorg/repo.git/go/lib/user`
 
@@ -1222,53 +1237,33 @@ http://blog.urth.org/
 
 * Dependency Management Tools
 
-- There are a bunch of them!
-- We'll talk about two of them, `godep` and gopkg.in
+- There used to be many
+- Now there's just one called `dep`
+- Soon there may be one built into the go core
 
-* Godep
+* dep
 
-- `godep` is installed with `go`get`github.com/tools/godep`
-- Run `godep`save`./...` in your package's top-level dir
-- Creates a manifest of dependencies in `Godeps/Godeps.json`
-- Copies all deps to `Godeps/_workspace`
-- Use `godep`go`build` to build with those deps
-- Use `godep`go`test` to test with those deps
-- Can update packages with `go`get`-u`import/path` followed by `godep`update`import/path`
+.link https://github.com/golang/dep
+- Has installation instructions
 
-* Godep Pros and Cons
+* Using dep
 
-- Easy to use
-- Self-contained - all your deps are your stored in your repo
-- All your deps are stored in your repo - makes the repo bigger and confuses `git`grep`
-- Not very Go-like - stores info about your packages outside the source code
+- Getting started:
 
-* gopkg.in
+    # In your project root under $GOPATH
+    $> dep init
+    $> git add Gopkg.lock Gopkg.toml vendor
 
-- A proxy for packages on GitHub
-- Replace `import`"github.com/go-yaml/yaml"` with `import`"gopkg.in/yaml.v1"`
-- The v1 refers to a tag in the repo (sort of)
-- The gopkg.in service resolves v1 to the latest tag starting with v1
-- So if there are v1, v1.0.1, and v1.2.24 tags, you get v1.2.24
-- `gopkg.in` doesn't store code, it's just a redirector
+- As you add packages:
 
-* gopkg.in Pros and Cons
+    $> dep ensure
+    $> git add Gopkg.lock Gopkg.toml vendor
 
-- All the info about deps is in the source code
-- Even easier to use than `godep` since it's just a URL change
-- Only works with GitHub
-- And even then, only works with repos that follow the gopkg.in tagging standard
+* How dep Works
 
-* Other Tools
-
-- For many more options see:
-
-.link https://github.com/golang/go/wiki/PackageManagementTools https://github.com/golang/go/wiki/PackageManagementTools
-
-* What Should You Use?
-
-- Godep is a reasonable choice if you don't mind the repo bloat
-- Keep an eye on gopkg.in to see if this takes off among Go package authors
-- Switching from godep to gopkg.in just involves a simple search and replace on package paths and `git`rm`-r`Godeps`
+- All packages stored in `vendor/`
+- Stores pinned versions
+- Modern versions of go look there first for imports
 
 * Concurrency Bonus Exercise
 
