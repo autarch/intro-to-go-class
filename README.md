@@ -70,7 +70,7 @@ First, you'll want to check this repo out. Then run the appropriate binary for
 your platform from the `setup` directory. If you want to specify the `GOPATH`
 for the binary to use, simply set it on the command line:
 
-    GOPATH=$HOME/go class-setup.darwin.amd64
+    GOPATH=$HOME/go class-setup.darwin
 
 Note that on OSX you **must** set the `GOPATH` variable before running the
 binary.
