@@ -93,9 +93,9 @@ Note that you can use a different directory for your `$GOPATH` if you prefer.
 `$GOPATH/bin` to your `PATH` in your preferred shell's rc file(s) such as
 `~/.bashrc`, `~/.zshrc`, etc.**
 
-You may also need to set you `GOROOT`. This is the root directory of your go
-installation. On Ubuntu with the `golang-1.10-go` package this is
-`/usr/lib/go-1.10`.
+You should also set your `GOROOT` environment variable. This is the root
+directory of your go installation. On Ubuntu with the `golang-1.10-go` package
+this is `/usr/lib/go-1.10`.
 
 # Reading the Slides on Your System
 
