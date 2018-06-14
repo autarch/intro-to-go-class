@@ -1,14 +1,14 @@
 # Installing Go
 
-See the [Installing Go](http://golang.org/doc/install) page golang.org for
-information on installing Go. This page has instructions for installing from a
+See [Installing Go on golang.org](http://golang.org/doc/install) for details
+on installing Go. This page has instructions for installing from a
 pre-compiled tarball on Linux, OSX, and FreeBSD. It also has links to an OSX
 package installer, an MSI installer for Windows, and a few other options.
 
 If you're on Ubuntu, the Xenial backports package set provides a package named
 `golang-1.10-go` that provides Go 1.10.
 
-For Fedora and Red Hat, check out https://go-repo.io/ for golang 1.10.1
+For Fedora and Red Hat, check out https://go-repo.io/ for golang 1.10.x
 packages.
 
 # Operating Systems
