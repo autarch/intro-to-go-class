@@ -44,7 +44,7 @@ makes sure that the list of package imports for the file is correct.
 Here are some useful Vim tools for Go:
 
 * https://github.com/fatih/vim-go - syntax highlighting, auto gofmt on save, and more
-* https://github.com/scrooloose/syntasti - syntax checking as you type
+* https://github.com/vim-syntastic/syntastic - syntax checking as you type
 * See https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins for more
 
 # Sublime Text Integration
