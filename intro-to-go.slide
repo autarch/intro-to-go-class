@@ -529,7 +529,7 @@ http://blog.urth.org/
     }
 
 - This adds implicit documentation
-- Also does type enforcement (`uint64` != `userID`)
+- Also does type enforcement (`uint64` != `UserID`)
 
 * Type Conversion
 
@@ -634,7 +634,7 @@ http://blog.urth.org/
 
 - Can be more efficient
 - Use a pointer for structs with large amounts of data
-- Lets you modify the callers value
+- Lets you modify the caller's value
 
 * Modifying The Caller's Value
 
