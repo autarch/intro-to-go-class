@@ -299,7 +299,7 @@ http://blog.urth.org/
 * Package main and func main
 
 - The `main` package is used to create an executable
-- If a directory named `my-great-program` contains a fail like `main.go`:
+- If a directory named `my-great-program` contains a file like `main.go`:
 
     package main
 
