@@ -44,7 +44,7 @@ http://blog.urth.org/
 - Minimize repetition and clutter
 - Very strong source compatibility - new versions of Go 1.x will not break existing code
 - All the information needed to compile a program is in the source
-- No Makefiles, external dependency lists, header files, etc.
+- No Makefiles, external dependency lists, header files, etc. (but go modules changes this)
 
 * Hello, World
 
@@ -73,7 +73,7 @@ http://blog.urth.org/
 
 * $GOPATH Lifespan?
 
-- This is likely to go away in Go 1.11 (or 1.12)
+- This is likely to go away in Go 1.13 when modules become the default
 
 * Source Code Organization
 
@@ -118,7 +118,7 @@ http://blog.urth.org/
 - Checks for style issues
 .link https://github.com/kisielk/errcheck errcheck
 - Makes sure that you check error return values
-.link https://github.com/alecthomas/gometalinter
+.link https://github.com/golangci/golangci-lint
 - Runs many linting tools on your code in parallel
 .link https://github.com/golang/dep
 - The "official" dependency management tool - more on this later
@@ -144,6 +144,7 @@ http://blog.urth.org/
 - Comparisons with `==`, `<`, `>`, etc.
 - Math operators are `+`, `-`, `*`, `/`, etc.
 - Comments are `//` (single line) or `/*`delimited`*/`
+- `if` statements do not use parens
 - If we don't cover it explicitly, assume it's what you'd think it would be
 
 * Go Naming Conventions
@@ -491,8 +492,7 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/sort.go
 
-- You can make any type sortable by implementing `sort.Interface` for your type
-- We'll take about interfaces later
+- You can sort other types with the `sort.Slice` and `sort.SliceStable` funcs
 
 * Maps
 
@@ -1264,6 +1264,13 @@ http://blog.urth.org/
 - All packages stored in `vendor/`
 - Stores pinned versions
 - Modern versions of go look there first for imports
+
+* Go Modules
+
+- Should be marked stable in Go 1.13
+- Opt-in by adding `go.mod` file(s) to your repo
+- Specifies what your module is and your deps
+- Go modules eliminates need for `$GOPATH`
 
 * Concurrency Bonus Exercise
 
