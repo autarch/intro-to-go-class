@@ -350,7 +350,7 @@ http://blog.urth.org/
 * The os Package
 
 - Does a lot of stuff, including syscalls (`chdir`, `symlink`, etc.)
-- Defines file and process objects
+- Defines file and process structs
 
 * Getting Positional Command Line Args
 
@@ -365,7 +365,7 @@ http://blog.urth.org/
 - Go has exceptions, but they're not used for APIs
 - Used internally or for unrecoverable errors
 - Errors are returned as `Error` type values
-- `Error` objects stringify
+- `Error` values stringify
 - If there was no error the value is `nil`
 
     dir, err := os.Getwd()
@@ -941,8 +941,8 @@ http://blog.urth.org/
 - An interface is a list of methods *without implementations*
 - Go has many interface types defined in the core library
 - You can define your own interfaces
-- You can also require objects that conform to an interface in your functions
-- Any object which implements these methods conforms to the interface
+- You can also require receivers that conform to an interface in your functions
+- Any receiver which implements these methods conforms to the interface
 
 * Interface Example
 
@@ -977,7 +977,7 @@ http://blog.urth.org/
         Writer
     }
 
-- A `ReadWriter` object must implement all the methods from `Reader` and `Writer`
+- A `ReadWriter` must implement all the methods from `Reader` and `Writer`
 
 - And an interface can specify an interface which specifies other interfaces:
 
@@ -1070,7 +1070,7 @@ http://blog.urth.org/
 
     go library.Func()
     go myFunc()
-    go object.Method()
+    go thing.Method()
     go func() { ... }()
 
 - The `go` keyword tells Go to run this function in its own thread
