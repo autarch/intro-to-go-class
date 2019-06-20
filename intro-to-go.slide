@@ -180,6 +180,14 @@ http://blog.urth.org/
     // Go looks at the return value of uuid.NewUUID() - it's a uuid.UUID
     id := uuid.NewUUID()
 
+* Variable Initialization
+
+- Variables always have a sane "zero" value
+- Actual `0` for numbers
+- An empty string for strings
+- An empty struct
+- Etc.
+
 * Scope and Re-declaration
 
 - Variables are always lexically scoped from where they're declared
