@@ -936,6 +936,24 @@ http://blog.urth.org/
 - Open `user.go` in your editor of choice
 - Read the instructions
 
+* Struct Composition
+
+- Sort of vaguely like inheritance
+- Can embed a struct in another struct
+- Methods on embedded struct can be called on container struct
+
+* Struct Composition
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/composition.go /START1 OMIT/,/END1 OMIT/
+
+* Struct Composition
+
+.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/composition.go /START2 OMIT/,/END2 OMIT/
+
+* Struct Composition
+
+- Can also embed struct directlu
+
 * Interfaces
 
 - An interface is a list of methods *without implementations*
