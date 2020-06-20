@@ -2,10 +2,13 @@ Introduction to Go
 Go for Perl Programmers (or non-Perl Programmers)
 
 Dave Rolsky
-autarch@urth.org
-http://blog.urth.org/
 
-* 
+* My Info
+
+[[autarch@urth.org][mailto:autarch@urth.org]]
+[[blog.urth.org][http://blog.urth.org/]]
+
+* License
 
 .html license.html
 
@@ -17,7 +20,7 @@ http://blog.urth.org/
 
 * Are You Prepared?
 
-- Do you have a laptop?
+- Do you have a computer?
 - ... with Go 1.14 installed?
 - ... and your text editor of choice?
 - ... and the git repos for this class?
