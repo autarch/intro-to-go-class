@@ -54,74 +54,62 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/hello-world2/hello-world2.go
 
-* $GOPATH, Toolchain, and the Ecosystem
+* Toolchain and the Ecosystem
 
 * $GOPATH
 
-- All your Go code lives under `$GOPATH`
-- Mine is `~/go`
-
-    ~/go
-    ├── bin
-    ├── pkg
-    └── src
-
-- Installed executables go in `bin`
-- Compiled libraries in `pkg`
-- Source code in `src`
-- `$GOPATH` is a colon-separated list
-
-* $GOPATH Lifespan?
-
-- This is likely to go away in Go 1.13 when modules become the default
+- This used to be a thing
+- Still mentioned in lots of docs
+- Still being used for this class's exercises
 
 * Source Code Organization
 
 - Source is identified by a repo path
-- `~/go/src/github.com/google/go-github/github`
-- `~/go/src/github.com/pborman/uuid`
+- `~/projects/github.com/google/go-github/github`
+- `~/projects/github.com/pborman/uuid`
 - Both your code and third-party packages
 
 * Starting a New Go Project
 
 - Pick a repo
-- Make a directory like `~/go/src/repo-host.com/username/repo-name`
+- Make a directory like `~/projects/repo-host.com/username/repo-name`
 - Hack, hack, hack
 
 * Packages, Repos, and Paths
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/uuid-example/uuid-example.go
 
-    > cd $GOPATH/src
+    > cd projects
     > mkdir -p github.com/autarch
     > cd github.com/autarch
     > git clone https://github.com/autarch/intro-to-go-class-code
     > cd intro-to-go-class-code/uuid-example
     > go get
 
-- Downloads `uuid` package to `gopath/src/github.com/pborman/uuid`
+- Downloads `uuid` package to local module cache.
 
 * The Toolchain
 
 - The `go` program does most of the work
 - `go`get` - download packages
 - `go`build` - create an executable for specified package in place
-- `go`install` - create an executable for specified package and put it in `$GOPATH/bin`
+- `go`install` - create an executable for specified package and put it in `$HOME/go/bin`
 - `go`run` - run the specified code
 - `go`test` - run tests for the specified package
 - `go`fmt` - runs `gofmt` tool on specified package
 - `go`vet` - runs `govet` tool on specified package
+- `go`mod`init` - start a new project
 
 * More Tools
 
+.link https://github.com/golangci/golangci-lint
+- Runs many linting/formatting tools on your code in parallel
+.link https://pkg.go.dev/golang.org/x/tools/cmd/goimports?tab=doc
+- Runs `go`fmt` and cleans up import list
 .link https://github.com/golang/lint golint
 - Checks for style issues
 .link https://github.com/kisielk/errcheck errcheck
 - Makes sure that you check error return values
-.link https://github.com/golangci/golangci-lint
-- Runs many linting tools on your code in parallel
-.link https://github.com/golang/dep
-- The "official" dependency management tool - more on this later
 
 * Links to Open Now
 
@@ -770,7 +758,7 @@ http://blog.urth.org/
 - Go does have exceptions (`panic()`), but throwing them is considered bad form
 - You can throw and catch them in your own package, but they should never affect callers
 - It's ok to `panic()` if your package cannot complete initialization
-- Can also use `panic()` to exit a goroutine without affecting the main thread (if you catch the panic)
+- Can also use `panic()` to exit a goroutine without affecting the main thread (if you catch the panic in the main thread)
 
 * More Reading on Errors
 
@@ -1207,7 +1195,7 @@ http://blog.urth.org/
 
 .play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/
 
-* Go Package Management
+* Go Packages and Modules
 
 * Import Paths
 
@@ -1225,20 +1213,11 @@ http://blog.urth.org/
 
 * Go Get
 
-- `go`get` fetches packages
-- `go`get`github.com/gin-gonic/gin` installs the `gin` package
-- Packages are installed under `src` with the path given to `go`get`
-- So `gin` is in `$GOPATH/src/github.com/gin-gonic/gin`
+- `go`get` fetches packages and adds them to the current module's deps
+- `go`get`github.com/gin-gonic/gin` gets the `gin` package
 - `go`get` knows about several popular hosting services - github, bitbucket, etc.
 - If you put the VCS name in the path, that will be recognized - `hg.mycompany.com/repo.hg/go/lib/user`
 - If the path is accessible via HTTP(S), `go`get` looks for a special `<meta`name="go-import"`content="...">` tag
-
-* Relative Paths and Patterns
-
-- Can run `go`get`.` to fetch all packages used by the package in the current dir
-- Could also run `go`get`./path/to/package`
-- Can use `./...` to include the current directory and all subdirectories
-- Useful if you've written code that specifies external packages and you want to fetch them
 
 * What Go Get Does
 
@@ -1256,47 +1235,42 @@ http://blog.urth.org/
 
 * Stable Builds with Go Get
 
-- `go`get` simply fetches the default branch
-- If two machines run `go`get` for a package at different times they may get different versions
+- `go`get` simply fetches the most recent semver tag, or `HEAD` of the default branch
+- If two machines run `go`get` for an untagged package at different times they may get different versions
 - Running `go`get`-u` gets you the latest code for all dependencies at the time its run
 - Makes it very hard to have stable, repeatable builds with Go
 
-* Dependency Management Tools
+* Dependency Management with Modules
 
-- There used to be many
-- Now there's just one called `dep`
-- Soon there may be one built into the go core
-
-* dep
-
-.link https://github.com/golang/dep
-- Has installation instructions
-
-* Using dep
-
-- Getting started:
-
-    # In your project root under $GOPATH
-    $> dep init
-    $> git add Gopkg.lock Gopkg.toml vendor
-
-- As you add packages:
-
-    $> dep ensure
-    $> git add Gopkg.lock Gopkg.toml vendor
-
-* How dep Works
-
-- All packages stored in `vendor/`
-- Stores pinned versions
-- Modern versions of go look there first for imports
+- There used to be many dep tools
+- Now there's just Go modules
 
 * Go Modules
 
-- Should be marked stable in Go 1.13
-- Opt-in by adding `go.mod` file(s) to your repo
+- Stable as of Go 1.14
+- Opt-in by adding `go.mod` file(s) to your repo with `go`mod`init`
 - Specifies what your module is and your deps
+- Locks deps so multiple people working on a project are in sync
 - Go modules eliminates need for `$GOPATH`
+- See [[https://github.com/golang/go/wiki/Modules][github.com/golang/go/wiki/Modules]] for complete docs
+
+* New Project with Go Modules
+
+    $> mkdir -p ~/projects/github.com/autarch/my-project
+
+    $> cd ~/projects/github.com/autarch/my-project
+
+    # creates go.mod and go.sum files
+    $> go mod init github.com/autarch/my-project
+
+    # Update go.mod and go.sum
+    $> go get github.com/pborman/uuid
+
+* More Module Commands
+
+- `go`list`-m`-all` - show entire dep tree
+- `go`list`-u`-m`-all` - show available updates for tree
+- `go`mod`tidy` - prune no-longer-needed deps and add anything missing
 
 * Concurrency Bonus Exercise
 
