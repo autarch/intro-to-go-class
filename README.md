@@ -5,10 +5,14 @@ on installing Go. This page has instructions for installing from a
 pre-compiled tarball on Linux, OSX, and FreeBSD. It also has links to an OSX
 package installer, an MSI installer for Windows, and a few other options.
 
-If you're on Ubuntu, the Xenial backports package set provides a package named
-`golang-1.12-go` that provides Go 1.12.
+If you're on Ubuntu 20.04, you can install the `golang-1.14-go` package. For
+other versions of Ubuntu, I recommend the `longsleep/golang-backports` PPA:
 
-For Fedora and Red Hat, check out https://go-repo.io/ for golang 1.12.x
+    sudo add-apt-repository ppa:longsleep/golang-backports
+    sudo apt update
+    sudo apt install golang-go
+
+For Fedora and Red Hat, check out https://go-repo.io/ for golang 1.14.x
 packages.
 
 # Operating Systems
@@ -93,8 +97,8 @@ Note that you can use a different directory for your `$GOPATH` if you prefer.
 `~/.bashrc`, `~/.zshrc`, etc.**
 
 **You should also set your `GOROOT` environment variable. This is the root
-directory of your go installation. On Ubuntu with the `golang-1.12-go` package
-this is `/usr/lib/go-1.12`.**
+directory of your go installation. On Ubuntu with the `golang-1.14-go` package
+this is `/usr/lib/go-1.14`.**
 
 # Reading the Slides on Your System
 
