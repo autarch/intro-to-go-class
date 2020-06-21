@@ -1,0 +1,1632 @@
+# Introduction to Go
+Go for Perl Programmers (or non-Perl Programmers)
+
+Dave Rolsky
+[autarch@urth.org](mailto:autarch@urth.org)
+
+------
+
+## Introductions
+
+* Your name
+* What sort of programming you do (languages, tools, products)
+* Why you're interested in Go
+
+------
+
+## Are You Prepared?
+
+* Do you have a computer?
+* ... with Go 1.14 installed?
+* ... and your text editor of choice?
+* ... and the git repos for this class?
+
+------
+
+## Goals for This Class
+
+* Provide a broad overview of Go
+* Touch on many parts of the language
+* Cannot cover the language in depth
+* This is a first step, not the final step
+
+------
+
+## Go Versus Perl
+
+* Compiled versus interpreted
+* Static (inferenced) typing versus dynamic
+* C-esque syntax
+* Garbage collected (no reference counting)
+* Packaging and libraries are **very** different from Perl (more on this later)
+
+------
+
+## Go Principles
+
+* There's (mostly) one way to do it
+* There's definitely just one way to format it
+* Minimize repetition and clutter
+* Very strong source compatibility - new versions of Go 1.x will not break existing code
+* All the information needed to compile a program is in the source
+* No Makefiles, external dependency lists, header files, etc. (but go modules changes this)
+
+------
+
+## Hello, World
+
+.play intro-to-go-class-code/hello-world1/hello-world1.go
+
+------
+
+## Hello, World Again
+
+.play intro-to-go-class-code/hello-world2/hello-world2.go
+
+------
+
+## Toolchain and the Ecosystem
+
+------
+
+## $GOPATH
+
+* This used to be a thing
+* Still mentioned in lots of docs
+* Still being used for this class's exercises
+
+------
+
+## Source Code Organization
+
+* Source is identified by a repo path
+* `~/projects/github.com/google/go-github/github`
+* `~/projects/github.com/pborman/uuid`
+* Both your code and third-party packages
+
+------
+
+## Starting a New Go Project
+
+* Pick a repo
+* Make a directory like `~/projects/repo-host.com/username/repo-name`
+* Hack, hack, hack
+
+------
+
+## Packages, Repos, and Paths
+
+.play intro-to-go-class-code/uuid-example/uuid-example.go
+
+	> cd projects
+	> mkdir -p github.com/autarch
+	> cd github.com/autarch
+	> git clone https://github.com/autarch/intro-to-go-class-code
+	> cd intro-to-go-class-code/uuid-example
+	> go get
+
+* Downloads `uuid` package to local module cache.
+
+------
+
+## The Toolchain
+
+* The `go` program does most of the work
+* `go get` - download packages
+* `go build` - create an executable for specified package in place
+* `go install` - create an executable for specified package and put it in `$HOME/go/bin`
+* `go run` - run the specified code
+* `go test` - run tests for the specified package
+* `go fmt` - runs `gofmt` tool on specified package
+* `go vet` - runs `govet` tool on specified package
+* `go mod init` - start a new project
+
+------
+
+## More Tools
+
+.link https://github.com/golangci/golangci-lint
+
+* Runs many linting/formatting tools on your code in parallel
+
+.link https://pkg.go.dev/golang.org/x/tools/cmd/goimports?tab=doc
+
+* Runs `go fmt` and cleans up import list
+
+.link https://github.com/golang/lint golint
+
+* Checks for style issues
+
+.link https://github.com/kisielk/errcheck errcheck
+
+* Makes sure that you check error return values
+
+------
+
+## Links to Open Now
+
+.link http://golang.org/pkg/ Built-in Package docs - http://golang.org/pkg/
+.link http://golang.org/doc/effective_go.html Effective Go - http://golang.org/doc/effective_go.html
+.link http://golang.org/ref/spec Language Spec - http://golang.org/ref/spec
+
+------
+
+## From Zero to Code
+
+------
+
+## Our First Goal
+
+* Learn enough of the language to write a "real" program
+* (Not "Hello, World")
+
+------
+
+## Syntax in a Nutshell
+
+* It's mostly like C, Perl, Ruby, JavaScript, and many others
+* No semi-colons at end of line
+* Variable assignment with `=`
+* Comparisons with `==`, `<`, `>`, etc.
+* Math operators are `+`, `-`, `*`, `/`, etc.
+* Comments are `//` (single line) or `/* delimited */`
+* `if` statements do not use parens
+* If we don't cover it explicitly, assume it's what you'd think it would be
+
+------
+
+## Go Naming Conventions
+
+* Variables and functions: CamelCase and camelCase, not snake\_case
+* Constants: same thing
+* If function, variable, or constant starts with a capital letter, it's exported
+* Same for package-scoped variables
+
+	package foo
+
+	var Foo = 42
+	var bar = 84
+
+	const Pi = 3.14
+	const realPi = 3.14159
+
+	func Exported() { ... }
+	func internalOnly() { ... }
+
+------
+
+## Variable Declarations
+
+* Several ways to declare
+* `var foo string = "bar"`
+* Type can be ommitted if the compiler can figure it out
+* `var foo = "bar"`
+* `var` name, type, optional assignment
+* `foo := 42` - "short variable declaration"
+*  short declaration initializes and infers type
+
+	// Go knows this is an int
+	foo := 42
+	// Go looks at the return value of uuid.NewUUID() - it's a uuid.UUID
+	id := uuid.NewUUID()
+
+------
+
+## Variable Initialization
+
+* Variables always have a sane "zero" value
+* Actual `0` for numbers
+* An empty string for strings
+* An empty struct
+* Etc.
+
+------
+
+## Scope and Re-declaration
+
+* Variables are always lexically scoped from where they're declared
+* The lexical scope for control structures is the structure block (more on that later)
+* Can redeclare variables declared with short declaration
+* Can only-redeclare if we're also creating a new var
+
+------
+
+## Declaration Examples
+
+.play intro-to-go-class-code/declarations/redeclare-ok.go
+
+------
+
+## Declaration Examples
+
+.play intro-to-go-class-code/declarations/redeclare-bad.go
+
+------
+
+## Constants
+
+* Declared very similarly to variables:
+
+	const answer = 42
+	const pi float64 = 22/7
+
+* Can also declare multiple constants:
+
+	const (
+	    answer         = 42
+	    pi     float64 = 22 / 7
+	)
+
+------
+
+## Constants and iota
+
+* Can assign `iota` to a constant - each assignment increments `iota`
+
+.play intro-to-go-class-code/constants/iota.go
+
+------
+
+## Built-in Types
+
+* boolean - `true` and `false`
+* `uint`, `uint8`, 16, 32, 64
+* `int`, `int8`, 16, 32, 64
+* `float32`, `float64`
+* `complex64`, `complex128`
+* `string` - Unicode everywhere - ``"foo, 酒廊"``
+* `rune` - one Unicode code point - `'廊'`
+* `byte` - a single 8-bit value
+* `[4]string` - array of 4 strings
+* `[]string` - slice of strings
+* structs, pointers, maps, channels, interfaces, function types - all covered later
+
+------
+
+## Working With Arrays and Slices
+
+* They are 0-indexed
+* Use the `len` built-in to check the length of an array or slice
+
+	size := len(array)
+
+* Access elements with square brackets:
+
+	val0 := array[0]
+
+* Accessing a value out of bounds causes a runtime panic!
+* We'll cover creating, pushing, slicing, and more later
+
+------
+
+## Function Declarations
+
+* Functions that return values need a `return` statement
+
+	func funcName(arg1 string, arg2 int64) string {
+	    ...
+	    return str
+	}
+
+	func NoArgs() (string, error) {
+	    ...
+	    return str, err
+	}
+
+* Functions that do not return values can still contain a bare `return`
+
+	func AllArgsTheSame(arg1, arg2, arg3 string) {
+	    ...
+	    return
+	}
+
+	func variadicArgs(args ...int64) {
+	    ...
+	    return
+	}
+
+------
+
+## Calling Functions
+
+	noReturn()
+
+	foo := returnsValue()
+
+	foo, bar, baz := returnsSeveralValues()
+
+	foo = requiresArguments(arg1, arg2)
+
+	// The blank identifier (_) ignores a value
+	foo, _, baz = returnsSeveralValues()
+
+	// Function is in another package
+	dir, err := os.Getwd()
+
+------
+
+## Package declarations
+
+* Every go file must declare a package
+* Multiple files can declare the same package (and this is common)
+* All the files in one directory should share a single package
+* The package name must match the directory's name
+* `github.com/autarch/project/path/to/foo` has a package named `foo`
+* Go style package names are lower case without underscores
+* Any unicode character is valid
+
+	package математический
+
+------
+
+## Package main and func main
+
+* The `main` package is used to create an executable
+* If a directory named `my-great-program` contains a file like `main.go`:
+
+	package main
+
+	func main() {
+	    ...
+	}
+
+* When you run `go build` you get an executable named `my-great-program`
+
+------
+
+## Importing
+
+* Core packages are imported by name (without a repo):
+
+	package main
+
+	import "os"
+
+* Can import many packages at once:
+
+	package main
+
+	import (
+	    "encode/json"
+	    "log"
+	    "os"
+	)
+
+* Package names are the last part of the path, so the `encode/json` is referred to in code as `json`:
+
+	json.NewDecoder() // not encode/json.NewDecoder()
+
+------
+
+## Printing Output
+
+* We've seen `log` (`log.Print()`) and `os` (`os.Stdout.WriteString()`)
+* Can also use `fmt`
+
+.play intro-to-go-class-code/fmt-example/fmt-example.go
+
+------
+
+## The os Package
+
+* Does a lot of stuff, including syscalls (`chdir`, `symlink`, etc.)
+* Defines file and process structs
+
+------
+
+## Getting Positional Command Line Args
+
+* Use `os.Args`:
+
+.play intro-to-go-class-code/os-args-example/os-args-example.go
+
+* Argument 0 is the program name
+
+------
+
+## Checking Errors
+
+* Go has exceptions, but they're not used for APIs
+* Used internally or for unrecoverable errors
+* Errors are returned as `Error` type values
+* `Error` values stringify
+* If there was no error the value is `nil`
+
+	dir, err := os.Getwd()
+	if err != nil {
+	    log.Fatal(err) // Prints a log message and then calls os.Exit(1)
+	}
+
+------
+
+## Reading Command Line Arguments
+
+* Use `strconv.ParseInt`:
+
+	import (
+	    "os"
+	    "strconv"
+	)
+
+	arg1, err := strconv.ParseInt(os.Args[1], 10, 64)
+
+* `strconv.ParseInt` takes the string to parse, the base (2, 10, etc.), and the bit size (32, 64)
+* It returns an int64 and an error
+* If it can't convert it then it returns an error
+
+------
+
+## If/Else
+
+* `if` does not use parens
+
+	if foo > 42 {
+	    ...
+	} else if bar < 12 {
+	    ...
+	} else {
+	    ...
+	}
+
+------
+
+## Compound if Statement
+
+* Very, very common Go idiom:
+
+	if err := someOperation(); err != nil {
+	    log.Fatal(err)
+	}
+
+* The `err` variable is only in scope for the `if` statement and its block
+
+------
+
+## The log Package
+
+* `log.Print(msg)` - prints `msg`
+* `log.Fatal(msg)` - calls `log.Print(msg)` and then calls `os.Exit(1)`
+* You will use this in the first exercise
+* `log.Panic(msg)` - logs `log.Print(msg)` and then calls `panic()`
+* Output from `log` goes to standard error by default, but you can change that
+
+------
+
+## String Concatenation
+
+* Concatenate strings with `+`:
+
+	string3 := string1 + string2
+	log.Print(arg + " is not a number")
+
+------
+
+## Exercise 1
+
+* `cd $intro-to-go-class-exercises/1-calc/calc`
+* Open `calc.go` in your editor of choice
+* Read the instructions
+
+------
+
+## More Types
+
+------
+
+## Strings
+
+* Double quoted - ``"some text goes here"``
+* Backticks for multi-line strings:
+
+	long := `
+	This is a long chunk of text.
+	That first newline is included, as is the last.
+	`
+
+* Backtick strings are "raw" - backslashes have no special meaning
+
+	"\n" != `\n`
+
+* String concatenation is done with `+`
+
+	str := other + " suffix"
+
+------
+
+## String Operations
+
+* Get the length in bytes with `len(s)`
+* Use `unicode/utf8` and call `utf8.RuneCountInString(s)` to count runes (aka characters)
+* Many, many functions in the `strings` package
+* `strings.Trim()`, `strings.Split()`, `strings.Index()` and many more
+
+------
+
+## Arrays and Slices
+
+* Arrays are fixed-length, declared in advance, passed by value
+* Arrays (and slices) are initialized to a sane "zero" value if not populated
+
+	// Every element is 0
+	var b [42]byte
+
+* Slices are like arrays but do not require a length, passed by reference
+
+	var s []string
+
+* Can also populate when declaring and take references to existing slices (or arrays)
+
+	s := []string{"a", "slice", "of", "strings"}
+	t := s[0:2]
+	// t is {"a", "slice"}
+	s[0] = "the"
+	// t is {"the", "slice"}
+
+------
+
+## Arrays and Slice Example
+
+.play intro-to-go-class-code/arrays/arrays.go
+
+------
+
+## The make() Built-in
+
+* `make(Type, Length)` returns a new slice
+
+.play intro-to-go-class-code/arrays/make.go
+
+------
+
+## Appending to a Slice
+
+.play intro-to-go-class-code/arrays/append.go
+
+------
+
+## Iterating Over a Slice
+
+.play intro-to-go-class-code/arrays/iterate.go
+
+------
+
+## Sorting Slices
+
+.play intro-to-go-class-code/arrays/sort.go
+
+* You can sort other types with the `sort.Slice` and `sort.SliceStable` funcs
+
+------
+
+## Maps
+
+* Called hashes or dictionaries in many languages
+* Key/value mapping
+* In Go, key can be any type that supports comparisons with `==` and `!=`
+* Can get the length with `len(m)` just like arrays
+
+------
+
+## Maps Example
+
+.play intro-to-go-class-code/maps/maps.go
+
+------
+
+## Iterating Over Maps
+
+.play intro-to-go-class-code/maps/iterate.go
+
+------
+
+## Exercise 2
+
+* `cd $intro-to-go-class-exercises/2-count-strings/count-strings/count-strings.go`
+* Open `count-strings.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Making Your Own Types
+
+* Types are declared with `type`
+* You can "alias" built-in types
+
+	package user
+
+	type UserID uint64
+
+	func UserByID(id UserID) {
+	    ...
+	}
+
+* This adds implicit documentation
+* Also does type enforcement (`uint64` != `UserID`)
+
+------
+
+## Type Conversion
+
+* You can convert types with `type(value)`:
+
+.play intro-to-go-class-code/types/types.go
+
+------
+
+## Type Conversion
+
+* Type conversion is explicit
+
+.play intro-to-go-class-code/types/error.go
+
+* This prevents you from using a `CompanyID` as a `UserID` even though they're both `uint64` under the hood!
+
+------
+
+## Struct Types
+
+	type Person struct {
+	    firstName string
+	    lastName  string
+	}
+
+* The first character of a struct member determines public vs private
+* This is just like type names and function names inside a package
+* A struct can contain anything - arrays, maps, other structs:
+
+	type Account struct { ... }
+	type Address struct { ... }
+
+	type Person struct {
+	    firstName string
+	    lastName  string
+	    accounts  []Account
+	    addresses map[string]Address
+	}
+
+------
+
+## Working With Structs
+
+.play intro-to-go-class-code/types/person.go
+
+------
+
+## The nil Value
+
+* `nil` is the empty value for pointers, slices, maps, function types, and channels
+
+	var foo map[string]int
+	if foo == nil { ... }
+
+* We will cover function types and channels later
+* You often need to check whether a value is `nil` in Go
+
+------
+
+## Making Your Own Packages
+
+* Packages are imported by their full path - `github.com/pborman/uuid`
+* Package **names** are the final part of the path
+* Inside that directory, all files must start with `package uuid` (well, not quite all)
+* The actual file names are irrelevant
+
+------
+
+## Package File Layout Example
+
+	github.com/autarch/intro-to-go-class-code/packages
+	└── user
+	    ├── cache.go
+	    ├── user.go
+	    └── user_test.go
+
+* Imported as `github.com/autarch/intro-to-go-class-code/packages/user`
+* Can call functions like `user.NewUser(...)`
+* Every `.go` file starts with `package user`
+* We'll cover `*_test.go` files later
+
+------
+
+## Exercise 3
+
+* `cd $intro-to-go-class-exercises/3-basic-user-package/user`
+* Open `user.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Pointers in Go
+
+* `&` takes a pointer
+* `*` de-references
+* Pointers are somewhat automatic
+* Can (mostly) be used just like the type they point to
+* But you must be explicit with function arguments
+
+------
+
+## Taking a Pointer
+
+.play intro-to-go-class-code/pointers/pointers.go
+
+------
+
+## Function Takes a Pointer
+
+.play intro-to-go-class-code/pointers/pointers2.go
+
+------
+
+## Function Returns a Pointer
+
+.play intro-to-go-class-code/pointers/pointers3.go
+
+------
+
+## Making a Pointer to a Struct in Place
+
+.play intro-to-go-class-code/pointers/pointers4.go
+
+------
+
+## Why Bother?
+
+* Can be more efficient
+* Use a pointer for structs with large amounts of data
+* Lets you modify the caller's value
+
+------
+
+## Modifying The Caller's Value
+
+.play intro-to-go-class-code/pointers/pointers5.go
+
+------
+
+## Passing Functions and Function Types
+
+* In Go, functions are first class
+* Can assign a function to a variable
+* Can pass them to other functions and return them from functions
+* Can (and must) specify them as types to pass them
+* Can define an anonymous literal function inline
+
+------
+
+## Function Passing Example
+
+.play intro-to-go-class-code/function-types/functions.go
+
+------
+
+## Function Literals are Closures
+
+* A closure "captures" the state of variables in the scope where it's defined
+
+------
+
+## Closure Example
+
+* What does this program print?
+
+.play intro-to-go-class-code/function-types/closures.go
+
+------
+
+## Defer
+
+* The `defer` keyword says that a function (or method) should be executed later
+* Later is right before the surrounding function exits
+* Works with named functions, methods, and anonymous functions
+* Called in reverse order of declaration (last in, first out)
+
+------
+
+## Defer Example
+
+.play intro-to-go-class-code/defer/defer.go
+
+------
+
+## Common Defer Idioms
+
+* Put cleanup right after initialization but `defer` it
+
+.play intro-to-go-class-code/defer/defer2.go /^func main/,/^}/
+
+------
+
+## Exercise 4
+
+* `cd $intro-to-go-class-exercises/4-first-class-functions/user`
+* Open `user.go` in your editor of choice
+* Read the instructions
+
+------
+
+## More Statements
+
+------
+
+## Loops Again
+
+* We've seen `for` loops with `range`
+* Go also supports C-style for loops:
+
+	for i := 0; i < 10; i++ {
+	    someFunc(i)
+	}
+
+* There are no while loops, but `for` loops serve the same purpose:
+
+	for a < b {
+	    a *= 2
+	}
+
+* For loops keep iterating while their condition is true
+
+	for { ... } // infinite loop
+
+------
+
+## Loop Controls
+
+* Can exit a loop with `break`:
+
+	for a < b {
+	    if a == 42 {
+	        break
+	    }
+	}
+
+* Can go to the next iteration with `continue`:
+
+	for _, row := range rows {
+	    for i, cell := range row {
+	        if i >= 2 {
+	            continue
+	        }
+	    }
+	}
+
+------
+
+## Loop Labels
+
+* Both `break` and `continue` can work with labels:
+
+	OuterLoop:
+	    for _, row := range rows {
+	        for i, cell := range row {
+	            if cell == 42 {
+	                break OuterLoop
+	            }
+	            if i >= 2 {
+	                continue OuterLoop
+	            }
+	        }
+	    }
+
+------
+
+## Switch Statements
+
+* Shorthand for `if` ... `else if` ... `else if` ... `else`
+
+.play intro-to-go-class-code/switch/switch.go
+
+------
+
+## Switch Statements
+
+* Can use expressions for each `case` if we omit the variable after `switch`:
+
+.play intro-to-go-class-code/switch/switch2.go
+
+------
+
+## Error Handling
+
+------
+
+## Go Style Error Handling
+
+* Public interfaces return errors
+* Go does have exceptions (`panic()`), but throwing them is considered bad form
+* You can throw and catch them in your own package, but they should never affect callers
+* It's ok to `panic()` if your package cannot complete initialization
+* Can also use `panic()` to exit a goroutine without affecting the main thread (if you catch the panic in the main thread)
+
+------
+
+## More Reading on Errors
+
+.link http://golang.org/doc/effective_go.html#errors Effective Go on errors
+.link http://blog.golang.org/error-handling-and-go Error handling and Go
+.link http://blog.golang.org/defer-panic-and-recover Defer, Panic, and Recover
+.link https://blog.golang.org/errors-are-values Errors are values
+.link https://godoc.org/github.com/juju/errors Package for wrapping errors
+
+------
+
+## The Error Type
+
+* Go's built-in error type is called `error`
+* This is actually an **interface**, which we'll cover later
+* You can create a new `error` with `errors.New("message goes here")`
+* Go errors are usually returned as the last return value:
+
+	func Foo() (bool, string, error) { ... }
+
+------
+
+## Errors in Action
+
+.play intro-to-go-class-code/errors/errors.go
+
+------
+
+## Errors in Action
+
+.play intro-to-go-class-code/errors/errors2.go
+
+------
+
+## Using fmt.Errorf
+
+* If you want to create better string, errors, use `fmt.Errorf()`:
+
+.code intro-to-go-class-code/errors/errorf.go
+
+------
+
+## Advanced Errors
+
+* We can also create errors as structs:
+
+.code intro-to-go-class-code/errors/error-struct.go /start-of-code/,/end-of-code/
+
+------
+
+## Exercise 5
+
+* `cd $intro-to-go-class-exercises/5-error-return/user`
+* Open `user.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Unit Testing with "go test"
+
+------
+
+## Test Files
+
+* When you run `go test` go tests all the specified packages
+* Run `go test -v` for more details on failures
+* Run it in a directory and it tests whatever is in that directory
+* Tests are in files named "foo\_test.go", "bar\_test.go"
+* Test files mostly correspond to the files implementing a package:
+
+	user/
+	├── cache.go
+	├── cache_test.go
+	├── db.go
+	├── db_test.go
+	├── shared_test.go
+	├── user.go
+	└── user_test.go
+
+------
+
+## Test Functions
+
+* Test functions are in the same package as the code they test
+* Have access to private struct members and functions
+* Go looks for functions named `TestX`, `TestY`, etc.
+* These functions receive a `*testing.T` struct pointer as their sole argument
+* All test code must import the `testing` package
+
+------
+
+## Example Tests
+
+.code intro-to-go-class-code/unit-tests/user_test.go
+
+------
+
+## The assert Library
+
+.link http://godoc.org/github.com/stretchr/testify/assert
+
+* I'm a big fan
+* Makes testing a lot nicer
+
+------
+
+## assert Example
+
+.code intro-to-go-class-code/unit-tests/user_assert_test.go
+
+------
+
+## Exercise 6
+
+* `cd $intro-to-go-class-exercises/6-unit-tests/calc`
+* Open `calc_test.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Types, Interfaces, and OO in Go
+
+------
+
+## A Go Method
+
+* In Go, methods are associated with types
+* Any type - struct types, pointers, strings, etc.
+* Method names cannot overlap with struct field names
+* Methods are called as `value.method(...)`
+
+------
+
+## Method Example
+
+.play intro-to-go-class-code/oo/methods.go
+
+------
+
+## How Methods Work
+
+	func (m mystring) foo(arg int) bool {
+	    ...
+	}
+
+* Simply defining a func with a receiver makes it a method
+* The receiver is the thing the method is called on
+* Comes before the method name
+* Types and their methods must all be declared in the same package
+
+------
+
+## Methods and Pointers
+
+* Methods with pointer receiver automatically take references:
+
+	type mystring string
+	func (m *mystring) method() { ... }
+
+	var m mystring = "text"
+	m.method()
+
+* Calling `method()` will take a reference to `m` and pass that to `method()`
+
+------
+
+## Constructors
+
+* Go has no special constructor syntax
+* Typical packages provide a single `New()` function and/or several `NewX()` functions
+* For example, `user.New()`, `user.NewCache()`, `user.NewGroup()`
+* Constructors are expected to return a new value of the relevant type (or a pointer)
+
+------
+
+## Accessors and Attributes
+
+* Go has no special accessor or attribute syntax
+* You can provide accessors to a type's data by writing the appropriate methods
+
+------
+
+## Accessors Example
+
+.play intro-to-go-class-code/oo/accessors.go
+
+------
+
+## Accessors Gotcha
+
+* Set methods must take a reference because values are passed by copy
+
+	// BAD CODE - WILL NOT WORK
+	func (d Document) SetTitle(title string) { d.title = title }
+
+* `d` is a copy of the `Document` struct so the title is set on a struct that is then thrown away
+
+------
+
+## Accessor Naming
+
+* Go style is to use `Value()` for get methods and `SetValue()` for set methods
+* But avoid setters because mutable state is the devil
+* But OO design is a topic for another class entirely
+* But seriously, avoid setters whenever possible
+
+------
+
+## Exercise 7
+
+* `cd $intro-to-go-class-exercises/7-basic-oo/user`
+* Open `user.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Struct Composition
+
+* Sort of vaguely like inheritance
+* Can embed a struct in another struct
+* Methods on embedded struct can be called on container struct
+
+------
+
+## Struct Composition
+
+.play intro-to-go-class-code/oo/composition.go /START1 OMIT/,/END1 OMIT/
+
+------
+
+## Struct Composition
+
+.play intro-to-go-class-code/oo/composition.go /START2 OMIT/,/END2 OMIT/
+
+------
+
+## Struct Composition
+
+* Can also embed struct directlu
+
+------
+
+## Interfaces
+
+* An interface is a list of methods \*without implementations\*
+* Go has many interface types defined in the core library
+* You can define your own interfaces
+* You can also require receivers that conform to an interface in your functions
+* Any receiver which implements these methods conforms to the interface
+
+------
+
+## Interface Example
+
+.play intro-to-go-class-code/oo/interfaces.go
+
+------
+
+## Some Common Built-in Interfaces
+
+* `io.Reader`
+
+	type Reader interface {
+	    Read(p []byte) (n int, err error)
+	}
+
+* `io.Writer`
+
+	type Writer interface {
+	    Write(p []byte) (n int, err error)
+	}
+
+* `Error`
+
+	type error interface {
+	    Error() string
+	}
+
+------
+
+## Interfaces Of Interfaces
+
+* An interface can include other interfaces:
+
+	type ReadWriter interface {
+	    Reader
+	    Writer
+	}
+
+* A `ReadWriter` must implement all the methods from `Reader` and `Writer`
+
+* And an interface can specify an interface which specifies other interfaces:
+
+	type File interface {
+	    ReadWriter
+	    Close() error
+	}
+
+------
+
+## Requiring an Interface
+
+* Interfaces can be used like any other type in a function:
+
+	func (var SomeInterface) { ... }
+
+* Also used in type assertions, which we will cover soon
+
+------
+
+## Exercise 8
+
+* `cd $intro-to-go-class-exercises/8-interfaces/user`
+* Open `user.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Satisfying an Interface
+
+* You can write code that satisfies any interface, including built-ins
+* The built-in `Error` interface looks like this:
+
+	type error interface {
+	    Error() string
+	}
+
+------
+
+## Interface Example
+
+.play intro-to-go-class-code/oo/interfaces2.go
+
+------
+
+## Why Use Interfaces?
+
+* Interfaces let you define APIs in terms of capabilities rather than types
+* "I need a thing that I can read from and write to"
+* "I need a thing that can print itself"
+* "I need a thing which implements the build-in `Error` API"
+* In other languages, this may be done with (abstract) base classes or (runtime) duck typing
+* Interfaces are checked at compile time, like any other type check in Go
+
+------
+
+## The Empty Interface
+
+* Want to accept any argument?
+
+.play intro-to-go-class-code/oo/empty-interface.go
+
+------
+
+## Runtime Type Checking
+
+* How do you know what was passed if you accept `interface{}`?
+* Can use the `reflect` package, which we'll cover if we have time
+* Can also use type assertion or the type switch statement
+
+------
+
+## Type Assertion
+
+.play intro-to-go-class-code/oo/type-assertion.go
+
+------
+
+## Type Assertion
+
+* Can also do an assertion that leads to a panic:
+
+.play intro-to-go-class-code/oo/type-assertion2.go
+
+------
+
+## Type Assertion Versus Conversion
+
+* Conversion is not the same as assertion:
+
+.play intro-to-go-class-code/oo/type-assertion3.go
+
+------
+
+## Type Switch
+
+* A more idiomatic way to write those if/else clauses:
+
+.play intro-to-go-class-code/oo/type-switch.go
+
+------
+
+## Exercise 9 - Bonus Exercise?
+
+* `cd $intro-to-go-class-exercises/9-more-interfaces/http`
+* Open `http.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Concurrency
+
+------
+
+## Goroutines
+
+* A goroutine is any function executed in a separate "thread"
+
+	go library.Func()
+	go myFunc()
+	go thing.Method()
+	go func() { ... }()
+
+* The `go` keyword tells Go to run this function in its own thread
+* Return values from these functions are discarded
+
+------
+
+## Goroutine Example
+
+.play intro-to-go-class-code/concurrency/goroutine.go
+
+------
+
+## Channels
+
+* Channels provide communication between goroutines
+* Make channels with `make()`
+* Channels transmit a single value of a given type
+* Read and write to channels with the `<-` operator
+* Channels are first-in-first-out
+* Can use channels with `range` - iterate until there are no values left to receive
+
+------
+
+## Channel Example
+
+.play intro-to-go-class-code/concurrency/channel.go
+
+------
+
+## The <- Operator and Type Signature
+
+* The `<-` operator reads from or writes to the channel
+
+	c <- 42   // Write an integer
+	i := <-c  // Read an integer
+
+* In type signatures, specifies a direction
+
+	func read(c <-chan int)  { ... } // c can only be read from
+	func write(c chan<- int) { ... } // c can only be written to
+
+* Could just specify `c chan int` as the type, but a direction helps avoid mistakes
+
+------
+
+## Concurrent Adder Example
+
+.play intro-to-go-class-code/concurrency/adder.go
+
+------
+
+## Channel Select
+
+* You can use `select` to pick from a set of channels
+
+	select {
+	case msg := <-c1:
+		fmt.Printf("Channel 1 says %s\n", msg)
+	case msg := <-c2:
+		fmt.Printf("Channel 2 says %s\n", msg)
+	case msg := <-c3:
+		fmt.Printf("Channel 3 says %s\n", msg)
+	}
+
+* Will read from the first channel that has a value
+* Picks one at random if more than one is ready
+* Doesn't block
+* Enforces a fair selection algorithm
+
+------
+
+## Channel Select Example
+
+.play intro-to-go-class-code/concurrency/select.go /func main/,/end-of-code/
+
+------
+
+## Closing Channels
+
+* After a channel is closed, reads return immediately with that type's empty value
+
+	c := make(chan int)
+	close(c)
+	i, ok := <-c // i is 0, ok is false
+
+* The second argument from a read is a `bool` indicating whether the channel was closed
+* With the `range` operator, a closed channel stops reading
+
+	for i := range c { ... } // stops when c is closed
+
+* Writing to a closed channel causes a panic
+* So does closing a closed channel
+* Can use close to signal that a channel is done
+
+------
+
+## Close Example
+
+.play intro-to-go-class-code/concurrency/close.go /func main/,/end-of-code/
+
+------
+
+## Status of Multiple Channels
+
+* If you make several channels, how do you know when they're all done?
+* Depends on whether you know exactly how many items they'll send
+* If you do, can know they're done when you have seen N items
+* Saw this in our select example - 2 channels which 3 messages each - done after 6 total
+* If you don't know, you need a mechanism to signal "I'm done"
+
+------
+
+## Close Check Example
+
+.play intro-to-go-class-code/concurrency/close2.go /func main/,/end-of-code/
+
+------
+
+## Timeout Example
+
+.play intro-to-go-class-code/concurrency/timeout.go /import.+/,/end-of-code/
+
+------
+
+## Running Code Once
+
+* What if you want to run some initialization for a package just once?
+* For example, read some data from a file when a struct is created
+* Can you use `sync.Once` type to do this
+
+------
+
+## Once Example
+
+.play intro-to-go-class-code/concurrency/once.go /import.+/,/end-of-code/
+
+------
+
+## Parallelization with WaitGroup
+
+* WaitGroup waits for a set of goroutines to finish
+* Useful to parallelize a set of operations and then wait for them all to finish
+
+------
+
+## WaitGroup Example
+
+.play intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/
+
+------
+
+## Go Packages and Modules
+
+------
+
+## Import Paths
+
+* Packages are identified by an import path
+* Non-core packages are typically identified by a repo path
+* `github.com/pborman/uuid`
+* `github.com/gin-gonic/gin`
+* `github.mycompany.com/myorg/repo.git/go/lib/user`
+
+------
+
+## Importing Your Own Packages
+
+* I assume you're using source control
+* Simply provide the full repo path including a hostname and repo type
+* `import "git.mycompany.com/repo.git/path/to/package"`
+
+------
+
+## Go Get
+
+* `go get` fetches packages and adds them to the current module's deps
+* `go get github.com/gin-gonic/gin` gets the `gin` package
+* `go get` knows about several popular hosting services - github, bitbucket, etc.
+* If you put the VCS name in the path, that will be recognized - `hg.mycompany.com/repo.hg/go/lib/user`
+* If the path is accessible via HTTP(S), `go get` looks for a special `<meta name="go-import" content="...">` tag
+
+------
+
+## What Go Get Does
+
+* Checks to see if the package already exists under `src`
+* If package exists, the default is to to do nothing
+* If package doesn't exist, checks out the `HEAD` of the repo
+* Uses `git`, `svn`, `hg` - so you actually have a checkout
+* Parses the package it downloaded for dependencies and checks those out too (recursively)
+* If the package contains an executable, `go get` installs it by default
+
+------
+
+## Updating Packages
+
+* If you pass the `-u` flag to `go get`, it will update existing packages
+* Updates the checkout to the latest HEAD and does the same for dependencies
+
+------
+
+## Stable Builds with Go Get
+
+* `go get` simply fetches the most recent semver tag, or `HEAD` of the default branch
+* If two machines run `go get` for an untagged package at different times they may get different versions
+* Running `go get -u` gets you the latest code for all dependencies at the time its run
+* Makes it very hard to have stable, repeatable builds with Go
+
+------
+
+## Dependency Management with Modules
+
+* There used to be many dep tools
+* Now there's just Go modules
+
+------
+
+## Go Modules
+
+* Stable as of Go 1.14
+* Opt-in by adding `go.mod` file(s) to your repo with `go mod init`
+* Specifies what your module is and your deps
+* Locks deps so multiple people working on a project are in sync
+* Go modules eliminates need for `$GOPATH`
+* See [github.com/golang/go/wiki/Modules](https://github.com/golang/go/wiki/Modules) for complete docs
+
+------
+
+## New Project with Go Modules
+
+	$> mkdir -p ~/projects/github.com/autarch/my-project
+
+	$> cd ~/projects/github.com/autarch/my-project
+
+	# creates go.mod and go.sum files
+	$> go mod init github.com/autarch/my-project
+
+	# Update go.mod and go.sum
+	$> go get github.com/pborman/uuid
+
+------
+
+## More Module Commands
+
+* `go list -m -all` - show entire dep tree
+* `go list -u -m -all` - show available updates for tree
+* `go mod tidy` - prune no-longer-needed deps and add anything missing
+
+------
+
+## Concurrency Bonus Exercise
+
+* `cd $intro-to-go-class-exercises/10-concurrency`
+* Open `word-counter.go` in your editor of choice
+* Read the instructions
+
+------
+
+## Places to Learn More
+
+* Documentation on the language and core packages
+
+.link http://golang.org golang.org
+
+* Third party package listing and documentation
+
+.link http://godoc.org godoc.org
+
+------
+
+## Searching for Go
+
+* You will often get better results with "golang", not "go"
+
+------
+
+## More To Read or Watch
+
+.html more.html
