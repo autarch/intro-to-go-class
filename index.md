@@ -1,8 +1,9 @@
-# Introduction to Go
-Go for Perl Programmers (or non-Perl Programmers)
+# Intro to Go
+Go for Perl (or non-Perl) Programmers
 
-Dave Rolsky
-[autarch@urth.org](mailto:autarch@urth.org)
+Dave Rolsky  
+[autarch@urth.org](mailto:autarch@urth.org)  
+https://blog.urth.org/
 
 ------
 
@@ -25,20 +26,24 @@ Dave Rolsky
 
 ## Goals for This Class
 
-* Provide a broad overview of Go
-* Touch on many parts of the language
-* Cannot cover the language in depth
+* Broad overview of Go
+* Shallow look at many aspects
+* Not a lot of depth in any one area
+
+
+Note:
 * This is a first step, not the final step
 
 ------
 
 ## Go Versus Perl
 
-* Compiled versus interpreted
-* Static (inferenced) typing versus dynamic
-* C-esque syntax
-* Garbage collected (no reference counting)
-* Packaging and libraries are **very** different from Perl (more on this later)
+* Compiled, not interpreted
+* Static (inferenced) typing, not dynamic
+* C-esque syntax, like Perl
+* Garbage collected, not reference counted
+* Packages and libraries are **very** different from Perl
+  * (more on this later)
 
 ------
 
@@ -47,25 +52,30 @@ Dave Rolsky
 * There's (mostly) one way to do it
 * There's definitely just one way to format it
 * Minimize repetition and clutter
-* Very strong source compatibility - new versions of Go 1.x will not break existing code
-* All the information needed to compile a program is in the source
-* No Makefiles, external dependency lists, header files, etc. (but go modules changes this)
+* Very strong source compatibility
+  * New versions of Go 1.x will not break existing code
+* No Makefiles, header files, etc.
+  * Go modules did add external dep list and lock file
+
+Note:
+* Used to say "all the information needed to compile a program is in the
+  source" but that changed a little with modules.
 
 ------
 
 ## Hello, World
 
-.play intro-to-go-class-code/hello-world1/hello-world1.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/hello-world1/hello-world1.go" -->
 
 ------
 
 ## Hello, World Again
 
-.play intro-to-go-class-code/hello-world2/hello-world2.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/hello-world2/hello-world2.go" -->
 
 ------
 
-## Toolchain and the Ecosystem
+# Toolchain and the Ecosystem
 
 ------
 
@@ -96,14 +106,16 @@ Dave Rolsky
 
 ## Packages, Repos, and Paths
 
-.play intro-to-go-class-code/uuid-example/uuid-example.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/uuid-example/uuid-example.go" -->
 
-	> cd projects
-	> mkdir -p github.com/autarch
-	> cd github.com/autarch
-	> git clone https://github.com/autarch/intro-to-go-class-code
-	> cd intro-to-go-class-code/uuid-example
-	> go get
+```sh
+$> cd projects
+$> mkdir -p github.com/autarch
+$> cd github.com/autarch
+$> git clone https://github.com/autarch/intro-to-go-class-code
+$> cd intro-to-go-class-code/uuid-example
+$> go get
+```
 
 * Downloads `uuid` package to local module cache.
 
@@ -125,33 +137,33 @@ Dave Rolsky
 
 ## More Tools
 
-.link https://github.com/golangci/golangci-lint
+* [github.com/golangci/golangci-lint](https://github.com/golangci/golangci-lint)
+  * Runs many linting/formatting tools on your code in parallel
 
-* Runs many linting/formatting tools on your code in parallel
+------
 
-.link https://pkg.go.dev/golang.org/x/tools/cmd/goimports?tab=doc
+## More Tools
 
-* Runs `go fmt` and cleans up import list
-
-.link https://github.com/golang/lint golint
-
-* Checks for style issues
-
-.link https://github.com/kisielk/errcheck errcheck
-
-* Makes sure that you check error return values
+* All of these are included in golangci-lint
+* [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports?tab=doc)
+  * Runs `go fmt` and cleans up import list
+  * `go get golang.org/x/tools/cmd/goimports`
+* [github.com/golang/lint](https://github.com/golang/lint)
+  * Checks for style issues
+* [github.com/kisielk/errcheck](https://github.com/kisielk/errcheck)
+  * Makes sure that you check error return values
 
 ------
 
 ## Links to Open Now
 
-.link http://golang.org/pkg/ Built-in Package docs - http://golang.org/pkg/
-.link http://golang.org/doc/effective_go.html Effective Go - http://golang.org/doc/effective_go.html
-.link http://golang.org/ref/spec Language Spec - http://golang.org/ref/spec
+* [Standard library docs](http://golang.org/pkg/)
+* [Effective Go](http://golang.org/doc/effective_go.html)
+  * [Language Spec](http://golang.org/ref/spec)
 
 ------
 
-## From Zero to Code
+# From Zero to Code
 
 ------
 
@@ -233,13 +245,13 @@ Dave Rolsky
 
 ## Declaration Examples
 
-.play intro-to-go-class-code/declarations/redeclare-ok.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/declarations/redeclare-ok.go" -->
 
 ------
 
 ## Declaration Examples
 
-.play intro-to-go-class-code/declarations/redeclare-bad.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/declarations/redeclare-bad.go" -->
 
 ------
 
@@ -247,15 +259,19 @@ Dave Rolsky
 
 * Declared very similarly to variables:
 
-	const answer = 42
-	const pi float64 = 22/7
+```go
+const answer = 42
+const pi float64 = 22/7
+```
 
 * Can also declare multiple constants:
 
-	const (
-	    answer         = 42
-	    pi     float64 = 22 / 7
-	)
+```go
+const (
+    answer         = 42
+    pi     float64 = 22 / 7
+)
+```
 
 ------
 
@@ -263,7 +279,7 @@ Dave Rolsky
 
 * Can assign `iota` to a constant - each assignment increments `iota`
 
-.play intro-to-go-class-code/constants/iota.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/constants/iota.go" -->
 
 ------
 
@@ -288,11 +304,15 @@ Dave Rolsky
 * They are 0-indexed
 * Use the `len` built-in to check the length of an array or slice
 
-	size := len(array)
+```go
+size := len(array)
+```
 
 * Access elements with square brackets:
 
-	val0 := array[0]
+```go
+val0 := array[0]
+```
 
 * Accessing a value out of bounds causes a runtime panic!
 * We'll cover creating, pushing, slicing, and more later
@@ -303,45 +323,51 @@ Dave Rolsky
 
 * Functions that return values need a `return` statement
 
-	func funcName(arg1 string, arg2 int64) string {
-	    ...
-	    return str
-	}
+```go
+func funcName(arg1 string, arg2 int64) string {
+    ...
+    return str
+}
 
-	func NoArgs() (string, error) {
-	    ...
-	    return str, err
-	}
+func NoArgs() (string, error) {
+    ...
+    return str, err
+}
+```
 
 * Functions that do not return values can still contain a bare `return`
 
-	func AllArgsTheSame(arg1, arg2, arg3 string) {
-	    ...
-	    return
-	}
+```go
+func AllArgsTheSame(arg1, arg2, arg3 string) {
+    ...
+    return
+}
 
-	func variadicArgs(args ...int64) {
-	    ...
-	    return
-	}
+func variadicArgs(args ...int64) {
+    ...
+    return
+}
+```
 
 ------
 
 ## Calling Functions
 
-	noReturn()
+```go
+noReturn()
 
-	foo := returnsValue()
+foo := returnsValue()
 
-	foo, bar, baz := returnsSeveralValues()
+foo, bar, baz := returnsSeveralValues()
 
-	foo = requiresArguments(arg1, arg2)
+foo = requiresArguments(arg1, arg2)
 
-	// The blank identifier (_) ignores a value
-	foo, _, baz = returnsSeveralValues()
+// The blank identifier (_) ignores a value
+foo, _, baz = returnsSeveralValues()
 
-	// Function is in another package
-	dir, err := os.Getwd()
+// Function is in another package
+dir, err := os.Getwd()
+```
 
 ------
 
@@ -355,7 +381,9 @@ Dave Rolsky
 * Go style package names are lower case without underscores
 * Any unicode character is valid
 
-	package математический
+```go
+package математический
+```
 
 ------
 
@@ -364,11 +392,13 @@ Dave Rolsky
 * The `main` package is used to create an executable
 * If a directory named `my-great-program` contains a file like `main.go`:
 
-	package main
+```go
+package main
 
-	func main() {
-	    ...
-	}
+func main() {
+    ...
+}
+```
 
 * When you run `go build` you get an executable named `my-great-program`
 
@@ -378,23 +408,33 @@ Dave Rolsky
 
 * Core packages are imported by name (without a repo):
 
-	package main
+```go
+package main
 
-	import "os"
+import "os"
+```
+
+------
+
+## Importing
 
 * Can import many packages at once:
 
-	package main
+```go
+package main
 
-	import (
-	    "encode/json"
-	    "log"
-	    "os"
-	)
+import (
+    "encode/json"
+    "log"
+    "os"
+)
+```
 
 * Package names are the last part of the path, so the `encode/json` is referred to in code as `json`:
 
-	json.NewDecoder() // not encode/json.NewDecoder()
+```go
+json.NewDecoder() // not encode/json.NewDecoder()
+```
 
 ------
 
@@ -403,7 +443,7 @@ Dave Rolsky
 * We've seen `log` (`log.Print()`) and `os` (`os.Stdout.WriteString()`)
 * Can also use `fmt`
 
-.play intro-to-go-class-code/fmt-example/fmt-example.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/fmt-example/fmt-example.go" -->
 
 ------
 
@@ -418,7 +458,7 @@ Dave Rolsky
 
 * Use `os.Args`:
 
-.play intro-to-go-class-code/os-args-example/os-args-example.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/os-args-example/os-args-example.go" -->
 
 * Argument 0 is the program name
 
@@ -432,10 +472,12 @@ Dave Rolsky
 * `Error` values stringify
 * If there was no error the value is `nil`
 
-	dir, err := os.Getwd()
-	if err != nil {
-	    log.Fatal(err) // Prints a log message and then calls os.Exit(1)
-	}
+```go
+dir, err := os.Getwd()
+if err != nil {
+    log.Fatal(err) // Prints a log message and then calls os.Exit(1)
+}
+```
 
 ------
 
@@ -443,12 +485,14 @@ Dave Rolsky
 
 * Use `strconv.ParseInt`:
 
-	import (
-	    "os"
-	    "strconv"
-	)
+```go
+import (
+    "os"
+    "strconv"
+)
 
-	arg1, err := strconv.ParseInt(os.Args[1], 10, 64)
+arg1, err := strconv.ParseInt(os.Args[1], 10, 64)
+```
 
 * `strconv.ParseInt` takes the string to parse, the base (2, 10, etc.), and the bit size (32, 64)
 * It returns an int64 and an error
@@ -460,13 +504,15 @@ Dave Rolsky
 
 * `if` does not use parens
 
-	if foo > 42 {
-	    ...
-	} else if bar < 12 {
-	    ...
-	} else {
-	    ...
-	}
+```go
+if foo > 42 {
+    ...
+} else if bar < 12 {
+    ...
+} else {
+    ...
+}
+```
 
 ------
 
@@ -474,9 +520,11 @@ Dave Rolsky
 
 * Very, very common Go idiom:
 
-	if err := someOperation(); err != nil {
-	    log.Fatal(err)
-	}
+```go
+if err := someOperation(); err != nil {
+    log.Fatal(err)
+}
+```
 
 * The `err` variable is only in scope for the `if` statement and its block
 
@@ -496,8 +544,10 @@ Dave Rolsky
 
 * Concatenate strings with `+`:
 
-	string3 := string1 + string2
-	log.Print(arg + " is not a number")
+```go
+string3 := string1 + string2
+log.Print(arg + " is not a number")
+```
 
 ------
 
@@ -509,7 +559,7 @@ Dave Rolsky
 
 ------
 
-## More Types
+# More Types
 
 ------
 
@@ -518,18 +568,24 @@ Dave Rolsky
 * Double quoted - ``"some text goes here"``
 * Backticks for multi-line strings:
 
-	long := `
-	This is a long chunk of text.
-	That first newline is included, as is the last.
-	`
+```go
+long := `
+This is a long chunk of text.
+That first newline is included, as is the last.
+`
+```
 
 * Backtick strings are "raw" - backslashes have no special meaning
 
-	"\n" != `\n`
+```go
+"\n" != `\n`
+```go
 
 * String concatenation is done with `+`
 
-	str := other + " suffix"
+```go
+str := other + " suffix"
+```
 
 ------
 
@@ -547,26 +603,32 @@ Dave Rolsky
 * Arrays are fixed-length, declared in advance, passed by value
 * Arrays (and slices) are initialized to a sane "zero" value if not populated
 
-	// Every element is 0
-	var b [42]byte
+```go
+// Every element is 0
+var b [42]byte
+```
 
 * Slices are like arrays but do not require a length, passed by reference
 
-	var s []string
+```go
+var s []string
+```
 
 * Can also populate when declaring and take references to existing slices (or arrays)
 
-	s := []string{"a", "slice", "of", "strings"}
-	t := s[0:2]
-	// t is {"a", "slice"}
-	s[0] = "the"
-	// t is {"the", "slice"}
+```go
+s := []string{"a", "slice", "of", "strings"}
+t := s[0:2]
+// t is {"a", "slice"}
+s[0] = "the"
+// t is {"the", "slice"}
+```
 
 ------
 
 ## Arrays and Slice Example
 
-.play intro-to-go-class-code/arrays/arrays.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/arrays/arrays.go" -->
 
 ------
 
@@ -574,25 +636,25 @@ Dave Rolsky
 
 * `make(Type, Length)` returns a new slice
 
-.play intro-to-go-class-code/arrays/make.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/arrays/make.go" -->
 
 ------
 
 ## Appending to a Slice
 
-.play intro-to-go-class-code/arrays/append.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/arrays/append.go" -->
 
 ------
 
 ## Iterating Over a Slice
 
-.play intro-to-go-class-code/arrays/iterate.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/arrays/iterate.go" -->
 
 ------
 
 ## Sorting Slices
 
-.play intro-to-go-class-code/arrays/sort.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/arrays/sort.go" -->
 
 * You can sort other types with the `sort.Slice` and `sort.SliceStable` funcs
 
@@ -609,13 +671,13 @@ Dave Rolsky
 
 ## Maps Example
 
-.play intro-to-go-class-code/maps/maps.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/maps/maps.go" -->
 
 ------
 
 ## Iterating Over Maps
 
-.play intro-to-go-class-code/maps/iterate.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/maps/iterate.go" -->
 
 ------
 
@@ -632,13 +694,15 @@ Dave Rolsky
 * Types are declared with `type`
 * You can "alias" built-in types
 
-	package user
+```go
+package user
 
-	type UserID uint64
+type UserID uint64
 
-	func UserByID(id UserID) {
-	    ...
-	}
+func UserByID(id UserID) {
+    ...
+}
+```
 
 * This adds implicit documentation
 * Also does type enforcement (`uint64` != `UserID`)
@@ -649,7 +713,7 @@ Dave Rolsky
 
 * You can convert types with `type(value)`:
 
-.play intro-to-go-class-code/types/types.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/types/types.go" -->
 
 ------
 
@@ -657,7 +721,7 @@ Dave Rolsky
 
 * Type conversion is explicit
 
-.play intro-to-go-class-code/types/error.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/types/error.go" -->
 
 * This prevents you from using a `CompanyID` as a `UserID` even though they're both `uint64` under the hood!
 
@@ -665,30 +729,34 @@ Dave Rolsky
 
 ## Struct Types
 
-	type Person struct {
-	    firstName string
-	    lastName  string
-	}
+```go
+type Person struct {
+    firstName string
+    lastName  string
+}
+```
 
 * The first character of a struct member determines public vs private
 * This is just like type names and function names inside a package
 * A struct can contain anything - arrays, maps, other structs:
 
-	type Account struct { ... }
-	type Address struct { ... }
+```go
+type Account struct { ... }
+type Address struct { ... }
 
-	type Person struct {
-	    firstName string
-	    lastName  string
-	    accounts  []Account
-	    addresses map[string]Address
-	}
+type Person struct {
+    firstName string
+    lastName  string
+    accounts  []Account
+    addresses map[string]Address
+}
+```
 
 ------
 
 ## Working With Structs
 
-.play intro-to-go-class-code/types/person.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/types/person.go" -->
 
 ------
 
@@ -696,8 +764,10 @@ Dave Rolsky
 
 * `nil` is the empty value for pointers, slices, maps, function types, and channels
 
-	var foo map[string]int
-	if foo == nil { ... }
+```go
+var foo map[string]int
+if foo == nil { ... }
+```
 
 * We will cover function types and channels later
 * You often need to check whether a value is `nil` in Go
@@ -715,11 +785,13 @@ Dave Rolsky
 
 ## Package File Layout Example
 
-	github.com/autarch/intro-to-go-class-code/packages
-	└── user
-	    ├── cache.go
-	    ├── user.go
-	    └── user_test.go
+```plaintext
+github.com/autarch/intro-to-go-class-code/packages
+└── user
+    ├── cache.go
+    ├── user.go
+    └── user_test.go
+```
 
 * Imported as `github.com/autarch/intro-to-go-class-code/packages/user`
 * Can call functions like `user.NewUser(...)`
@@ -748,25 +820,25 @@ Dave Rolsky
 
 ## Taking a Pointer
 
-.play intro-to-go-class-code/pointers/pointers.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/pointers/pointers.go" -->
 
 ------
 
 ## Function Takes a Pointer
 
-.play intro-to-go-class-code/pointers/pointers2.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/pointers/pointers2.go" -->
 
 ------
 
 ## Function Returns a Pointer
 
-.play intro-to-go-class-code/pointers/pointers3.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/pointers/pointers3.go" -->
 
 ------
 
 ## Making a Pointer to a Struct in Place
 
-.play intro-to-go-class-code/pointers/pointers4.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/pointers/pointers4.go" -->
 
 ------
 
@@ -780,7 +852,7 @@ Dave Rolsky
 
 ## Modifying The Caller's Value
 
-.play intro-to-go-class-code/pointers/pointers5.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/pointers/pointers5.go" -->
 
 ------
 
@@ -796,7 +868,7 @@ Dave Rolsky
 
 ## Function Passing Example
 
-.play intro-to-go-class-code/function-types/functions.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/function-types/functions.go" -->
 
 ------
 
@@ -810,7 +882,7 @@ Dave Rolsky
 
 * What does this program print?
 
-.play intro-to-go-class-code/function-types/closures.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/function-types/closures.go" -->
 
 ------
 
@@ -825,7 +897,7 @@ Dave Rolsky
 
 ## Defer Example
 
-.play intro-to-go-class-code/defer/defer.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/defer/defer.go" -->
 
 ------
 
@@ -833,7 +905,7 @@ Dave Rolsky
 
 * Put cleanup right after initialization but `defer` it
 
-.play intro-to-go-class-code/defer/defer2.go /^func main/,/^}/
+<!-- .slide: data-golang-play="intro-to-go-class-code/defer/defer2.go /^func main/,/^}/" -->
 
 ------
 
@@ -854,19 +926,25 @@ Dave Rolsky
 * We've seen `for` loops with `range`
 * Go also supports C-style for loops:
 
-	for i := 0; i < 10; i++ {
-	    someFunc(i)
-	}
+```go
+for i := 0; i < 10; i++ {
+    someFunc(i)
+}
+```
 
 * There are no while loops, but `for` loops serve the same purpose:
 
-	for a < b {
-	    a *= 2
-	}
+```go
+for a < b {
+    a *= 2
+}
+```
 
 * For loops keep iterating while their condition is true
 
-	for { ... } // infinite loop
+```
+for { ... } // infinite loop
+```
 
 ------
 
@@ -874,21 +952,25 @@ Dave Rolsky
 
 * Can exit a loop with `break`:
 
-	for a < b {
-	    if a == 42 {
-	        break
-	    }
-	}
+```go
+for a < b {
+    if a == 42 {
+        break
+    }
+}
+```
 
 * Can go to the next iteration with `continue`:
 
-	for _, row := range rows {
-	    for i, cell := range row {
-	        if i >= 2 {
-	            continue
-	        }
-	    }
-	}
+```go
+for _, row := range rows {
+    for i, cell := range row {
+        if i >= 2 {
+            continue
+        }
+    }
+}
+```
 
 ------
 
@@ -896,17 +978,19 @@ Dave Rolsky
 
 * Both `break` and `continue` can work with labels:
 
-	OuterLoop:
-	    for _, row := range rows {
-	        for i, cell := range row {
-	            if cell == 42 {
-	                break OuterLoop
-	            }
-	            if i >= 2 {
-	                continue OuterLoop
-	            }
-	        }
-	    }
+```go
+OuterLoop:
+for _, row := range rows {
+    for i, cell := range row {
+        if cell == 42 {
+            break OuterLoop
+        }
+        if i >= 2 {
+            continue OuterLoop
+        }
+    }
+}
+```
 
 ------
 
@@ -914,7 +998,7 @@ Dave Rolsky
 
 * Shorthand for `if` ... `else if` ... `else if` ... `else`
 
-.play intro-to-go-class-code/switch/switch.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/switch/switch.go" -->
 
 ------
 
@@ -922,11 +1006,11 @@ Dave Rolsky
 
 * Can use expressions for each `case` if we omit the variable after `switch`:
 
-.play intro-to-go-class-code/switch/switch2.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/switch/switch2.go" -->
 
 ------
 
-## Error Handling
+# Error Handling
 
 ------
 
@@ -957,19 +1041,21 @@ Dave Rolsky
 * You can create a new `error` with `errors.New("message goes here")`
 * Go errors are usually returned as the last return value:
 
-	func Foo() (bool, string, error) { ... }
+```go
+func Foo() (bool, string, error) { ... }
+```
 
 ------
 
 ## Errors in Action
 
-.play intro-to-go-class-code/errors/errors.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/errors/errors.go" -->
 
 ------
 
 ## Errors in Action
 
-.play intro-to-go-class-code/errors/errors2.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/errors/errors2.go" -->
 
 ------
 
@@ -997,7 +1083,7 @@ Dave Rolsky
 
 ------
 
-## Unit Testing with "go test"
+# Unit Testing with "go test"
 
 ------
 
@@ -1009,14 +1095,16 @@ Dave Rolsky
 * Tests are in files named "foo\_test.go", "bar\_test.go"
 * Test files mostly correspond to the files implementing a package:
 
-	user/
-	├── cache.go
-	├── cache_test.go
-	├── db.go
-	├── db_test.go
-	├── shared_test.go
-	├── user.go
-	└── user_test.go
+```plaintext
+user/
+├── cache.go
+├── cache_test.go
+├── db.go
+├── db_test.go
+├── shared_test.go
+├── user.go
+└── user_test.go
+```
 
 ------
 
@@ -1059,7 +1147,7 @@ Dave Rolsky
 
 ------
 
-## Types, Interfaces, and OO in Go
+# Types, Interfaces, and OO in Go
 
 ------
 
@@ -1074,15 +1162,17 @@ Dave Rolsky
 
 ## Method Example
 
-.play intro-to-go-class-code/oo/methods.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/methods.go" -->
 
 ------
 
 ## How Methods Work
 
-	func (m mystring) foo(arg int) bool {
-	    ...
-	}
+```go
+func (m mystring) foo(arg int) bool {
+    ...
+}
+```
 
 * Simply defining a func with a receiver makes it a method
 * The receiver is the thing the method is called on
@@ -1095,11 +1185,13 @@ Dave Rolsky
 
 * Methods with pointer receiver automatically take references:
 
-	type mystring string
-	func (m *mystring) method() { ... }
+```go
+type mystring string
+func (m *mystring) method() { ... }
 
-	var m mystring = "text"
-	m.method()
+var m mystring = "text"
+m.method()
+```
 
 * Calling `method()` will take a reference to `m` and pass that to `method()`
 
@@ -1123,7 +1215,7 @@ Dave Rolsky
 
 ## Accessors Example
 
-.play intro-to-go-class-code/oo/accessors.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/accessors.go" -->
 
 ------
 
@@ -1131,8 +1223,10 @@ Dave Rolsky
 
 * Set methods must take a reference because values are passed by copy
 
-	// BAD CODE - WILL NOT WORK
-	func (d Document) SetTitle(title string) { d.title = title }
+```go
+// BAD CODE - WILL NOT WORK
+func (d Document) SetTitle(title string) { d.title = title }
+```
 
 * `d` is a copy of the `Document` struct so the title is set on a struct that is then thrown away
 
@@ -1165,13 +1259,13 @@ Dave Rolsky
 
 ## Struct Composition
 
-.play intro-to-go-class-code/oo/composition.go /START1 OMIT/,/END1 OMIT/
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/composition.go /START1 OMIT/,/END1 OMIT/" -->
 
 ------
 
 ## Struct Composition
 
-.play intro-to-go-class-code/oo/composition.go /START2 OMIT/,/END2 OMIT/
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/composition.go /START2 OMIT/,/END2 OMIT/" -->
 
 ------
 
@@ -1193,7 +1287,7 @@ Dave Rolsky
 
 ## Interface Example
 
-.play intro-to-go-class-code/oo/interfaces.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/interfaces.go" -->
 
 ------
 
@@ -1201,21 +1295,27 @@ Dave Rolsky
 
 * `io.Reader`
 
-	type Reader interface {
-	    Read(p []byte) (n int, err error)
-	}
+```go
+type Reader interface {
+    Read(p []byte) (n int, err error)
+}
+```
 
 * `io.Writer`
 
-	type Writer interface {
-	    Write(p []byte) (n int, err error)
-	}
+```go
+type Writer interface {
+    Write(p []byte) (n int, err error)
+}
+```
 
 * `Error`
 
-	type error interface {
-	    Error() string
-	}
+```go
+type error interface {
+    Error() string
+}
+```
 
 ------
 
@@ -1223,19 +1323,23 @@ Dave Rolsky
 
 * An interface can include other interfaces:
 
-	type ReadWriter interface {
-	    Reader
-	    Writer
-	}
+```go
+type ReadWriter interface {
+    Reader
+    Writer
+}
+```
 
 * A `ReadWriter` must implement all the methods from `Reader` and `Writer`
 
 * And an interface can specify an interface which specifies other interfaces:
 
-	type File interface {
-	    ReadWriter
-	    Close() error
-	}
+```go
+type File interface {
+    ReadWriter
+    Close() error
+}
+```
 
 ------
 
@@ -1243,7 +1347,9 @@ Dave Rolsky
 
 * Interfaces can be used like any other type in a function:
 
-	func (var SomeInterface) { ... }
+```go
+func (var SomeInterface) { ... }
+```
 
 * Also used in type assertions, which we will cover soon
 
@@ -1262,15 +1368,17 @@ Dave Rolsky
 * You can write code that satisfies any interface, including built-ins
 * The built-in `Error` interface looks like this:
 
-	type error interface {
-	    Error() string
-	}
+```go
+type error interface {
+    Error() string
+}
+```
 
 ------
 
 ## Interface Example
 
-.play intro-to-go-class-code/oo/interfaces2.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/interfaces2.go" -->
 
 ------
 
@@ -1289,7 +1397,7 @@ Dave Rolsky
 
 * Want to accept any argument?
 
-.play intro-to-go-class-code/oo/empty-interface.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/empty-interface.go" -->
 
 ------
 
@@ -1303,7 +1411,7 @@ Dave Rolsky
 
 ## Type Assertion
 
-.play intro-to-go-class-code/oo/type-assertion.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/type-assertion.go" -->
 
 ------
 
@@ -1311,7 +1419,7 @@ Dave Rolsky
 
 * Can also do an assertion that leads to a panic:
 
-.play intro-to-go-class-code/oo/type-assertion2.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/type-assertion2.go" -->
 
 ------
 
@@ -1319,7 +1427,7 @@ Dave Rolsky
 
 * Conversion is not the same as assertion:
 
-.play intro-to-go-class-code/oo/type-assertion3.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/type-assertion3.go" -->
 
 ------
 
@@ -1327,7 +1435,7 @@ Dave Rolsky
 
 * A more idiomatic way to write those if/else clauses:
 
-.play intro-to-go-class-code/oo/type-switch.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/oo/type-switch.go" -->
 
 ------
 
@@ -1339,7 +1447,7 @@ Dave Rolsky
 
 ------
 
-## Concurrency
+# Concurrency
 
 ------
 
@@ -1347,10 +1455,12 @@ Dave Rolsky
 
 * A goroutine is any function executed in a separate "thread"
 
-	go library.Func()
-	go myFunc()
-	go thing.Method()
-	go func() { ... }()
+```go
+go library.Func()
+go myFunc()
+go thing.Method()
+go func() { ... }()
+```
 
 * The `go` keyword tells Go to run this function in its own thread
 * Return values from these functions are discarded
@@ -1359,7 +1469,7 @@ Dave Rolsky
 
 ## Goroutine Example
 
-.play intro-to-go-class-code/concurrency/goroutine.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/goroutine.go" -->
 
 ------
 
@@ -1376,7 +1486,7 @@ Dave Rolsky
 
 ## Channel Example
 
-.play intro-to-go-class-code/concurrency/channel.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/channel.go" -->
 
 ------
 
@@ -1384,13 +1494,17 @@ Dave Rolsky
 
 * The `<-` operator reads from or writes to the channel
 
-	c <- 42   // Write an integer
-	i := <-c  // Read an integer
+```go
+c <- 42   // Write an integer
+i := <-c  // Read an integer
+```
 
 * In type signatures, specifies a direction
 
-	func read(c <-chan int)  { ... } // c can only be read from
-	func write(c chan<- int) { ... } // c can only be written to
+```go
+func read(c <-chan int)  { ... } // c can only be read from
+func write(c chan<- int) { ... } // c can only be written to
+```
 
 * Could just specify `c chan int` as the type, but a direction helps avoid mistakes
 
@@ -1398,7 +1512,7 @@ Dave Rolsky
 
 ## Concurrent Adder Example
 
-.play intro-to-go-class-code/concurrency/adder.go
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/adder.go" -->
 
 ------
 
@@ -1406,14 +1520,16 @@ Dave Rolsky
 
 * You can use `select` to pick from a set of channels
 
-	select {
-	case msg := <-c1:
-		fmt.Printf("Channel 1 says %s\n", msg)
-	case msg := <-c2:
-		fmt.Printf("Channel 2 says %s\n", msg)
-	case msg := <-c3:
-		fmt.Printf("Channel 3 says %s\n", msg)
-	}
+```go
+select {
+case msg := <-c1:
+	fmt.Printf("Channel 1 says %s\n", msg)
+case msg := <-c2:
+	fmt.Printf("Channel 2 says %s\n", msg)
+case msg := <-c3:
+	fmt.Printf("Channel 3 says %s\n", msg)
+}
+```
 
 * Will read from the first channel that has a value
 * Picks one at random if more than one is ready
@@ -1424,7 +1540,7 @@ Dave Rolsky
 
 ## Channel Select Example
 
-.play intro-to-go-class-code/concurrency/select.go /func main/,/end-of-code/
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/select.go /func main/,/end-of-code/" -->
 
 ------
 
@@ -1432,14 +1548,18 @@ Dave Rolsky
 
 * After a channel is closed, reads return immediately with that type's empty value
 
-	c := make(chan int)
-	close(c)
-	i, ok := <-c // i is 0, ok is false
+```go
+c := make(chan int)
+close(c)
+i, ok := <-c // i is 0, ok is false
+```
 
 * The second argument from a read is a `bool` indicating whether the channel was closed
 * With the `range` operator, a closed channel stops reading
 
-	for i := range c { ... } // stops when c is closed
+```go
+for i := range c { ... } // stops when c is closed
+```
 
 * Writing to a closed channel causes a panic
 * So does closing a closed channel
@@ -1449,7 +1569,7 @@ Dave Rolsky
 
 ## Close Example
 
-.play intro-to-go-class-code/concurrency/close.go /func main/,/end-of-code/
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/close.go /func main/,/end-of-code/" -->
 
 ------
 
@@ -1465,13 +1585,13 @@ Dave Rolsky
 
 ## Close Check Example
 
-.play intro-to-go-class-code/concurrency/close2.go /func main/,/end-of-code/
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/close2.go /func main/,/end-of-code/" -->
 
 ------
 
 ## Timeout Example
 
-.play intro-to-go-class-code/concurrency/timeout.go /import.+/,/end-of-code/
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/timeout.go /import.+/,/end-of-code/" -->
 
 ------
 
@@ -1485,7 +1605,7 @@ Dave Rolsky
 
 ## Once Example
 
-.play intro-to-go-class-code/concurrency/once.go /import.+/,/end-of-code/
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/once.go /import.+/,/end-of-code/" -->
 
 ------
 
@@ -1498,11 +1618,11 @@ Dave Rolsky
 
 ## WaitGroup Example
 
-.play intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/
+<!-- .slide: data-golang-play="intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/" -->
 
 ------
 
-## Go Packages and Modules
+# Go Packages and Modules
 
 ------
 
@@ -1581,15 +1701,17 @@ Dave Rolsky
 
 ## New Project with Go Modules
 
-	$> mkdir -p ~/projects/github.com/autarch/my-project
+```sh
+$> mkdir -p ~/projects/github.com/autarch/my-project
 
-	$> cd ~/projects/github.com/autarch/my-project
+$> cd ~/projects/github.com/autarch/my-project
 
-	# creates go.mod and go.sum files
-	$> go mod init github.com/autarch/my-project
+# creates go.mod and go.sum files
+$> go mod init github.com/autarch/my-project
 
-	# Update go.mod and go.sum
-	$> go get github.com/pborman/uuid
+# Update go.mod and go.sum
+$> go get github.com/pborman/uuid
+```
 
 ------
 

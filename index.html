@@ -39,8 +39,9 @@
                 hash: true,
 
                 // Learn about plugins: https://revealjs.com/plugins/
-                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-            });
+                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+                dependencies: [ { src: "plugin/golang-play/plugin.js" } ]
+            }).then( () => GolangPlay.playify() );
         </script>
     </body>
 </html>
