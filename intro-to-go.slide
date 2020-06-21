@@ -48,11 +48,11 @@ Dave Rolsky
 
 * Hello, World
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/hello-world1/hello-world1.go
+.play intro-to-go-class-code/hello-world1/hello-world1.go
 
 * Hello, World Again
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/hello-world2/hello-world2.go
+.play intro-to-go-class-code/hello-world2/hello-world2.go
 
 * Toolchain and the Ecosystem
 
@@ -77,7 +77,7 @@ Dave Rolsky
 
 * Packages, Repos, and Paths
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/uuid-example/uuid-example.go
+.play intro-to-go-class-code/uuid-example/uuid-example.go
 
     > cd projects
     > mkdir -p github.com/autarch
@@ -185,11 +185,11 @@ Dave Rolsky
 
 * Declaration Examples
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/declarations/redeclare-ok.go
+.play intro-to-go-class-code/declarations/redeclare-ok.go
 
 * Declaration Examples
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/declarations/redeclare-bad.go
+.play intro-to-go-class-code/declarations/redeclare-bad.go
 
 * Constants
 
@@ -209,7 +209,7 @@ Dave Rolsky
 
 - Can assign `iota` to a constant - each assignment increments `iota`
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/constants/iota.go
+.play intro-to-go-class-code/constants/iota.go
 
 * Built-in Types
 
@@ -333,7 +333,7 @@ Dave Rolsky
 - We've seen `log` (`log.Print()`) and `os` (`os.Stdout.WriteString()`)
 - Can also use `fmt`
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/fmt-example/fmt-example.go
+.play intro-to-go-class-code/fmt-example/fmt-example.go
 
 * The os Package
 
@@ -344,7 +344,7 @@ Dave Rolsky
 
 - Use `os.Args`:
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/os-args-example/os-args-example.go
+.play intro-to-go-class-code/os-args-example/os-args-example.go
 
 - Argument 0 is the program name
 
@@ -415,7 +415,7 @@ Dave Rolsky
 
 * Exercise 1
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/1-calc/calc`
+- `cd`$intro-to-go-class-exercises/1-calc/calc`
 - Open `calc.go` in your editor of choice
 - Read the instructions
 
@@ -468,25 +468,25 @@ Dave Rolsky
 
 * Arrays and Slice Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/arrays.go
+.play intro-to-go-class-code/arrays/arrays.go
 
 * The make() Built-in
 
 - `make(Type,`Length)` returns a new slice
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/make.go
+.play intro-to-go-class-code/arrays/make.go
 
 * Appending to a Slice
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/append.go
+.play intro-to-go-class-code/arrays/append.go
 
 * Iterating Over a Slice
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/iterate.go
+.play intro-to-go-class-code/arrays/iterate.go
 
 * Sorting Slices
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/arrays/sort.go
+.play intro-to-go-class-code/arrays/sort.go
 
 - You can sort other types with the `sort.Slice` and `sort.SliceStable` funcs
 
@@ -499,15 +499,15 @@ Dave Rolsky
 
 * Maps Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/maps/maps.go
+.play intro-to-go-class-code/maps/maps.go
 
 * Iterating Over Maps
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/maps/iterate.go
+.play intro-to-go-class-code/maps/iterate.go
 
 * Exercise 2
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/2-count-strings/count-strings/count-strings.go`
+- `cd`$intro-to-go-class-exercises/2-count-strings/count-strings/count-strings.go`
 - Open `count-strings.go` in your editor of choice
 - Read the instructions
 
@@ -531,13 +531,13 @@ Dave Rolsky
 
 - You can convert types with `type(value)`:
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/types/types.go
+.play intro-to-go-class-code/types/types.go
 
 * Type Conversion
 
 - Type conversion is explicit
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/types/error.go
+.play intro-to-go-class-code/types/error.go
 
 - This prevents you from using a `CompanyID` as a `UserID` even though they're both `uint64` under the hood!
 
@@ -564,7 +564,7 @@ Dave Rolsky
 
 * Working With Structs
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/types/person.go
+.play intro-to-go-class-code/types/person.go
 
 * The nil Value
 
@@ -598,7 +598,7 @@ Dave Rolsky
 
 * Exercise 3
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/3-basic-user-package/user`
+- `cd`$intro-to-go-class-exercises/3-basic-user-package/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -612,19 +612,19 @@ Dave Rolsky
 
 * Taking a Pointer
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers.go
+.play intro-to-go-class-code/pointers/pointers.go
 
 * Function Takes a Pointer
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers2.go
+.play intro-to-go-class-code/pointers/pointers2.go
 
 * Function Returns a Pointer
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers3.go
+.play intro-to-go-class-code/pointers/pointers3.go
 
 * Making a Pointer to a Struct in Place
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers4.go
+.play intro-to-go-class-code/pointers/pointers4.go
 
 * Why Bother?
 
@@ -634,7 +634,7 @@ Dave Rolsky
 
 * Modifying The Caller's Value
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/pointers/pointers5.go
+.play intro-to-go-class-code/pointers/pointers5.go
 
 * Passing Functions and Function Types
 
@@ -646,7 +646,7 @@ Dave Rolsky
 
 * Function Passing Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/function-types/functions.go
+.play intro-to-go-class-code/function-types/functions.go
 
 * Function Literals are Closures
 
@@ -656,7 +656,7 @@ Dave Rolsky
 
 - What does this program print?
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/function-types/closures.go
+.play intro-to-go-class-code/function-types/closures.go
 
 * Defer
 
@@ -667,17 +667,17 @@ Dave Rolsky
 
 * Defer Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/defer/defer.go
+.play intro-to-go-class-code/defer/defer.go
 
 * Common Defer Idioms
 
 - Put cleanup right after initialization but `defer` it
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/defer/defer2.go /^func main/,/^}/
+.play intro-to-go-class-code/defer/defer2.go /^func main/,/^}/
 
 * Exercise 4
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/4-first-class-functions/user`
+- `cd`$intro-to-go-class-exercises/4-first-class-functions/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -742,13 +742,13 @@ Dave Rolsky
 
 - Shorthand for `if` ... `else if` ... `else if` ... `else`
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/switch/switch.go
+.play intro-to-go-class-code/switch/switch.go
 
 * Switch Statements
 
 - Can use expressions for each `case` if we omit the variable after `switch`:
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/switch/switch2.go
+.play intro-to-go-class-code/switch/switch2.go
 
 * Error Handling
 
@@ -779,27 +779,27 @@ Dave Rolsky
 
 * Errors in Action
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/errors/errors.go
+.play intro-to-go-class-code/errors/errors.go
 
 * Errors in Action
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/errors/errors2.go
+.play intro-to-go-class-code/errors/errors2.go
 
 * Using fmt.Errorf
 
 - If you want to create better string, errors, use `fmt.Errorf()`:
 
-.code gopath/src/github.com/autarch/intro-to-go-class-code/errors/errorf.go
+.code intro-to-go-class-code/errors/errorf.go
 
 * Advanced Errors
 
 - We can also create errors as structs:
 
-.code gopath/src/github.com/autarch/intro-to-go-class-code/errors/error-struct.go /start-of-code/,/end-of-code/
+.code intro-to-go-class-code/errors/error-struct.go /start-of-code/,/end-of-code/
 
 * Exercise 5
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/5-error-return/user`
+- `cd`$intro-to-go-class-exercises/5-error-return/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -832,7 +832,7 @@ Dave Rolsky
 
 * Example Tests
 
-.code gopath/src/github.com/autarch/intro-to-go-class-code/unit-tests/user_test.go
+.code intro-to-go-class-code/unit-tests/user_test.go
 
 * The assert Library
 
@@ -842,11 +842,11 @@ Dave Rolsky
 
 * assert Example
 
-.code gopath/src/github.com/autarch/intro-to-go-class-code/unit-tests/user_assert_test.go
+.code intro-to-go-class-code/unit-tests/user_assert_test.go
 
 * Exercise 6
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/6-unit-tests/calc`
+- `cd`$intro-to-go-class-exercises/6-unit-tests/calc`
 - Open `calc_test.go` in your editor of choice
 - Read the instructions
 
@@ -861,7 +861,7 @@ Dave Rolsky
 
 * Method Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/methods.go
+.play intro-to-go-class-code/oo/methods.go
 
 * How Methods Work
 
@@ -900,7 +900,7 @@ Dave Rolsky
 
 * Accessors Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/accessors.go
+.play intro-to-go-class-code/oo/accessors.go
 
 * Accessors Gotcha
 
@@ -920,7 +920,7 @@ Dave Rolsky
 
 * Exercise 7
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/7-basic-oo/user`
+- `cd`$intro-to-go-class-exercises/7-basic-oo/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -932,11 +932,11 @@ Dave Rolsky
 
 * Struct Composition
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/composition.go /START1 OMIT/,/END1 OMIT/
+.play intro-to-go-class-code/oo/composition.go /START1 OMIT/,/END1 OMIT/
 
 * Struct Composition
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/composition.go /START2 OMIT/,/END2 OMIT/
+.play intro-to-go-class-code/oo/composition.go /START2 OMIT/,/END2 OMIT/
 
 * Struct Composition
 
@@ -952,7 +952,7 @@ Dave Rolsky
 
 * Interface Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/interfaces.go
+.play intro-to-go-class-code/oo/interfaces.go
 
 * Some Common Built-in Interfaces
 
@@ -1002,7 +1002,7 @@ Dave Rolsky
 
 * Exercise 8
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/8-interfaces/user`
+- `cd`$intro-to-go-class-exercises/8-interfaces/user`
 - Open `user.go` in your editor of choice
 - Read the instructions
 
@@ -1017,7 +1017,7 @@ Dave Rolsky
 
 * Interface Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/interfaces2.go
+.play intro-to-go-class-code/oo/interfaces2.go
 
 * Why Use Interfaces?
 
@@ -1032,7 +1032,7 @@ Dave Rolsky
 
 - Want to accept any argument?
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/empty-interface.go
+.play intro-to-go-class-code/oo/empty-interface.go
 
 * Runtime Type Checking
 
@@ -1042,29 +1042,29 @@ Dave Rolsky
 
 * Type Assertion
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-assertion.go
+.play intro-to-go-class-code/oo/type-assertion.go
 
 * Type Assertion
 
 - Can also do an assertion that leads to a panic:
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-assertion2.go
+.play intro-to-go-class-code/oo/type-assertion2.go
 
 * Type Assertion Versus Conversion
 
 - Conversion is not the same as assertion:
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-assertion3.go
+.play intro-to-go-class-code/oo/type-assertion3.go
 
 * Type Switch
 
 - A more idiomatic way to write those if/else clauses:
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/oo/type-switch.go
+.play intro-to-go-class-code/oo/type-switch.go
 
 * Exercise 9 - Bonus Exercise?
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/9-more-interfaces/http`
+- `cd`$intro-to-go-class-exercises/9-more-interfaces/http`
 - Open `http.go` in your editor of choice
 - Read the instructions
 
@@ -1084,7 +1084,7 @@ Dave Rolsky
 
 * Goroutine Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/goroutine.go
+.play intro-to-go-class-code/concurrency/goroutine.go
 
 * Channels
 
@@ -1097,7 +1097,7 @@ Dave Rolsky
 
 * Channel Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/channel.go
+.play intro-to-go-class-code/concurrency/channel.go
 
 * The <- Operator and Type Signature
 
@@ -1115,7 +1115,7 @@ Dave Rolsky
 
 * Concurrent Adder Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/adder.go
+.play intro-to-go-class-code/concurrency/adder.go
 
 * Channel Select
 
@@ -1137,7 +1137,7 @@ Dave Rolsky
 
 * Channel Select Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/select.go /func main/,/end-of-code/
+.play intro-to-go-class-code/concurrency/select.go /func main/,/end-of-code/
 
 * Closing Channels
 
@@ -1158,7 +1158,7 @@ Dave Rolsky
 
 * Close Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/close.go /func main/,/end-of-code/
+.play intro-to-go-class-code/concurrency/close.go /func main/,/end-of-code/
 
 * Status of Multiple Channels
 
@@ -1170,11 +1170,11 @@ Dave Rolsky
 
 * Close Check Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/close2.go /func main/,/end-of-code/
+.play intro-to-go-class-code/concurrency/close2.go /func main/,/end-of-code/
 
 * Timeout Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/timeout.go /import.+/,/end-of-code/
+.play intro-to-go-class-code/concurrency/timeout.go /import.+/,/end-of-code/
 
 * Running Code Once
 
@@ -1184,7 +1184,7 @@ Dave Rolsky
 
 * Once Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/once.go /import.+/,/end-of-code/
+.play intro-to-go-class-code/concurrency/once.go /import.+/,/end-of-code/
 
 * Parallelization with WaitGroup
 
@@ -1193,7 +1193,7 @@ Dave Rolsky
 
 * WaitGroup Example
 
-.play gopath/src/github.com/autarch/intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/
+.play intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/
 
 * Go Packages and Modules
 
@@ -1274,7 +1274,7 @@ Dave Rolsky
 
 * Concurrency Bonus Exercise
 
-- `cd`$GOPATH/src/github.com/autarch/intro-to-go-class-exercises/10-concurrency`
+- `cd`$intro-to-go-class-exercises/10-concurrency`
 - Open `word-counter.go` in your editor of choice
 - Read the instructions
 
