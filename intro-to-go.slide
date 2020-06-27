@@ -176,6 +176,11 @@ Dave Rolsky
 - An empty struct
 - Etc.
 
+* Unused Variables
+
+- Unused variables cause compilation to fail!
+- This may surprise you during the exercises
+
 * Scope and Re-declaration
 
 - Variables are always lexically scoped from where they're declared
