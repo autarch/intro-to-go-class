@@ -1038,7 +1038,7 @@ Dave Rolsky
 * Runtime Type Checking
 
 - How do you know what was passed if you accept `interface{}`?
-- Can use the `reflect` package, which we'll cover if we have time
+- Can use the `reflect` package
 - Can also use type assertion or the type switch statement
 
 * Type Assertion
