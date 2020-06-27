@@ -157,7 +157,7 @@ Dave Rolsky
 
 - Several ways to declare
 - `var`foo`string`=`"bar"`
-- Type can be ommitted if the compiler can figure it out
+- Type can be omitted if the compiler can figure it out
 - `var`foo`=`"bar"`
 - `var` name, type, optional assignment
 - `foo`:=`42` - "short variable declaration"
