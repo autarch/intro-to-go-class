@@ -943,10 +943,6 @@ Dave Rolsky
 
 .play intro-to-go-class-code/oo/composition.go /START2 OMIT/,/END2 OMIT/
 
-* Struct Composition
-
-- Can also embed struct directlu
-
 * Interfaces
 
 - An interface is a list of methods *without implementations*
