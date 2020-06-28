@@ -23,6 +23,19 @@ The exercises repository uses symlinks in the answer directories to avoid
 having to copy some files around. However, you don't need to run or edit any
 code in the answer directories (they're for the instructor).
 
+# Getting Set Up for the Class
+
+There are a couple repos you should check out:
+
+* `git clone https://github.com/autarch/intro-to-go-class-exercises`
+
+You need to make sure two environment variables are set:
+
+Set the `GOROOT` env var to the root directory of your go installation. On
+Ubuntu with the `golang-1.14-go` package this is `/usr/lib/go`.
+
+Set `GO111MODULE=on` to enable Go modules mode by default.
+
 # Emacs Integration
 
 If you're using Emacs as your editor, I highly recommend installing
@@ -57,6 +70,13 @@ Check out the [GoSublime](https://github.com/DisposaBoy/GoSublime) plugin
 collection if you're using Sublime Text. It supports code completion, syntax
 checking as you type, quick formatting, and much more.
 
+# Language Server
+
+If your editor support the Language Server Protocol (LSP), you should install
+the `gopls` tool as a language server:
+
+    $> go get golang.org/x/tools/gopls@latest
+
 # General Editor Recommendations
 
 Setting up your editor to integrate with `go fmt` and `go vet` makes your Go
@@ -67,16 +87,6 @@ You may also want to be able to run `golint` easily, though I don't recommend
 this as a default action for every save. It will often complain about issues
 that you will not want to fix, especially when you write code for this class's
 exercises.
-
-# Getting Set Up for the Class
-
-There are a couple repos you should check out:
-
-* `git clone https://github.com/autarch/intro-to-go-class-exercises`
-
-**Set the `GOROOT` environment variable in your shell. This is the root
-directory of your go installation. On Ubuntu with the `golang-1.14-go` package
-this is `/usr/lib/go`.**
 
 # Reading the Slides on Your System
 
