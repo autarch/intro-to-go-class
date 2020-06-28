@@ -75,7 +75,7 @@ checking as you type, quick formatting, and much more.
 If your editor support the Language Server Protocol (LSP), you should install
 the `gopls` tool as a language server:
 
-    $> go get golang.org/x/tools/gopls@latest
+    go get golang.org/x/tools/gopls@latest
 
 # General Editor Recommendations
 
@@ -96,10 +96,10 @@ helpful, so I recommend getting this set up in advance.
 First, you'll need to clone this repo. Then in the checkout run the following
 two commands:
 
-    $> git clone https://github.com/autarch/intro-to-go-class
-    $> cd intro-to-go-class
-    $> git submodule init
-    $> git submodule update
+    git clone https://github.com/autarch/intro-to-go-class
+    cd intro-to-go-class
+    git submodule init
+    git submodule update
 
 Next you'll need the present tool. Run this command to install it:
 
