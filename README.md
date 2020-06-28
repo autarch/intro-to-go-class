@@ -70,35 +70,13 @@ exercises.
 
 # Getting Set Up for the Class
 
-First, you'll want to check this repo out. Then run the appropriate binary for
-your platform from the `setup` directory. If you want to specify the `GOPATH`
-for the binary to use, simply set it on the command line:
+There are a couple repos you should check out:
 
-    GOPATH=$HOME/go class-setup-darwin-amd64
+* `git clone https://github.com/autarch/intro-to-go-class-exercises`
 
-Note that on OSX you **must** set the `GOPATH` variable before running the
-binary.
-
-If you're on a platform which doesn't have a binary, all it does is the
-following:
-
-* Makes a `$GOPATH` root directory under `$HOME/go`.
-* Creates `$GOPATH/src/github.com/autarch` and clones
-  `https://github.com/autarch/intro-to-go-class-exercises.git` from that
-  subdirectory.
-* Tells you to set your `$GOPATH` environment variable to `$HOME/go` if it's
-  not already set.
-* Tell you to add `$GOPATH/bin` to your `$PATH`.
-
-Note that you can use a different directory for your `$GOPATH` if you prefer.
-
-**Make sure that you set the `GOPATH` environment variable and add
-`$GOPATH/bin` to your `PATH` in your preferred shell's rc file(s) such as
-`~/.bashrc`, `~/.zshrc`, etc.**
-
-**You should also set your `GOROOT` environment variable. This is the root
+**Set the `GOROOT` environment variable in your shell. This is the root
 directory of your go installation. On Ubuntu with the `golang-1.14-go` package
-this is `/usr/lib/go-1.14`.**
+this is `/usr/lib/go`.**
 
 # Reading the Slides on Your System
 
@@ -108,16 +86,16 @@ helpful, so I recommend getting this set up in advance.
 First, you'll need to clone this repo. Then in the checkout run the following
 two commands:
 
-    git submodule init
-    git submodule update
+    $> git clone https://github.com/autarch/intro-to-go-class
+    $> cd intro-to-go-class
+    $> git submodule init
+    $> git submodule update
 
-Next you'll need the present tool. After you have your `$GOPATH` set up,
-simply run:
+Next you'll need the present tool. Run this command to install it:
 
     go get golang.org/x/tools/cmd/present
 
-The `present` binary will be installed as `$GOPATH/bin/present`, which you
-should have added to your `PATH`.
+The `present` binary will be installed as `HOME/go/bin/present`.
 
 You can run `present` from the checkout directory, which contains the
 `intro-to-go.slide` file. Open up the URL that `present` gives you and you'll
