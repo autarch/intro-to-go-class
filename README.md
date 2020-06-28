@@ -93,13 +93,9 @@ exercises.
 Being able to browse the slides while doing the exercises will be very
 helpful, so I recommend getting this set up in advance.
 
-First, you'll need to clone this repo. Then in the checkout run the following
-two commands:
+First, you'll need to clone this repo:
 
     git clone https://github.com/autarch/intro-to-go-class
-    cd intro-to-go-class
-    git submodule init
-    git submodule update
 
 Next you'll need the present tool. Run this command to install it:
 
@@ -107,6 +103,6 @@ Next you'll need the present tool. Run this command to install it:
 
 The `present` binary will be installed as `HOME/go/bin/present`.
 
-You can run `present` from the checkout directory, which contains the
+You can run `present` from the root of the repo, which contains the
 `intro-to-go.slide` file. Open up the URL that `present` gives you and you'll
 see a link to open the slides.
