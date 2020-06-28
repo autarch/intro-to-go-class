@@ -1212,35 +1212,6 @@ Dave Rolsky
 - Simply provide the full repo path including a hostname and repo type
 - `import`"git.mycompany.com/repo.git/path/to/package"`
 
-* Go Get
-
-- `go`get` fetches packages and adds them to the current module's deps
-- `go`get`github.com/gin-gonic/gin` gets the `gin` package
-- `go`get` knows about several popular hosting services - github, bitbucket, etc.
-- If you put the VCS name in the path, that will be recognized - `hg.mycompany.com/repo.hg/go/lib/user`
-- If the path is accessible via HTTP(S), `go`get` looks for a special `<meta`name="go-import"`content="...">` tag
-
-* What Go Get Does
-
-- Checks to see if the package already exists under `src`
-- If package exists, the default is to to do nothing
-- If package doesn't exist, checks out the `HEAD` of the repo
-- Uses `git`, `svn`, `hg` - so you actually have a checkout
-- Parses the package it downloaded for dependencies and checks those out too (recursively)
-- If the package contains an executable, `go`get` installs it by default
-
-* Updating Packages
-
-- If you pass the `-u` flag to `go`get`, it will update existing packages
-- Updates the checkout to the latest HEAD and does the same for dependencies
-
-* Stable Builds with Go Get
-
-- `go`get` simply fetches the most recent semver tag, or `HEAD` of the default branch
-- If two machines run `go`get` for an untagged package at different times they may get different versions
-- Running `go`get`-u` gets you the latest code for all dependencies at the time its run
-- Makes it very hard to have stable, repeatable builds with Go
-
 * Dependency Management with Modules
 
 - There used to be many dep tools
@@ -1257,15 +1228,36 @@ Dave Rolsky
 
 * New Project with Go Modules
 
-    $> mkdir -p ~/projects/github.com/autarch/my-project
+    $> mkdir -p ~/projects/my-project
 
-    $> cd ~/projects/github.com/autarch/my-project
+    $> cd ~/projects/my-project
 
     # creates go.mod and go.sum files
     $> go mod init github.com/autarch/my-project
 
-    # Update go.mod and go.sum
-    $> go get github.com/pborman/uuid
+    # write some Go code
+
+    # Downloads deps, updates go.mod and go.sum
+    $> go test
+
+* Adding Deps
+
+- Add a new import to any file in the module
+- Next `go`build` or `go`test`
+- ... downloads packages if needed
+- ... updates your `go.mod` and `go.sum` files
+
+* Pinning Deps
+
+- Use `go`get`package@v1.2.3` for a specific tag
+- Also `go`get`package@branch`
+- Default is most recent tagged release
+- ... or HEAD of master if repo has no tags
+
+* Updating Deps
+
+- Use `go`get`-u`package` for minor version update
+- Use `go`get`package@v2.0.1` for major version update
 
 * More Module Commands
 
