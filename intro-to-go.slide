@@ -771,7 +771,7 @@ Dave Rolsky
 .link http://blog.golang.org/error-handling-and-go Error handling and Go
 .link http://blog.golang.org/defer-panic-and-recover Defer, Panic, and Recover
 .link https://blog.golang.org/errors-are-values Errors are values
-.link https://godoc.org/github.com/juju/errors Package for wrapping errors
+.link https://pkg.go.dev/github.com/juju/errors?tab=doc Package for wrapping errors
 
 * The Error Type
 
@@ -841,7 +841,7 @@ Dave Rolsky
 
 * The assert Library
 
-.link http://godoc.org/github.com/stretchr/testify/assert
+.link https://pkg.go.dev/github.com/stretchr/testify/assert?tab=doc
 - I'm a big fan
 - Makes testing a lot nicer
 
@@ -1276,7 +1276,7 @@ Dave Rolsky
 - Documentation on the language and core packages
 .link http://golang.org golang.org
 - Third party package listing and documentation
-.link http://godoc.org godoc.org
+.link http://go.dev go.dev
 
 * Searching for Go
 
