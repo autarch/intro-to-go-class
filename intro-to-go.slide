@@ -72,7 +72,7 @@ Dave Rolsky
 * Starting a New Go Project
 
 - Pick a repo
-- Make a directory like `~/projects/repo-host.com/username/repo-name`
+- Make a directory like `~/projects/my-project`
 - Hack, hack, hack
 
 * Packages, Repos, and Paths
