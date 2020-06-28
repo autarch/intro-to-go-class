@@ -1196,6 +1196,12 @@ Dave Rolsky
 
 .play intro-to-go-class-code/concurrency/waitgroup.go /import.+/,/end-of-code/
 
+* Concurrency Bonus Exercise
+
+- `cd`$intro-to-go-class-exercises/10-concurrency`
+- Open `word-counter.go` in your editor of choice
+- Read the instructions
+
 * Go Packages and Modules
 
 * Import Paths
@@ -1264,12 +1270,6 @@ Dave Rolsky
 - `go`list`-m`-all` - show entire dep tree
 - `go`list`-u`-m`-all` - show available updates for tree
 - `go`mod`tidy` - prune no-longer-needed deps and add anything missing
-
-* Concurrency Bonus Exercise
-
-- `cd`$intro-to-go-class-exercises/10-concurrency`
-- Open `word-counter.go` in your editor of choice
-- Read the instructions
 
 * Places to Learn More
 
