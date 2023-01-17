@@ -1225,11 +1225,9 @@ Dave Rolsky
 
 * Go Modules
 
-- Stable as of Go 1.14
-- Opt-in by adding `go.mod` file(s) to your repo with `go`mod`init`
+- Create the `go.mod` file(s) in your repo with `go`mod`init`
 - Specifies what your module is and your deps
 - Locks deps so multiple people working on a project are in sync
-- Go modules eliminates need for `$GOPATH`
 - See [[https://github.com/golang/go/wiki/Modules][github.com/golang/go/wiki/Modules]] for complete docs
 
 * New Project with Go Modules
