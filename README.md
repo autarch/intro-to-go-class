@@ -43,6 +43,11 @@ There are Go integrations for every popular editor.
 Install [the Go
 extension](https://marketplace.visualstudio.com/items?itemName=golang.Go).
 
+## GoLand
+
+This is [JetBrains's Go IDE](https://www.jetbrains.com/go/). It offers a free
+30-day trial period.
+
 ## Emacs
 
 If you're using Emacs as your editor, I highly recommend installing
