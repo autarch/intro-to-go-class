@@ -8,13 +8,13 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	user, err := NewUser("", "password")
+	user, err := New("", "password")
 
-	assert.NotNil(t, err, "got an error when the username is empty") // HL
-	assert.Equal(                                                    // HL
+	assert.Error(t, err, "got error from constructor") // HL
+	assert.EqualError(                                       // HL
 		t,
-		errors.New("The username must be a non-empty string."),
 		err,
+		"The username must be a non-empty string.",
 		"got the expected error for an empty username",
 	)
 	assert.Equal(t, User{}, user, "user returned on error is empty") // HL

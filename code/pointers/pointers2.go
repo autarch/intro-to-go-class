@@ -8,12 +8,12 @@ type person struct {
 }
 
 func main() {
-	dave := person{
-		name: "Dave Rolsky",
-		age:  41,
+	tom := person{
+		name: "Thomas Senlin",
+		age:  25,
 	}
-	// We cannot pass "dave", we need to take a pointer
-	takesPointer(&dave) // HL
+	// We cannot pass "tom", we need to take a pointer
+	takesPointer(&tom) // HL
 }
 
 func takesPointer(p *person) { // HL

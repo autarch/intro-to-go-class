@@ -9,10 +9,10 @@ type person struct {
 
 func main() {
 	// Makes a pointer to the struct
-	davePtr := &person{ // HL
-		name: "Dave Rolsky",
-		age:  41,
+	tomPtr := &person{ // HL
+		name: "Thomas Senlin",
+		age:  25,
 	}
 
-	fmt.Println(davePtr.name)
+	fmt.Println(tomPtr.name)
 }

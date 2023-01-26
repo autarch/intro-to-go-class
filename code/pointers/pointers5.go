@@ -8,11 +8,11 @@ type person struct {
 }
 
 func main() {
-	dave := person{name: "Dave Rolsky", age: 41}
-	takesStruct(dave)
-	fmt.Println(dave.name) // Name is unchanged
-	takesPointer(&dave)
-	fmt.Println(dave.name) // Name is now "Ringo Shiina"
+	tom := person{name: "Thomas Senlin", age: 25}
+	takesStruct(tom)
+	fmt.Println(tom.name) // Name is unchanged
+	takesPointer(&tom)
+	fmt.Println(tom.name) // Name is now "Ringo Shiina"
 }
 
 func takesStruct(p person) { // HL

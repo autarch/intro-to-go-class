@@ -18,7 +18,7 @@ Dave Rolsky
 * Are You Prepared?
 
 - Do you have a computer?
-- ... with Go 1.14 installed?
+- ... with Go 1.18 installed?
 - ... and your text editor of choice?
 - ... and the git repos for this class?
 
@@ -26,16 +26,8 @@ Dave Rolsky
 
 - Provide a broad overview of Go
 - Touch on many parts of the language
-- Cannot cover the language in depth
+- *We are not* covering the language in depth
 - This is a first step, not the final step
-
-* Go Versus Perl
-
-- Compiled versus interpreted
-- Static (inferenced) typing versus dynamic
-- C-esque syntax
-- Garbage collected (no reference counting)
-- Packaging and libraries are *very* different from Perl (more on this later)
 
 * Go Principles
 
@@ -44,7 +36,7 @@ Dave Rolsky
 - Minimize repetition and clutter
 - Very strong source compatibility - new versions of Go 1.x will not break existing code
 - All the information needed to compile a program is in the source
-- No Makefiles, external dependency lists, header files, etc. (but go modules changes this)
+- No Makefiles, header files, etc.
 
 * Hello, World
 
@@ -59,8 +51,7 @@ Dave Rolsky
 * $GOPATH
 
 - This used to be a thing
-- Still mentioned in lots of docs
-- Still being used for this class's exercises
+- Still mentioned in older docs
 
 * Source Code Organization
 
@@ -73,6 +64,7 @@ Dave Rolsky
 
 - Pick a repo
 - Make a directory like `~/projects/my-project`
+- Run `go`mod`init`github.com/me/project`
 - Hack, hack, hack
 
 * Packages, Repos, and Paths
@@ -106,16 +98,12 @@ Dave Rolsky
 - Runs many linting/formatting tools on your code in parallel
 .link https://pkg.go.dev/golang.org/x/tools/cmd/goimports?tab=doc
 - Runs `go`fmt` and cleans up import list
-.link https://github.com/golang/lint golint
-- Checks for style issues
-.link https://github.com/kisielk/errcheck errcheck
-- Makes sure that you check error return values
 
 * Links to Open Now
 
-.link http://golang.org/pkg/ Built-in Package docs - http://golang.org/pkg/
-.link http://golang.org/doc/effective_go.html Effective Go - http://golang.org/doc/effective_go.html
-.link http://golang.org/ref/spec Language Spec - http://golang.org/ref/spec
+.link https://pkg.go.dev/std Standard library docs - https://pkg.go.dev/std
+.link https://go.dev/doc/effective_go Effective Go - https://go.dev/doc/effective_go
+.link https://go.dev/ref/spec Language Spec - https://go.dev/ref/spec
 
 * From Zero to Code
 
@@ -165,8 +153,8 @@ Dave Rolsky
 
     // Go knows this is an int
     foo := 42
-    // Go looks at the return value of uuid.NewUUID() - it's a uuid.UUID
-    id := uuid.NewUUID()
+    // Go looks at the return value of uuid.New() - it's a uuid.UUID
+    id := uuid.New()
 
 * Variable Initialization
 
@@ -597,7 +585,7 @@ Dave Rolsky
         └── user_test.go
 
 - Imported as `github.com/autarch/code/packages/user`
-- Can call functions like `user.NewUser(...)`
+- Can call functions like `user.New(...)`
 - Every `.go` file starts with `package`user`
 - We'll cover `*_test.go` files later
 
@@ -767,9 +755,9 @@ Dave Rolsky
 
 * More Reading on Errors
 
-.link http://golang.org/doc/effective_go.html#errors Effective Go on errors
-.link http://blog.golang.org/error-handling-and-go Error handling and Go
-.link http://blog.golang.org/defer-panic-and-recover Defer, Panic, and Recover
+.link https://go.dev/doc/effective_go#errors Effective Go on errors
+.link https://blog.golang.org/error-handling-and-go Error handling and Go
+.link https://blog.golang.org/defer-panic-and-recover Defer, Panic, and Recover
 .link https://blog.golang.org/errors-are-values Errors are values
 .link https://pkg.go.dev/github.com/juju/errors?tab=doc Package for wrapping errors
 
@@ -842,7 +830,7 @@ Dave Rolsky
 * The assert Library
 
 .link https://pkg.go.dev/github.com/stretchr/testify/assert?tab=doc
-- I'm a big fan
+- I'm a big fan of using assertions
 - Makes testing a lot nicer
 
 * assert Example
@@ -1080,8 +1068,9 @@ Dave Rolsky
     go thing.Method()
     go func() { ... }()
 
-- The `go` keyword tells Go to run this function in its own thread
+- The `go` keyword tells Go to run this function in its own "thread"
 - Return values from these functions are discarded
+- The runtime may put these in their own thread or not
 
 * Goroutine Example
 
@@ -1208,7 +1197,7 @@ Dave Rolsky
 
 - Packages are identified by an import path
 - Non-core packages are typically identified by a repo path
-- `github.com/pborman/uuid`
+- `github.com/google/uuid`
 - `github.com/gin-gonic/gin`
 - `github.mycompany.com/myorg/repo.git/go/lib/user`
 
@@ -1265,15 +1254,15 @@ Dave Rolsky
 
 * More Module Commands
 
-- `go`list`-m`-all` - show entire dep tree
-- `go`list`-u`-m`-all` - show available updates for tree
+- `go`list`-m`all` - show entire dep tree
+- `go`list`-u`-m`all` - show available updates for tree
 - `go`mod`tidy` - prune no-longer-needed deps and add anything missing
 
 * Places to Learn More
 
-- Documentation on the language and core packages
+- Documentation on the language
 .link http://golang.org golang.org
-- Third party package listing and documentation
+- Standard lib & third party package listing and documentation
 .link http://go.dev go.dev
 
 * Searching for Go

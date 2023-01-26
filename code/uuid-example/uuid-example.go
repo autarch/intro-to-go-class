@@ -3,10 +3,10 @@ package main
 import (
 	"os"
 
-	"github.com/pborman/uuid" // HL
+	"github.com/google/uuid" // HL
 )
 
 func main() {
-	id := uuid.NewUUID() // HL
+	id := uuid.New() // HL
 	os.Stdout.WriteString(id.String() + "\n")
 }

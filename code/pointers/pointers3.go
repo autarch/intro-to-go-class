@@ -8,16 +8,16 @@ type person struct {
 }
 
 func main() {
-	dave := returnsPointer()
+	tom := returnsPointer()
 	// We can treat the pointer just like we treat the struct
-	fmt.Println(dave.name) // HL
+	fmt.Println(tom.name) // HL
 }
 
 func returnsPointer() *person {
-	dave := person{
-		name: "Dave Rolsky",
-		age:  41,
+	tom := person{
+		name: "Thomas Senlin",
+		age:  25,
 	}
 
-	return &dave // HL
+	return &tom // HL
 }

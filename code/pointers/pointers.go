@@ -11,13 +11,13 @@ type person struct {
 }
 
 func main() {
-	dave := person{
-		name: "Dave Rolsky",
-		age:  41,
+	tom := person{
+		name: "Thomas Senlin",
+		age:  25,
 	}
 
-	davePtr := &dave // HL
-	fmt.Printf("davePtr is a %s to a %s\n",
-		reflect.TypeOf(davePtr).Kind(),
-		reflect.ValueOf(davePtr).Elem().Type().Name())
+	tomPtr := &tom // HL
+	fmt.Printf("tomPtr is a %s to a %s\n",
+		reflect.TypeOf(tomPtr).Kind(),
+		reflect.ValueOf(tomPtr).Elem().Type().Name())
 }
