@@ -117,6 +117,6 @@ Next you'll need the present tool. Run this command to install it:
 
 The `present` binary will be installed as `$HOME/go/bin/present`.
 
-You can run `present` from the root of the repo, which contains the
+You can run `present` from the root of this repo, which contains the
 `intro-to-go.slide` file. Open up the URL that `present` gives you and you'll
-see a link to open the slides.
+see a link for `intro-to-go.slide`. Click on that to open the slides.
