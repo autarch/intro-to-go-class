@@ -69,13 +69,14 @@ You can also bind this to
 this with `go get golang.org/x/tools/cmd/goimports`. This wraps `gofmt` and
 makes sure that the list of package imports for the file is correct.
 
-## Vim
+## Vim and Neovim
 
 Here are some useful Vim tools for Go:
 
 * https://github.com/fatih/vim-go - syntax highlighting, auto gofmt on save,
   and more.
-* https://github.com/vim-syntastic/syntastic - syntax checking as you type.
+* https://github.com/dense-analysis/ale - syntax checking as you type and LSP
+  integration.
 * See https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins for more.
 
 ## Language Server
