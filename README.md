@@ -27,6 +27,7 @@ code in the answer directories (they're for the instructor).
 
 There are a couple repos you should check out:
 
+* `git clone https://github.com/autarch/intro-to-go-class`
 * `git clone https://github.com/autarch/intro-to-go-class-exercises`
 
 You need to make sure two environment variables are set:
