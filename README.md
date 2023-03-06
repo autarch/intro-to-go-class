@@ -32,7 +32,8 @@ There are a couple repos you should check out:
 You need to make sure two environment variables are set:
 
 Set the `GOROOT` env var to the root directory of your go installation. On
-Ubuntu with the `golang-1.18-go` package this is `/usr/lib/go`.
+Ubuntu with the `golang-1.18-go` package fom the longsleep PPA this will be
+`/usr/lib/go`.
 
 # Editor Integration
 
