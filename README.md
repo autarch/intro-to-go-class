@@ -114,7 +114,7 @@ First, you'll need to clone this repo:
 
 Next you'll need the present tool. Run this command to install it:
 
-    go get golang.org/x/tools/cmd/present
+    go install golang.org/x/tools/cmd/present@latest
 
 The `present` binary will be installed as `$HOME/go/bin/present`.
 
