@@ -5,15 +5,15 @@ on installing Go. This page has instructions for installing from a
 pre-compiled tarball on Linux, OSX, and FreeBSD. It also has links to an OSX
 package installer, an MSI installer for Windows, and a few other options.
 
-For Linux systems, your package manager may have a Golang 1.18 package. On
-Ubuntu, you may find the the `longsleep/golang-backports` PPA useful:
+For Linux systems, your package manager may have a Golang 1.18 or newer
+package. On Ubuntu, you may find the the `longsleep/golang-backports` PPA
+useful:
 
     sudo add-apt-repository ppa:longsleep/golang-backports
     sudo apt update
     sudo apt install golang-1.18
 
-For Fedora and Red Hat, check out https://go-repo.io/ for golang 1.18.x
-packages.
+For Fedora and Red Hat, check out https://go-repo.io/ for golang packages.
 
 # Operating Systems
 
